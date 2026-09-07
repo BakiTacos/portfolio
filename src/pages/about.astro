@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from "../layouts/BlogPostLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CallToAction from "../components/CallToAction.astro";
+import {pageTag, pageDescription,aboutTdk} from '../data/content';
+import myPortrait from "../assets/portrait.jpg";
+---
+<BlogPostLayout
+	title={aboutTdk.title || ''}
+	description = {aboutTdk.description || ''}
+	keywords = {aboutTdk.keywords || ''}
+>
+
+	<div class="post">
+		<main class="post-wrapper about">
+			<SectionHeader
+				tag={pageTag.about}
+				description={pageDescription.about}>
+				 Tentang Saya
+			</SectionHeader>
+			<section class="border-top" style="padding-top: 2rem;">
+				<div class="content">
+					<div>
+						<Image src={myPortrait} alt="portrait" width="88" height="88" class="portrait">
+					</div>
+					<p>
+						Halo! Saya seorang desainer dan web developer kreatif yang berfokus pada perancangan antarmuka visual yang modern, performa tinggi, serta pengalaman pengguna yang menyenangkan.
+					</p>
+					<p>
+						Saat ini saya aktif mengeksplorasi proyek-proyek inovatif, menggabungkan prinsip desain UI/UX dengan teknologi web modern untuk menghasilkan karya yang bermanfaat dan estetis.
+					</p>
+
+				</div>
+			</section>
+			<section>
+				<h3 class="post-title">Di Luar Pekerjaan</h3>
+				<div class="content">
+					<p>
+						Di luar aktivitas coding dan bisnis, saya senang meluangkan waktu untuk mengeksplorasi teknologi baru, menonton film drama, dan membaca komik.
+					</p>
+					<p>Tertarik untuk berkolaborasi atau sekadar berdiskusi? Jangan ragu untuk menghubungi saya!</p>
+					<p style="margin-top:24px;">
+						<CallToAction
+						target="_self"
+						href="mailto:kevinsakia.p@gmail.com"
+						>
+							Hubungi Saya
+						</CallToAction>
+					</p>
+				</div>
+			</section>
+			<p></p>
+			<p></p>
+		</main>
+	</div>
+</BlogPostLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		margin:0 auto;
+	}
+	p{
+		margin:0.75rem 0;
+	}
+	figure{
+		margin:2rem 0;
+	}
+	img{max-width: 100%;}
+	.portrait{
+		border-radius: 100px;
+		margin:12px 0 12px;
+		overflow: hidden;
+		text-align: left;
+	}
+	a, a:link{
+		color:var(--color-blue);
+	}
+</style>

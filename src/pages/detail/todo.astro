@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import DetailHeader from "../../components/DetailHeader.astro";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import CallToAction from "../../components/CallToAction.astro";
+
+//输入文件夹地址，会按文件名自动加载全部，并压缩为webp格式
+const images = Object.values(
+	import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/todo/*.{jpg,png,webp}', {
+		eager: true,
+	})
+);
+
+---
+<DetailPostLayout
+	title="Online Todo List | Portfolio"
+	description = 'Aplikasi web TodoList dengan desain minimalis, tanpa registrasi, data tersimpan di local storage browser.',
+	keywords = 'online todo, todolist, catatan, web app, tugas harian',
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<DetailHeader
+			tag="WEBSITE"
+			description="">
+					<h1 class="font-type">
+						Todo List Online
+					</h1>
+			</DetailHeader>
+
+			<section>
+				<div class="content">
+					<div class="row desc">
+						<div class="col-1a">
+							<h3 class="post-title">Todo 1.0 - Figma & Vue</h3>
+							<p class="post-desc">
+								Aplikasi web to-do list berdesain bersih dan minimalis. Tidak memerlukan registrasi akun, seluruh data tugas disimpan secara lokal di browser Anda.
+							</p>
+						</div>
+						<div class="col-1a">
+							<p>
+								<div class="btn">
+									<CallToAction href="https://todo.uiineed.com/" target="_blank">
+										Kunjungi Situs
+									</CallToAction>
+									<CallToAction href="https://github.com/ricocc/uiineed-todo-list" target="_blank">
+										GitHub
+									</CallToAction>
+								</div>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="preview">
+				{images.map((img, index) => (
+					<picture class="gsap-picture">
+					  <Image src={img.default} alt={`Image ${index + 1}`}   loading="lazy" decoding="async" />
+					</picture>
+				  ))}
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style>
+img{
+	border:1px solid #ececec;
+}
+.btn{
+	display: flex;
+	gap: 16px;
+}
+</style>
