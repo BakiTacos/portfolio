@@ -309,13 +309,13 @@ Markdown 语法：
 
 Markdown 语法：
 
-	​```sequence
+	​```text
 	张三->李四: 嘿，小四儿, 写博客了没?
 	Note right of 李四: 李四愣了一下，说：
 	李四-->张三: 忙得吐血，哪有时间写。
 	​```
 	
-	​```flow
+	​```text
 	st=>start: 开始
 	e=>end: 结束
 	op=>operation: 我的操作
@@ -326,15 +326,15 @@ Markdown 语法：
 	cond(no)->op
 	​```
 
-效果如下（ `Preferences` - `Themes` - `Enable sequence &amp; flow chart` 才会看到效果 ）：
+效果如下：
 
-```sequence
+```text
 张三->李四: 嘿，小四儿, 写博客了没?
 Note right of 李四: 李四愣了一下，说：
 李四-->张三: 忙得吐血，哪有时间写。
 ```
 
-```flow
+```text
 st=>start: 开始
 e=>end: 结束
 op=>operation: 我的操作

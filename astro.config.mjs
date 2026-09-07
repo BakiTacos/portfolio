@@ -14,10 +14,12 @@ export default defineConfig({
   site: SITE_URL,
   base: '/',
   integrations: [sitemap(), mdx()],
-  css: {
-    preprocessorOptions: {
-      sass: {
-        api: "modern",
+  vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          api: "modern",
+        },
       },
     },
   },
