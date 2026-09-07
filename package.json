@@ -12,6 +12,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "deploy": "wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
@@ -31,5 +32,8 @@
   },
   "overrides": {
     "vite": ">=7.3.6"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.1"
   }
 }
