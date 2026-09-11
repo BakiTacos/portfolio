@@ -1,6 +1,6 @@
 ---
-title: Contoh Format Markdown
-description: 'Contoh sintaks dan gaya format penulisan konten Markdown pada Astro.'
+title: Markdown Syntax & Style Guide
+description: 'A sample of common Markdown syntax and styling components in Astro.'
 publishDate: 2024-10-20 00:00:00
 # img: /assets/stock.jpg
 # img_alt: stock

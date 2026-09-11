@@ -14,8 +14,8 @@ const images = Object.values(
 ---
 <DetailPostLayout
 	title="Free Valentine's Day 3D Blender Assets | Portfolio"
-	description = 'Koleksi aset dan ikon 3D gratis bertema Valentine yang siap digunakan untuk UI/UX dan web design.',
-	keywords = '3D assets, ikon 3D, blender, valentine, desain UI',
+	description = 'Free Valentine-themed 3D asset and icon pack ready for UI/UX and web design projects.',
+	keywords = '3D assets, 3D icons, blender, valentine, UI design',
 >
 	<div class="post">
 		<main class="post-wrapper">
@@ -30,17 +30,17 @@ const images = Object.values(
 				<div class="content">
 					<div class="row desc">
 						<div class="col-1a">
-							<h3 class="post-title" style="margin-bottom:1em;">Paket Ikon 3D Gratis - Hari Valentine</h3>
+							<h3 class="post-title" style="margin-bottom:1em;">Free 3D Icons Pack - Valentine's Day</h3>
 
-							<p>Ikon 3D Valentine ini sangat cocok untuk desain UI, web design, landing page, dan proyek grafis lainnya.</p>
+							<p>These Valentine's Day 3D icons are suitable for UI design, web design, landing pages, and creative projects.</p>
 							<p class="post-desc">
-								- Berkas 3D Blender (Mudah dikustomisasi)<br/>
-								- Gaya warna Putih dan Pink<br/>
-								- Gambar resolusi tinggi 3000x3000px (PNG)
+								- 3D Blender Files (Fully customizable)<br/>
+								- White and Pink Color Style Files<br/>
+								- High Resolution Images 3000x3000px (PNG)
 							</p>
 						</div>
 						<div class="col-1a">
-								<p style="margin-top: 12px;">👉 Unduh:</p>
+								<p style="margin-top: 12px;">👉 Download:</p>
 								<div class="btn btn-grid" style="margin-top: 12px;">
 									<CallToAction  target="_blank" href="http://web.606design.art/landings/004-free-3d-valentines-assets/">Landing Page </CallToAction>
 									<CallToAction  target="_blank" href="https://www.figma.com/community/file/1363451172790940214/free-3d-icons-valentines-day/">Figma Community</CallToAction>
@@ -53,8 +53,8 @@ const images = Object.values(
 			</section>
 			<section class="preview">
 				{images.map((img, index) => (
-					<picture class="picture">
-					  <Image src={img.default} alt={`Image ${index + 1}`}   loading="lazy" decoding="async" />
+					<picture class="gsap-picture">
+					  <Image src={img.default} alt={`3D Asset Preview ${index + 1}`} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
 					</picture>
 				  ))}
 			</section>

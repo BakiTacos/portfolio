@@ -14,19 +14,19 @@ interface Nav {
     items?: NavItem[];
 }
 
-// Navigasi Utama
+// Main Navigation
 export const nav: Nav = {
 	avatar: '/assets/author.png',
     items: [
-        { label: 'Beranda', href: '/', target: '_self' },
-        { label: 'Proyek', href: '/project', target: '_self' },
-        { label: 'Tentang', href: '/about', target: '_self' },
+        { label: 'Home', href: '/', target: '_self' },
+        { label: 'Projects', href: '/project', target: '_self' },
+        { label: 'About', href: '/about', target: '_self' },
         { label: 'Blog', href: '/blog', target: '_self' },
     ],
 };
 
 // Footer
-export const footerText = `© ${new Date().getFullYear()} Portfolio. All Rights Reserved.`
+export const footerText = `© ${new Date().getFullYear()} Kevin Sakia Putra. All Rights Reserved.`
 
 // SEO TDK
 interface SeoTdk {
@@ -35,42 +35,42 @@ interface SeoTdk {
 	keywords?: string
 }
 
-// SEO TDK Beranda
+// SEO TDK Home
 export const homeTdk: SeoTdk = {
-	title: 'Portfolio Pribadi',
-	description: 'Showcase proyek dan portofolio karya saya',
-	keywords: 'portfolio, proyek, developer, desainer, blog'
+	title: 'Kevin Sakia Putra - Portfolio',
+	description: 'Personal portfolio showcasing projects in software development, data, business, and AI.',
+	keywords: 'portfolio, software development, data, business, AI, information systems, web development'
 }
 
 // SEO TDK Blog
 export const blogTdk: SeoTdk = {
-	title: 'Blog & Catatan',
-	description: 'Kumpulan artikel, catatan, dan pemikiran seputar teknologi dan desain',
-	keywords: 'blog, catatan, artikel, developer'
+	title: 'Blog & Notes - Kevin Sakia Putra',
+	description: 'Articles, notes, and thoughts on technology, development, and business.',
+	keywords: 'blog, notes, articles, developer, technology'
 }
 
-// SEO TDK Tentang
+// SEO TDK About
 export const aboutTdk: SeoTdk = {
-	title: 'Tentang Saya',
-	description: 'Profil dan pengenalan diri saya',
-	keywords: 'tentang, profil, bio, portfolio'
+	title: 'About Me - Kevin Sakia Putra',
+	description: 'Information Systems student exploring software development, data, business, and AI.',
+	keywords: 'about, profile, bio, information systems, software development, AI'
 }
 
-// SEO TDK Proyek
+// SEO TDK Projects
 export const projectTdk: SeoTdk = {
-	title: 'Daftar Proyek',
-	description: 'Showcase koleksi karya dan proyek pilihan',
-	keywords: 'proyek, portfolio, karya, showcase'
+	title: 'Projects - Kevin Sakia Putra',
+	description: 'A showcase of selected projects, experiments, and applications.',
+	keywords: 'projects, portfolio, software, showcase'
 }
 
 // SEO TDK 404
 export const notFoundTdk: SeoTdk = {
-	title: '404 Tidak Ditemukan - Halaman Tidak Ada',
-	description: '404 Tidak Ditemukan - Halaman yang Anda cari tidak ditemukan.',
-	keywords: '404, tidak ditemukan'
+	title: '404 Not Found - Page Does Not Exist',
+	description: '404 Not Found - The page you are looking for does not exist.',
+	keywords: '404, not found'
 }
 
-// Tautan Sosial Media
+// Social Media Links
 export const socialLinks = [
 	{
 		name: 'Github',
@@ -79,7 +79,7 @@ export const socialLinks = [
 	},
 	{
 		name: 'LinkedIn',
-		url: 'www.linkedin.com/in/kevin-sakia-putra-2661a42a7',
+		url: 'https://www.linkedin.com/in/kevin-sakia-putra-2661a42a7',
 		icon: `<svg class="icon ic-linkedin ic-social" viewBox="0 0 24 24" width="256" height="256"><path fill="currentColor" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`
 	},
 	{
@@ -94,7 +94,7 @@ export const socialLinks = [
 	}
 ];
 
-// Tag Header Halaman
+// Page Header Tags
 interface PageTag {
 	index: string
 	about: string
@@ -103,12 +103,12 @@ interface PageTag {
 }
 export const pageTag: PageTag = {
 	index: 'PORTFOLIO',
-	about: 'TENTANG',
+	about: 'ABOUT',
 	blog: 'BLOG',
-	project: 'PROYEK'
+	project: 'PROJECTS'
 }
 
-// Deskripsi Halaman
+// Page Descriptions
 interface PageDescription {
 	index?: string
 	project?: string
@@ -116,24 +116,23 @@ interface PageDescription {
 	about?: string
 }
 export const pageDescription: PageDescription = {
-	index: 'Selamat datang di portfolio saya! Di sini Anda dapat menjelajahi koleksi karya, proyek, serta artikel dan catatan seputar desain dan teknologi.',
-	project: "Berikut adalah daftar proyek dan karya pilihan yang telah saya kerjakan.",
-	about: 'Fokus pada pengembangan produk digital, desain antarmuka, dan inovasi web modern.',
-	blog: 'Kumpulan artikel, catatan teknis, dan ide seputar pengembangan. Semoga bermanfaat!',
+	index: 'Welcome to my portfolio! Explore my selected projects, experiments, and articles across software development, data, and technology.',
+	project: "A collection of projects, applications, and practical solutions I've developed.",
+	about: 'Information Systems student • Software Development, Data, Business & AI',
+	blog: 'Articles, technical notes, and ideas on development and tech. Hope you find them helpful!',
 }
 
-// Item Filter Proyek Beranda
+// Project Filter Items
 export interface FilterItem {
 	content: string
 	dataGroup: string
 }
 export const filterItems: FilterItem[] = [
-	{ content: "💎 Rekomendasi", dataGroup: "recommend" },
+	{ content: "💎 Featured", dataGroup: "recommend" },
 	{ content: "Web", dataGroup: "web" },
-	{ content: "UI", dataGroup: "ui" },
-	{ content: "3D", dataGroup: "3d" },
-	{ content: "Fotografi", dataGroup: "photography" },
-	{ content: "Branding", dataGroup: "brand" },
+	{ content: "UI/UX", dataGroup: "ui" },
+	{ content: "Data", dataGroup: "data" },
+	{ content: "Branding", dataGroup: "branding" },
 ];
 
 

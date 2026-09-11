@@ -30,7 +30,7 @@ const count = cards.length;
 <div class="section card">
     <div class="js-shuffle-sizer" >
         <div class="card-list my-shuffle-container" id="js-shuffle">
-            {cards.reverse().map((card) => (
+            {cards.reverse().map((card, idx) => (
               <div class="card-item col-xs-1a col-md-2a col-lg-3a col-xxl-4a" data-groups={JSON.stringify(card.category)} data-date-created={card.date} data-title={card.title}>
                   <div class="card-header">
                       <div class="card-type type">
@@ -41,23 +41,27 @@ const count = cards.length;
                       </div>
                   </div>
                   <div class="card-body">
-                      <a href={card.detail ? card.detail:"javascript:void(0)"} class="card-figure" target={card.detail ? "_blank":"_self"}>
-                        (<img class="card-figure__img lazy"
-                              src={card.cover} loading="lazy"
-                              alt="Loading Animations"
-                        >)
+                      <a href={card.detail ? card.detail:"javascript:void(0)"} class="card-figure" target={card.detail ? "_blank":"_self"} aria-label={card.title}>
+                        <img class="card-figure__img lazy"
+                              src={card.cover}
+                              loading={idx < 2 ? "eager" : "lazy"}
+                              decoding="async"
+                              fetchpriority={idx === 0 ? "high" : "auto"}
+                              alt={card.title}
+                        />
                       </a>
                   </div>
                   <div class="card-footer">
                       <div class="card-detail">
                           <a href={card.detail ? card.detail :"javascript:void(0)"} target={card.detail ? "_blank":"_self"} class="card-name card-item__title">
-                            {card.mark && <span class="tag-original">Rekomendasi</span>}   {card.title}
+                            {card.mark && <span class="tag-original">Featured</span>}   {card.title}
                           </a>
                           <div class="card-info">
                             {card.description}
                           </div>
                       </div>
-                     {card.url && <a href={card.url ? card.url : "javascript:void(0)" } class="card-link card-link__go js-gotip" target={card.url ? "_blank" : "_self"}>
+                     {card.url && <a href={card.url ? card.url : "javascript:void(0)" } class="card-link card-link__go js-gotip" target={card.url ? "_blank" : "_self"} aria-label={`Visit ${card.title}`}>
+                        <span class="sr-only">Visit {card.title}</span>
                       </a> }
                   </div>
               </div>

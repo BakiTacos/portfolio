@@ -1,10 +1,10 @@
 ---
-title: Contoh Tipografi & Artikel
+title: Typography & Article Layout Guide
 publishDate: 2024-10-22
 read: 5
-description: Contoh artikel dengan format tipografi, kutipan, dan perataan teks untuk layout postingan blog.
+description: Sample article demonstrating typography styling, blockquotes, and text layout for blog posts.
 tags:
-  - Tipografi
+  - Typography
 ---
 
 ## 本篇引语

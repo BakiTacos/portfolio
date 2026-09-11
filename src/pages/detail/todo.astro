@@ -14,8 +14,8 @@ const images = Object.values(
 ---
 <DetailPostLayout
 	title="Online Todo List | Portfolio"
-	description = 'Aplikasi web TodoList dengan desain minimalis, tanpa registrasi, data tersimpan di local storage browser.',
-	keywords = 'online todo, todolist, catatan, web app, tugas harian',
+	description = 'Minimalist TodoList web application with no registration required and local storage support.',
+	keywords = 'online todo, todolist, task manager, web app',
 >
 	<div class="post">
 		<main class="post-wrapper">
@@ -33,14 +33,14 @@ const images = Object.values(
 						<div class="col-1a">
 							<h3 class="post-title">Todo 1.0 - Figma & Vue</h3>
 							<p class="post-desc">
-								Aplikasi web to-do list berdesain bersih dan minimalis. Tidak memerlukan registrasi akun, seluruh data tugas disimpan secara lokal di browser Anda.
+								A clean and minimalist web-based to-do list app. No account registration required—all tasks are saved directly in your browser's local cache.
 							</p>
 						</div>
 						<div class="col-1a">
 							<p>
 								<div class="btn">
 									<CallToAction href="https://todo.uiineed.com/" target="_blank">
-										Kunjungi Situs
+										Visit Site
 									</CallToAction>
 									<CallToAction href="https://github.com/ricocc/uiineed-todo-list" target="_blank">
 										GitHub
@@ -54,7 +54,7 @@ const images = Object.values(
 			<section class="preview">
 				{images.map((img, index) => (
 					<picture class="gsap-picture">
-					  <Image src={img.default} alt={`Image ${index + 1}`}   loading="lazy" decoding="async" />
+					  <Image src={img.default} alt={`Todo Screenshot ${index + 1}`} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
 					</picture>
 				  ))}
 			</section>

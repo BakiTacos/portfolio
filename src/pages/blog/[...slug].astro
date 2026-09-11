@@ -41,10 +41,10 @@ const { Content } = await render(entry);
 
 				</div>
 				<div class="post-line post-line-bottom text-center" >
-					<span class="text-center">Diperbarui pada: {entry.data.publishDate.toISOString().slice(0,10)}</span>
+					<span class="text-center">Updated on: {entry.data.publishDate.toISOString().slice(0,10)}</span>
 					{
 						entry.data.read &&   <span class="" >•</span>
-					<span >{entry.data.read} menit baca</span>
+					<span >{entry.data.read} min read</span>
 					}
 				</div>
 			</div>

@@ -11,8 +11,8 @@ const images = Object.values(
 ---
 <DetailPostLayout
 	title="Tink Life | Portfolio"
-	description = 'Rico & Tink: Diary Life - Situs web mobile untuk catatan perjalanan, dirancang dan dikembangkan secara independen.',
-	keywords = 'diary life, catatan perjalanan, mobile web, figma, vue',
+	description = 'Rico & Tink: Diary Life - Mobile-first website for travel journals, independently designed and built.',
+	keywords = 'diary life, travel journal, mobile web, figma, vue',
 >
 	<div class="post">
 		<main class="post-wrapper">
@@ -26,9 +26,9 @@ const images = Object.values(
 				<div class="content">
 					<div class="row desc">
 						<div class="col-1a">
-							<h3 class="post-title">Teknologi & Desain: Figma & Vue</h3>
+							<h3 class="post-title">Design & Technology: Figma & Vue</h3>
 							<p class="post-desc">
-								Situs web mobile-first untuk dokumentasi perjalanan dan kehidupan sehari-hari. Dibuat mulai dari perancangan wireframe, UI prototype, hingga implementasi frontend.
+								A mobile-first website for documenting travel memories and daily life moments. Built from wireframing and UI prototyping to frontend implementation.
 							</p>
 						</div>
 					</div>
@@ -36,8 +36,8 @@ const images = Object.values(
 			</section>
 			<section class="preview">
 				{images.map((img, index) => (
-					<picture class="picture">
-					  <Image src={img.default} alt={`Image ${index + 1}`}   loading="lazy" decoding="async" />
+					<picture class="gsap-picture">
+					  <Image src={img.default} alt={`Travel Screenshot ${index + 1}`} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
 					</picture>
 				  ))}
 			</section>
