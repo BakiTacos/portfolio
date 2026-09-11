@@ -1,0 +1,362 @@
+---
+import { Image } from "astro:assets";
+import DetailHeader from "../../components/DetailHeader.astro";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import imgCover from "../../assets/projects/bookkeeping/cover.png";
+import imgV1 from "../../assets/projects/bookkeeping/v1.png";
+import imgV2 from "../../assets/projects/bookkeeping/v2.png";
+import imgV3 from "../../assets/projects/bookkeeping/v3.png";
+---
+
+<DetailPostLayout
+	title="Bookkeeping & Financial Management System | Portfolio"
+	description="A bookkeeping system built to manage business transactions, inventory, accounts, and financial reporting across three architectural iterations."
+	keywords="bookkeeping, financial management, nextjs, postgresql, firebase, system architecture, data model"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<DetailHeader
+				tag="SYSTEM ARCHITECTURE"
+				description="Transactions, Inventory, Accounts & Financial Reporting"
+			>
+				<h1 class="font-type">
+					Bookkeeping & Financial Management System
+				</h1>
+			</DetailHeader>
+
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image src={imgCover} alt="Bookkeeping & Financial Management System Overview" loading="eager" decoding="async" class="screenshot-img" />
+					</figure>
+					<p class="lead-text">
+						A bookkeeping system built to manage business transactions, inventory, accounts, and financial reporting. The project evolved through three major iterations, with each version addressing limitations discovered in the previous architecture.
+					</p>
+				</div>
+			</section>
+
+			<section class="iteration-section">
+				<div class="content">
+					<!-- V1 -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/rocket.png" alt="V1 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">V1 — Building the Foundation</h3>
+								<span class="tech-pill">Stack: Next.js & Firebase</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image src={imgV1} alt="Bookkeeping System V1 Interface" loading="lazy" decoding="async" class="screenshot-img" />
+							</figure>
+							<p>
+								The first version focused on establishing the basic bookkeeping workflow and creating a usable interface.
+							</p>
+							<p>
+								The UI was already available, but the relationship between different business requirements was still weak. Features existed independently and some were rarely used because they were not sufficiently connected to the overall workflow.
+							</p>
+							<div class="takeaway-box">
+								<strong>Key Insight:</strong> Having individual features does not necessarily create a coherent system. A bookkeeping application needs its data, workflows, and reports to work together.
+							</div>
+						</div>
+					</div>
+
+					<!-- V2 -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/compass.png" alt="V2 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">V2 — Connecting the Workflow</h3>
+								<span class="tech-pill">Stack: Next.js & Firebase</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image src={imgV2} alt="Bookkeeping System V2 Interface" loading="lazy" decoding="async" class="screenshot-img" />
+							</figure>
+							<p>
+								V2 improved the overall flow and started connecting previously separated requirements. The system became more usable and closer to a complete bookkeeping workflow.
+							</p>
+							<p>
+								However, as the system became more interconnected, new problems appeared:
+							</p>
+							<ul class="iteration-list">
+								<li>Changes in one part of the system could unexpectedly affect other parts.</li>
+								<li>The data access design resulted in excessive reads because queries and data retrieval were not sufficiently constrained.</li>
+								<li>As the system grew, some data relationships became harder to maintain, and the accuracy and reliability of certain outputs became increasingly difficult to guarantee.</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Key Insight:</strong> The problem was no longer just the UI or individual features. The underlying data architecture was becoming the bottleneck.
+							</div>
+						</div>
+					</div>
+
+					<!-- V3 -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="V3 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">V3 — Redesigning the Data Architecture</h3>
+								<span class="tech-pill pg">Stack: Next.js & PostgreSQL</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image src={imgV3} alt="Bookkeeping System V3 Interface & Architecture" loading="lazy" decoding="async" class="screenshot-img" />
+							</figure>
+							<p>
+								V3 was not simply another feature update. It involved redesigning the underlying data model to better represent the relationships within the business.
+							</p>
+							<p>
+								The database was structured around clearer entities and relationships, including multi-level accounts and separated reporting structures.
+							</p>
+							<p><strong>The new architecture was designed to support:</strong></p>
+							<ul class="iteration-list">
+								<li>Clearer separation between financial entities</li>
+								<li>Multi-level account structures</li>
+								<li>More reliable financial reporting</li>
+								<li>Drill-down from summarized reports into underlying details</li>
+								<li>Relationships between a single transaction and related business entities</li>
+								<li>Better control over how data is retrieved and connected</li>
+							</ul>
+							<p class="quote-text">
+								Instead of designing the system around individual screens, V3 increasingly focused on the question: <br/>
+								<em>“How should the business data actually relate to each other?”</em>
+							</p>
+							<p>
+								This allowed the application to move from a collection of connected features toward a more structured financial management system.
+							</p>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Each version taught me something different about building software:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="V1 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">V1</span>
+								</div>
+								<p>Features need to serve a connected workflow rather than standalone functions.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="V2 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">V2</span>
+								</div>
+								<p>Improving the user flow without addressing underlying architecture creates bottlenecks as the system scales.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="V3 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">V3</span>
+								</div>
+								<p>Think about the data model and relationships first, especially when reporting accuracy and traceability matter.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2.5rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.5rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.quote-text {
+		margin: 1.5rem 0;
+		padding: 1rem 1.25rem;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid #1bc47d;
+		font-size: 1.05rem;
+		color: var(--color-0);
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

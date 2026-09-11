@@ -21,7 +21,6 @@ export const nav: Nav = {
         { label: 'Home', href: '/', target: '_self' },
         { label: 'Projects', href: '/project', target: '_self' },
         { label: 'About', href: '/about', target: '_self' },
-        { label: 'Blog', href: '/blog', target: '_self' },
     ],
 };
 
@@ -128,7 +127,7 @@ export interface FilterItem {
 	dataGroup: string
 }
 export const filterItems: FilterItem[] = [
-	{ content: "💎 Featured", dataGroup: "recommend" },
+	{ content: "Featured", dataGroup: "recommend" },
 	{ content: "Web", dataGroup: "web" },
 	{ content: "UI/UX", dataGroup: "ui" },
 	{ content: "Data", dataGroup: "data" },
