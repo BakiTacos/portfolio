@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import DetailHeader from "../../components/DetailHeader.astro";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import imgCover from "../../assets/projects/bookkeeping/cover.png";
+import imgStart from "../../assets/projects/bookkeeping/start.png";
 import imgV1 from "../../assets/projects/bookkeeping/v1.png";
 import imgV2 from "../../assets/projects/bookkeeping/v2.png";
 import imgV3 from "../../assets/projects/bookkeeping/v3.png";
@@ -37,6 +38,39 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 
 			<section class="iteration-section">
 				<div class="content">
+					<!-- Excel Starting Point -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Starting Point Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Excel — The Starting Point</h3>
+								<span class="tech-pill">Tool: Microsoft Excel</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image src={imgStart} alt="Excel Bookkeeping Starting Point" loading="lazy" decoding="async" class="screenshot-img" />
+							</figure>
+							<p>
+								Initially, bookkeeping was managed using Excel spreadsheets to record business transactions and compile financial reports.
+							</p>
+							<p>
+								As operational usage and transaction volume expanded, several critical limitations became evident:
+							</p>
+							<ul class="iteration-list">
+								<li>Data filtering, calculations, and overall processing became increasingly sluggish.</li>
+								<li>Historical reports required laborious manual verification and recalculation.</li>
+								<li>Large workbook files caused significant lag and performance bottlenecks across user devices.</li>
+								<li>Inconsistent and inconvenient user experience across devices with varying hardware specs.</li>
+								<li>Lack of mobile responsiveness made on-the-go access via smartphones impractical.</li>
+								<li>Maintaining data consistency and relational integrity became unsustainable as business complexity grew.</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Key Insight:</strong> Spreadsheets work well for simple tracking, but as data volume and business logic grow, a dedicated application architecture is essential for scalability, reliability, and speed.
+							</div>
+						</div>
+					</div>
+
 					<!-- V1 -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">

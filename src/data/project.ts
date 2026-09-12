@@ -16,7 +16,7 @@ export const projectItems: ProjectItem[] = [
 		title_en: "Transactions, Inventory, Accounts & Financial Reporting",
 		date: "2026-09-11",
 		detail: "/detail/bookkeeping",
-		cover: ['bookkeeping/cover.png', 'bookkeeping/v3.png', 'bookkeeping/v2.png', 'bookkeeping/v1.png'],
-		tags: ['NEXT.JS', 'POSTGRESQL', 'FIREBASE', 'FINANCE', 'DATA ARCHITECTURE']
+		cover: ['bookkeeping/cover.png', 'bookkeeping/start.png', 'bookkeeping/v3.png', 'bookkeeping/v2.png', 'bookkeeping/v1.png'],
+		tags: ['NEXT.JS', 'POSTGRESQL', 'FIREBASE', 'EXCEL', 'FINANCE', 'DATA ARCHITECTURE']
 	},
 ];
