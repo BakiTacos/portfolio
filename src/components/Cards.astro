@@ -6,12 +6,40 @@ import Filter from '../components/Filter.astro';
 // 使用 JSON 数据
 // import cardData from '../components/card.json';
 import cardData from '../data/home.json';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+const projectImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/projects/**/*.{jpeg,jpg,png,gif,webp}', { eager: true });
+
+function resolveCoverImage(coverPath: string): ImageMetadata | null {
+  if (!coverPath) return null;
+  if (projectImages[coverPath]?.default) {
+    return projectImages[coverPath].default;
+  }
+  const cleanPath = coverPath.replace(/^\/+/, '');
+  const asProjectAsset = `/src/assets/projects/${cleanPath}`;
+  if (projectImages[asProjectAsset]?.default) {
+    return projectImages[asProjectAsset].default;
+  }
+  if (coverPath.includes('bookkeeping')) {
+    const p = '/src/assets/projects/bookkeeping/cover.png';
+    if (projectImages[p]?.default) return projectImages[p].default;
+  }
+  if (coverPath.includes('bridgeu')) {
+    const p = '/src/assets/projects/bridgeu/bridgeu-cover.png';
+    if (projectImages[p]?.default) return projectImages[p].default;
+  }
+  return null;
+}
+
 const cards = [];
 for (const [index,item] of (cardData as any[]).entries()) {
+  const coverImage = resolveCoverImage(item.cover || "");
   const card = {
     id: item.id || index,
     title: item.title,
     cover: item.cover || "",
+    coverImage,
     description: item.desc || "",
     url: item.url || "",
     detail: item.detail || "",
@@ -42,13 +70,29 @@ const count = cards.length;
                   </div>
                   <div class="card-body">
                       <a href={card.detail ? card.detail:"javascript:void(0)"} class="card-figure" target={card.detail ? "_blank":"_self"} aria-label={card.title}>
-                        <img class="card-figure__img lazy"
-                              src={card.cover}
-                              loading={idx < 2 ? "eager" : "lazy"}
-                              decoding="async"
-                              fetchpriority={idx === 0 ? "high" : "auto"}
-                              alt={card.title}
-                        />
+                        {card.coverImage ? (
+                          <Image
+                            class="card-figure__img lazy"
+                            src={card.coverImage}
+                            alt={card.title}
+                            width={720}
+                            height={480}
+                            format="webp"
+                            quality={85}
+                            loading={idx < 2 ? "eager" : "lazy"}
+                            decoding="async"
+                          />
+                        ) : (
+                          <Image
+                            class="card-figure__img lazy"
+                            src={card.cover}
+                            alt={card.title}
+                            width={720}
+                            height={480}
+                            loading={idx < 2 ? "eager" : "lazy"}
+                            decoding="async"
+                          />
+                        )}
                       </a>
                   </div>
                   <div class="card-footer">

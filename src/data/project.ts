@@ -19,4 +19,18 @@ export const projectItems: ProjectItem[] = [
 		cover: ['bookkeeping/cover.png', 'bookkeeping/start.png', 'bookkeeping/v3.png', 'bookkeeping/v2.png', 'bookkeeping/v1.png'],
 		tags: ['NEXT.JS', 'POSTGRESQL', 'FIREBASE', 'EXCEL', 'FINANCE', 'DATA ARCHITECTURE']
 	},
+	{
+		title: "BridgeU — University & Industry Collaboration Platform",
+		title_en: "2nd Place Winner — UBM Inspire 1.0 Competition",
+		date: "2026-10-15",
+		url: "https://bridge-u-one.vercel.app",
+		detail: "/detail/bridgeu",
+		cover: [
+			'bridgeu/bridgeu-cover.png',
+			'bridgeu/collaborate.png',
+			'bridgeu/portfolio-tracker.png',
+			'bridgeu/profile.png'
+		],
+		tags: ['NEXT.JS', 'SUPABASE', 'POSTGRESQL', 'ALGORITHM', 'AWARD', 'COLLABORATION']
+	},
 ];

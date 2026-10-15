@@ -1,0 +1,550 @@
+---
+import { Image } from "astro:assets";
+import DetailHeader from "../../components/DetailHeader.astro";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import CallToAction from "../../components/CallToAction.astro";
+import Icon from "../../components/Icon.astro";
+import imgCover from "../../assets/projects/bridgeu/bridgeu-cover.png";
+import imgCollaborate from "../../assets/projects/bridgeu/collaborate.png";
+import imgTracker from "../../assets/projects/bridgeu/portfolio-tracker.png";
+import imgProfile from "../../assets/projects/bridgeu/profile.png";
+import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
+---
+
+<DetailPostLayout
+	title="BridgeU — University & Industry Collaboration Platform | Portfolio"
+	description="A multi-role platform connecting university students with verified companies for real-world academic collaboration, featuring weighted recommendations and automated portfolios. 2nd Place Winner at UBM Inspire 1.0."
+	keywords="BridgeU, nextjs, supabase, postgresql, recommendation system, university collaboration, portfolio tracker, ubm inspire"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<DetailHeader
+				tag="COMPETITION • 2ND PLACE WINNER"
+				description="UBM Inspire 1.0 • Academic & Industry Bridge"
+			>
+				<h1 class="font-type">
+					BridgeU: University & Industry Collaboration Platform
+				</h1>
+			</DetailHeader>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<!-- Award Banner -->
+					<div class="award-banner">
+						<span class="award-badge">
+							<Icon icon="trophy" size="1.15rem" color="#f7d252" />
+							<span>2nd Place Winner</span>
+						</span>
+						<span class="award-event">UBM Inspire 1.0 Competition</span>
+						<a
+							href="https://www.instagram.com/inspirebigbang.official/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="award-host"
+						>
+							@inspirebigbang.official ↗
+						</a>
+					</div>
+
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="BridgeU Platform Mockup Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<div class="cta-buttons">
+						<CallToAction href="https://bridge-u-one.vercel.app" target="_blank">
+							Live Demo ↗
+						</CallToAction>
+						<CallToAction href="https://github.com/juliusmarselinus/BridgeU" target="_blank">
+							GitHub Repo ↗
+						</CallToAction>
+						<CallToAction href="https://www.youtube.com/watch?v=WSNszd1CaZo" target="_blank">
+							Motion Graphic ↗
+						</CallToAction>
+					</div>
+
+					<p class="lead-text">
+						BridgeU is a collaborative web platform designed to bridge the gap between higher education and industry. Built as a competitive submission for <strong>UBM Inspire 1.0</strong>, the platform enables university students to discover verified company case studies, engage in real-world research or internships, and automatically build an authenticated portfolio of their achievements.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & Contribution -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">My Core Role & Architecture Responsibility</h3>
+								<span class="tech-pill pg">Logic, Database & Recommendations</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								While all team members actively contributed to brainstorming, feature ideation, and UI/UX design, my primary engineering focus centered on the <strong>core logic, database architecture, and recommendation algorithms</strong>:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Multi-Role Authentication & Flow Logic:</strong> Designed and implemented the complete role-based workflow across three distinct personas: <em>Admin</em>, <em>Perusahaan (Companies)</em>, and <em>Mahasiswa/i (Students)</em>, ensuring strict authorization rules and smooth onboarding paths.
+								</li>
+								<li>
+									<strong>Weighted Recommendation Algorithm:</strong> Formulated an intelligent scoring mechanism that tailors case study and internship opportunities based on user skills, sector preferences, and interaction weights—ensuring every student receives relevant suggestions regardless of their initial pre-login state.
+								</li>
+								<li>
+									<strong>Relational Database & State Architecture:</strong> Engineered the Supabase (PostgreSQL) schema governing collaboration lifecycle states, verified company credentials, and gamification data models.
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Key Responsibility:</strong> Ensuring the system's underlying business rules, state transitions, and recommendation heuristics were robust, reliable, and scalable under competition evaluation.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Collaboration Exploration -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/compass.png" alt="Collaborate Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Verified Companies & Opportunity Discovery</h3>
+								<span class="tech-pill">Module: Exploration & Matching</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgCollaborate}
+									alt="BridgeU Collaboration Exploration Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								The collaboration hub allows students to filter through curated case studies, research challenges, and internship opportunities provided by vetted industry partners.
+							</p>
+							<p>
+								The weighted recommendation engine continuously ranks opportunities based on matching skill tags and student trajectory, eliminating the cold-start problem when students first browse the catalog.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: Automated Portfolio Tracker -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/rocket.png" alt="Portfolio Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Automated Track Record & Portfolio Generation</h3>
+								<span class="tech-pill">Module: Portfolio Tracker</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgTracker}
+									alt="BridgeU Portfolio Tracker Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								One of BridgeU's core innovations is eliminating manual, unverified resume claiming. Whenever a student completes a case study or collaboration milestone with a company, the completion is verified on-chain in the database.
+							</p>
+							<p>
+								The system automatically compiles these verified milestones into a structured digital portfolio that can be tracked, shared, or exported via PDF.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 3: Profile & Gamification -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/battery.png" alt="Gamification Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Student Profile & Gamified Achievement Badges</h3>
+								<span class="tech-pill">Module: Gamification Engine</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgProfile}
+									alt="BridgeU Student Profile & Badges Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								To boost engagement and retention, BridgeU integrates a gamified progression model. Students earn accomplishment badges, skill verification stamps, and points through active project collaboration.
+							</p>
+							<p>
+								The database schema connects completed milestones directly with badge trigger queries, granting awards dynamically without manual administrative intervention.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 4: Competition Journey & Certificate -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Award Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">UBM Inspire 1.0 Award & Motion Graphic</h3>
+								<span class="tech-pill pg award-pill">
+									<Icon icon="trophy" size="0.95rem" color="#f7d252" />
+									<span>2nd Place Certificate</span>
+								</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgCertificate}
+									alt="UBM Inspire 1.0 2nd Place Certificate"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								BridgeU was awarded <strong>2nd Place (Juara 2)</strong> in the prestigious <strong>UBM Inspire 1.0</strong> competition, hosted by Universitas Bunda Mulia.
+							</p>
+							<p>
+								In addition to fullstack platform development, the project required producing comprehensive documentation and an animated promotional video showcasing the problem statement and platform value proposition.
+							</p>
+							<p class="quote-text">
+								<span class="video-label">
+									<Icon icon="youtube-logo" size="1.15rem" color="#ff4444" />
+									<strong>Motion Graphic Video:</strong>
+								</span>
+								Explore the complete concept and design presentation on YouTube: <br/>
+								<a href="https://www.youtube.com/watch?v=WSNszd1CaZo" target="_blank" rel="noopener noreferrer" style="color: #4da7e8; font-weight: 600;">
+									Watch BridgeU Motion Graphic on YouTube ↗
+								</a>
+							</p>
+						</div>
+					</div>
+
+					<!-- Technical Challenges -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Challenges Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Technical Challenges Overcome</h3>
+								<span class="tech-pill">Engineering Insights</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<ul class="iteration-list">
+								<li>
+									<strong>Global State Consistency Across Roles:</strong> Handling cross-role workflows (Admin verifying companies, companies reviewing student applications, students submitting milestones) required strict state transition guards in the database to prevent orphaned records or out-of-order statuses.
+								</li>
+								<li>
+									<strong>Weighted Recommendation Without Cold-Start Bias:</strong> Designing heuristic scoring weights based on preliminary interest tags so that both registered users and pre-login visitors always encounter relevant, non-empty recommendations.
+								</li>
+								<li>
+									<strong>Relational Integrity Supporting Gamification:</strong> Modeling multi-to-multi badge trigger conditions in PostgreSQL that evaluate immediately upon project completion without causing latency spikes.
+								</li>
+								<li>
+									<strong>Concurrent Competition Deadlines:</strong> Coordinating frontend components, backend logic, written reports, and motion graphic asset production simultaneously under strict competition time constraints.
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Key takeaways from building an award-winning collaboration platform under competition conditions:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="Role Logic Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Role Logic</span>
+								</div>
+								<p>Multi-role authorization requires clear database-level state machines, not merely client-side route protection.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="Recommendation Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Matching</span>
+								</div>
+								<p>Heuristic weighted recommendations offer exceptional user satisfaction without the overhead of heavy ML models for early-stage platforms.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="Execution Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Execution</span>
+								</div>
+								<p>Effective team communication—aligning backend logic with motion graphics and UI delivery—is what turns a solid idea into an award-winning solution.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.award-banner {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 1rem;
+		background: rgba(247, 210, 82, 0.08);
+		border: 1px solid rgba(247, 210, 82, 0.35);
+		border-radius: 999px;
+		margin-bottom: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.award-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #f7d252;
+		letter-spacing: 0.5px;
+	}
+
+	.award-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.video-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.award-event {
+		font-size: 0.825rem;
+		color: var(--color-200);
+	}
+
+	.award-host {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		text-decoration: none;
+		transition: color 0.2s ease;
+		&:hover {
+			color: #f7d252;
+			text-decoration: underline;
+		}
+	}
+
+	.cta-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin: 1.5rem 0 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.quote-text {
+		margin: 1.5rem 0;
+		padding: 1rem 1.25rem;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid #4da7e8;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--color-0);
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

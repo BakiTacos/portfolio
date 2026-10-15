@@ -1,7 +1,9 @@
 ---
 import BlogPostLayout from "../layouts/BlogPostLayout.astro";
 import CallToAction from "../components/CallToAction.astro";
-import { notFoundTdk } from  "../data/content"
+import { notFoundTdk } from  "../data/content";
+import { Image } from "astro:assets";
+import notFoundIllustration from "../assets/404-man.svg";
 ---
 <BlogPostLayout
 	title={notFoundTdk.title  || ''}
@@ -13,7 +15,7 @@ import { notFoundTdk } from  "../data/content"
 			<section>
 				<div class="content">
 					<p class="man">
-						<img src="/assets/404-man.svg" alt="404 Illustration" width="280" height="280" loading="eager" decoding="async">
+						<Image src={notFoundIllustration} alt="404 Illustration" width={280} height={280} loading="eager" decoding="async" />
 					</p>
 					<p class="text">
 						404 Not Found<br/>

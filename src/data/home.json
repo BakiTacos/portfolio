@@ -1,7 +1,7 @@
 [
 	{
 		"id": "1",
-		"cover": "/assets/cover/cover-bookkeeping.png",
+		"cover": "/src/assets/projects/bookkeeping/cover.png",
 		"useVideo": false,
 		"title": "Bookkeeping & Financial Management System",
 		"desc": "A bookkeeping system built to manage business transactions, inventory, accounts, and financial reporting across three major architectural iterations.",
@@ -12,5 +12,19 @@
 		"date": "2026-09-11",
 		"mark": true,
 		"opensource": false
+	},
+	{
+		"id": "2",
+		"cover": "/src/assets/projects/bridgeu/bridgeu-cover.png",
+		"useVideo": false,
+		"title": "BridgeU — University & Industry Collaboration Platform",
+		"desc": "Award-winning platform connecting students with verified companies for real-world projects and automated portfolios. 2nd Place at UBM Inspire 1.0.",
+		"url": "https://bridge-u-one.vercel.app",
+		"detail": "/detail/bridgeu",
+		"category": "web,data,recommend",
+		"tag": "Fullstack & Logic",
+		"date": "2026-10-15",
+		"mark": true,
+		"opensource": true
 	}
 ]
