@@ -1,0 +1,81 @@
+/* ==========================================================================
+   FARLINE DESIGN SYSTEM TOKENS & UTILITIES
+   Inspired by Mahmud Azimov's Farline Framer Template
+   ========================================================================== */
+
+:root {
+  --farline-bg: #f8f9fa;
+  --farline-surface: #ffffff;
+  --farline-surface-muted: #f1f3f5;
+  --farline-border: rgba(0, 0, 0, 0.08);
+  --farline-border-hover: rgba(0, 0, 0, 0.16);
+  --farline-hairline: rgba(0, 0, 0, 0.05);
+  
+  --farline-text-primary: #111418;
+  --farline-text-secondary: #636b74;
+  --farline-text-muted: #8b95a1;
+  --farline-text-accent: #2563eb;
+
+  --farline-dock-bg: rgba(255, 255, 255, 0.82);
+  --farline-dock-border: rgba(0, 0, 0, 0.08);
+  --farline-dock-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+
+  --farline-card-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  --farline-glass-blur: blur(20px) saturate(180%);
+  --farline-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+:root.theme-dark, [data-theme="dark"] {
+  --farline-bg: #09090b;
+  --farline-surface: #111116;
+  --farline-surface-muted: #18181f;
+  --farline-border: rgba(255, 255, 255, 0.08);
+  --farline-border-hover: rgba(255, 255, 255, 0.2);
+  --farline-hairline: rgba(255, 255, 255, 0.05);
+
+  --farline-text-primary: #f4f4f5;
+  --farline-text-secondary: #a1a1aa;
+  --farline-text-muted: #71717a;
+  --farline-text-accent: #60a5fa;
+
+  --farline-dock-bg: rgba(18, 18, 24, 0.78);
+  --farline-dock-border: rgba(255, 255, 255, 0.12);
+  --farline-dock-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  --farline-card-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Farline Editorial Typography Utilities */
+.fl-mono {
+  font-family: var(--farline-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-family: var(--farline-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--farline-surface-muted);
+  color: var(--farline-text-secondary);
+  border: 1px solid var(--farline-border);
+}
+
+.fl-hairline {
+  border-color: var(--farline-hairline);
+}
+
+.fl-glass {
+  background: var(--farline-dock-bg);
+  backdrop-filter: var(--farline-glass-blur);
+  -webkit-backdrop-filter: var(--farline-glass-blur);
+  border: 1px solid var(--farline-dock-border);
+  box-shadow: var(--farline-dock-shadow);
+}

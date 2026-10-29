@@ -1,0 +1,280 @@
+---
+import ThemeToggle from "../ThemeToggle.astro";
+import Icon from "../Icon.astro";
+
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const isHome = currentPath === "/" || currentPath === "";
+---
+
+<div class="farline-dock-wrapper" id="farline-dock-wrapper">
+	<nav class="farline-dock fl-glass" aria-label="Main Navigation Dock">
+		<!-- Brand Logo / Monogram -->
+		<a href="/" class="dock-brand" aria-label="Kevin - Home">
+			<span class="brand-monogram">K<span class="brand-dot">.</span></span>
+		</a>
+
+		<div class="dock-divider" aria-hidden="true"></div>
+
+		<!-- Core Navigation Items -->
+		<ul class="dock-items">
+			<li>
+				<a
+					href={isHome ? "#profile-hero" : "/#profile-hero"}
+					class:list={["dock-link", { "is-active": isHome }]}
+				>
+					<span class="dock-label">Profile</span>
+				</a>
+			</li>
+			<li>
+				<a
+					href={isHome ? "#work-hero" : "/#work-hero"}
+					class="dock-link"
+				>
+					<span class="dock-label">Projects</span>
+				</a>
+			</li>
+		</ul>
+
+		<div class="dock-divider" aria-hidden="true"></div>
+
+		<!-- Action Utilities -->
+		<div class="dock-actions">
+			<a
+				href="https://github.com/BakiTacos"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="dock-icon-btn"
+				aria-label="GitHub Profile"
+			>
+				<Icon icon="github-logo" size="1.15rem" />
+			</a>
+
+			<div class="dock-theme-wrapper">
+				<ThemeToggle />
+			</div>
+		</div>
+	</nav>
+</div>
+
+<script>
+	class FarlineDockObserver {
+		private dock: HTMLElement | null;
+		private links: NodeListOf<HTMLAnchorElement>;
+
+		constructor() {
+			this.dock = document.getElementById('farline-dock-wrapper');
+			this.links = document.querySelectorAll('.dock-link');
+			if (!this.dock) return;
+
+			this.initSectionObserver();
+			this.initSmoothScroll();
+		}
+
+		private initSectionObserver() {
+			if (window.location.pathname !== '/' && window.location.pathname !== '') return;
+
+			const sectionIds = ['profile-hero', 'work-hero'];
+			const sections = sectionIds
+				.map((id) => document.getElementById(id))
+				.filter(Boolean) as HTMLElement[];
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const id = entry.target.id;
+						this.links.forEach((link) => {
+							const href = link.getAttribute('href') || '';
+							if (href.includes(id)) {
+								link.classList.add('is-active');
+							} else {
+								link.classList.remove('is-active');
+							}
+						});
+					}
+				});
+			}, { threshold: 0.3 });
+
+			sections.forEach((sec) => observer.observe(sec));
+		}
+
+		private initSmoothScroll() {
+			this.links.forEach((link) => {
+				link.addEventListener('click', (e) => {
+					const href = link.getAttribute('href') || '';
+					if (href.startsWith('#') || (href.startsWith('/#') && (window.location.pathname === '/' || window.location.pathname === ''))) {
+						const targetId = href.replace('/#', '#');
+						const targetEl = document.querySelector(targetId);
+						if (targetEl) {
+							e.preventDefault();
+							targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+							window.history.pushState(null, '', targetId);
+						}
+					}
+				});
+			});
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		new FarlineDockObserver();
+	});
+</script>
+
+<style lang="scss">
+	.farline-dock-wrapper {
+		position: fixed;
+		bottom: 24px;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 9999;
+		pointer-events: none;
+	}
+
+	.farline-dock {
+		pointer-events: auto;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 14px 6px 10px;
+		border-radius: 9999px;
+		background: rgba(18, 18, 22, 0.75);
+		border: 1px solid var(--farline-border);
+		box-shadow:
+			0 12px 32px -4px rgba(0, 0, 0, 0.5),
+			0 0 0 1px rgba(255, 255, 255, 0.05),
+			inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+		&:hover {
+			border-color: rgba(255, 255, 255, 0.2);
+			box-shadow:
+				0 16px 40px -4px rgba(0, 0, 0, 0.6),
+				0 0 0 1px rgba(255, 255, 255, 0.08),
+				inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+		}
+	}
+
+	.dock-brand {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: var(--farline-surface-muted);
+		border: 1px solid var(--farline-border);
+		text-decoration: none;
+		transition: all 0.2s ease;
+
+		.brand-monogram {
+			font-family: var(--farline-font-mono);
+			font-weight: 700;
+			font-size: 0.85rem;
+			color: var(--farline-text-primary);
+			letter-spacing: -0.05em;
+
+			.brand-dot {
+				color: #3b82f6;
+			}
+		}
+
+		&:hover {
+			background: var(--farline-surface);
+			transform: scale(1.05);
+		}
+	}
+
+	.dock-divider {
+		width: 1px;
+		height: 18px;
+		background: var(--farline-border);
+		margin: 0 2px;
+	}
+
+	.dock-items {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+
+		.dock-link {
+			display: flex;
+			align-items: center;
+			padding: 6px 14px;
+			border-radius: 9999px;
+			font-size: 0.82rem;
+			font-weight: 500;
+			color: var(--farline-text-secondary);
+			text-decoration: none;
+			transition: all 0.2s ease;
+
+			&:hover {
+				color: var(--farline-text-primary);
+				background: rgba(255, 255, 255, 0.06);
+			}
+
+			&.is-active {
+				color: var(--farline-text-primary);
+				background: rgba(255, 255, 255, 0.12);
+				font-weight: 600;
+			}
+		}
+	}
+
+	.dock-actions {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+
+		.dock-icon-btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			color: var(--farline-text-secondary);
+			text-decoration: none;
+			transition: all 0.2s ease;
+
+			&:hover {
+				color: var(--farline-text-primary);
+				background: rgba(255, 255, 255, 0.08);
+				transform: translateY(-1px);
+			}
+		}
+
+		.dock-theme-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transform: scale(0.8);
+		}
+	}
+
+	@media (max-width: 500px) {
+		.farline-dock {
+			padding: 4px 10px 4px 8px;
+			gap: 4px;
+		}
+
+		.dock-items .dock-link {
+			padding: 5px 10px;
+			font-size: 0.78rem;
+		}
+	}
+</style>

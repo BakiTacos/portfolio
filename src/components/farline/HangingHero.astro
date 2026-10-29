@@ -1,0 +1,801 @@
+---
+import { Image } from "astro:assets";
+import Icon from "../Icon.astro";
+import imgBookkeeping from "../../assets/projects/bookkeeping/cover.png";
+import imgBridgeU from "../../assets/projects/bridgeu/bridgeu-cover.png";
+
+const projects = [
+	{
+		id: "01",
+		title: "Bookkeeping & Financial Management System",
+		subtitle: "Transactions, Inventory & Multi-Level Accounts",
+		category: "Data & Architecture",
+		date: "2026",
+		award: "4-Stage Architecture Evolution",
+		awardIcon: "bezier",
+		detailUrl: "/detail/bookkeeping",
+		demoUrl: "",
+		image: imgBookkeeping,
+		tags: ["Next.js", "PostgreSQL", "Firebase", "Finance Engine"]
+	},
+	{
+		id: "02",
+		title: "BridgeU: University & Industry Platform",
+		subtitle: "Academic Collaboration & Automated Verified Portfolios",
+		category: "Fullstack & Logic",
+		date: "2026",
+		award: "Juara 2 — UBM Inspire 1.0",
+		awardIcon: "trophy",
+		detailUrl: "/detail/bridgeu",
+		demoUrl: "https://bridge-u-one.vercel.app",
+		image: imgBridgeU,
+		tags: ["Next.js", "Supabase", "Weighted Recs", "Gamification"]
+	}
+];
+---
+
+<section class="farline-hero" id="work-hero">
+	<!-- Atmospheric Ambient Glow -->
+	<div class="hero-ambient-glow" aria-hidden="true"></div>
+
+	<!-- Top Editorial Header -->
+	<div class="hero-top-bar">
+		<div class="hero-scroll-hint fl-mono">
+			<span>Explore</span>
+			<span class="arrow-indicator">↔</span>
+		</div>
+	</div>
+
+	<!-- 3D Spatial Canvas / Stage -->
+	<div class="spatial-stage" id="spatial-stage">
+		<!-- Suspended Clothesline Wire -->
+		<div class="hanging-wire" aria-hidden="true">
+			<div class="wire-strand"></div>
+		</div>
+
+		<!-- 3D Track of Hanging Cards -->
+		<div class="hanging-track" id="hanging-track">
+			{projects.map((item, index) => (
+				<article
+					class="hanging-item"
+					data-index={index}
+					data-url={item.detailUrl}
+					tabindex="0"
+					role="group"
+					aria-label={`${item.id}: ${item.title}`}
+				>
+					<!-- Mechanical Hanging Peg / Clip -->
+					<div class="hang-clip" aria-hidden="true">
+						<div class="clip-ring"></div>
+						<div class="clip-jaw"></div>
+					</div>
+
+					<!-- Card Body -->
+					<div class="hang-card">
+						<!-- Card Top Meta -->
+						<div class="card-meta-header">
+							<div class="card-index-pill fl-mono">{item.id}</div>
+							<div class="card-category-tag fl-mono">{item.category}</div>
+						</div>
+
+						<!-- Card Media Frame -->
+						<div class="card-media-wrapper">
+							<a href={item.detailUrl} class="card-link-overlay" aria-label={`Open case study for ${item.title}`}>
+								<Image
+									src={item.image}
+									alt={item.title}
+									width={760}
+									height={500}
+									format="webp"
+									quality={85}
+									loading={index === 0 ? "eager" : "lazy"}
+									decoding="async"
+									class="card-cover-img"
+								/>
+								<div class="media-hover-vignette">
+									<span class="view-pill fl-mono">View Case Study ↗</span>
+								</div>
+							</a>
+						</div>
+
+						<!-- Card Information -->
+						<div class="card-content-footer">
+							<div class="card-text-group">
+								<h3 class="card-project-title">
+									<a href={item.detailUrl}>{item.title}</a>
+								</h3>
+								<p class="card-project-subtitle">{item.subtitle}</p>
+							</div>
+
+							<!-- Badges & Tags -->
+							<div class="card-spec-bar">
+								<div class="card-award-chip">
+									{item.awardIcon === "trophy" ? (
+										<Icon icon="trophy" size="0.95rem" color="#f7d252" />
+									) : (
+										<Icon icon="bezier" size="0.95rem" color="#60a5fa" />
+									)}
+									<span>{item.award}</span>
+								</div>
+								<div class="card-tech-pills">
+									{item.tags.slice(0, 2).map((t) => (
+										<span class="tech-pill-mini fl-mono">{t}</span>
+									))}
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+
+	<!-- Navigation Controls & Dots -->
+	<div class="hero-bottom-controls">
+		<div class="controls-left">
+			<button class="nav-arrow-btn" id="hero-prev-btn" aria-label="Previous Project">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M19 12H5M12 19l-7-7 7-7"/>
+				</svg>
+			</button>
+			<button class="nav-arrow-btn" id="hero-next-btn" aria-label="Next Project">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M5 12h14M12 5l7 7-7 7"/>
+				</svg>
+			</button>
+		</div>
+
+		<div class="counter-display fl-mono" id="hero-counter">
+			<span class="active-num">01</span>
+			<span class="divider">/</span>
+			<span class="total-num">02</span>
+		</div>
+
+		<div class="controls-right">
+			<span class="hero-kbd-hint fl-mono">Use keys ← →</span>
+		</div>
+	</div>
+</section>
+
+<script>
+	class Farline3DHero {
+		private stage: HTMLElement;
+		private track: HTMLElement;
+		private items: NodeListOf<HTMLElement>;
+		private prevBtn: HTMLElement | null;
+		private nextBtn: HTMLElement | null;
+		private counterEl: HTMLElement | null;
+
+		private currentIndex: number = 0;
+		private targetX: number = 0;
+		private currentX: number = 0;
+		private isDragging: boolean = false;
+		private startX: number = 0;
+		private dragStartX: number = 0;
+		private itemWidth: number = 520;
+		private itemGap: number = 60;
+		private totalItems: number = 2;
+
+		constructor() {
+			this.stage = document.getElementById('spatial-stage') as HTMLElement;
+			this.track = document.getElementById('hanging-track') as HTMLElement;
+			this.items = document.querySelectorAll('.hanging-item');
+			this.prevBtn = document.getElementById('hero-prev-btn');
+			this.nextBtn = document.getElementById('hero-next-btn');
+			this.counterEl = document.getElementById('hero-counter');
+
+			if (!this.stage || !this.track || this.items.length === 0) return;
+
+			this.totalItems = this.items.length;
+			this.calculateDimensions();
+			this.initEvents();
+			this.render();
+		}
+
+		private calculateDimensions() {
+			const width = window.innerWidth;
+			if (width < 640) {
+				this.itemWidth = Math.min(width * 0.88, 380);
+				this.itemGap = 24;
+			} else if (width < 1024) {
+				this.itemWidth = 460;
+				this.itemGap = 40;
+			} else {
+				this.itemWidth = 560;
+				this.itemGap = 64;
+			}
+			this.snapToIndex(this.currentIndex);
+		}
+
+		private initEvents() {
+			window.addEventListener('resize', () => this.calculateDimensions());
+
+			// Mouse drag
+			this.stage.addEventListener('mousedown', (e) => this.onDragStart(e.clientX));
+			window.addEventListener('mousemove', (e) => this.onDragMove(e.clientX));
+			window.addEventListener('mouseup', () => this.onDragEnd());
+
+			// Touch swipe
+			this.stage.addEventListener('touchstart', (e) => this.onDragStart(e.touches[0].clientX), { passive: true });
+			window.addEventListener('touchmove', (e) => this.onDragMove(e.touches[0].clientX), { passive: true });
+			window.addEventListener('touchend', () => this.onDragEnd());
+
+			// Mouse wheel horizontal navigation
+			this.stage.addEventListener('wheel', (e) => {
+				const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+				if (Math.abs(delta) > 15) {
+					e.preventDefault();
+					this.targetX -= delta * 0.8;
+					this.clampTargetX();
+				}
+			}, { passive: false });
+
+			// Key navigation
+			window.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowRight') {
+					this.next();
+				} else if (e.key === 'ArrowLeft') {
+					this.prev();
+				}
+			});
+
+			// Button controls
+			this.prevBtn?.addEventListener('click', () => this.prev());
+			this.nextBtn?.addEventListener('click', () => this.next());
+
+			// Parallax tilt on mousemove
+			this.stage.addEventListener('mousemove', (e) => {
+				const rect = this.stage.getBoundingClientRect();
+				const relX = (e.clientX - rect.left) / rect.width - 0.5;
+				const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+				this.items.forEach((item, idx) => {
+					const diff = idx - this.currentIndex;
+					const tiltY = relX * 12 + diff * -4;
+					const tiltX = -relY * 8;
+					item.style.setProperty('--tilt-x', `${tiltX}deg`);
+					item.style.setProperty('--tilt-y', `${tiltY}deg`);
+				});
+			});
+		}
+
+		private onDragStart(clientX: number) {
+			this.isDragging = true;
+			this.startX = clientX;
+			this.dragStartX = this.targetX;
+			this.stage.classList.add('is-dragging');
+		}
+
+		private onDragMove(clientX: number) {
+			if (!this.isDragging) return;
+			const delta = clientX - this.startX;
+			this.targetX = this.dragStartX + delta * 1.15;
+			this.clampTargetX();
+		}
+
+		private onDragEnd() {
+			if (!this.isDragging) return;
+			this.isDragging = false;
+			this.stage.classList.remove('is-dragging');
+
+			// Snap to closest project index
+			const step = this.itemWidth + this.itemGap;
+			const targetIndex = Math.round(-this.targetX / step);
+			this.snapToIndex(Math.max(0, Math.min(this.totalItems - 1, targetIndex)));
+		}
+
+		private clampTargetX() {
+			const step = this.itemWidth + this.itemGap;
+			const minX = -(this.totalItems - 1) * step - 80;
+			const maxX = 80;
+			this.targetX = Math.max(minX, Math.min(maxX, this.targetX));
+		}
+
+		private snapToIndex(index: number) {
+			this.currentIndex = index;
+			const step = this.itemWidth + this.itemGap;
+			this.targetX = -this.currentIndex * step;
+			this.updateCounter();
+		}
+
+		public next() {
+			if (this.currentIndex < this.totalItems - 1) {
+				this.snapToIndex(this.currentIndex + 1);
+			} else {
+				this.snapToIndex(0);
+			}
+		}
+
+		public prev() {
+			if (this.currentIndex > 0) {
+				this.snapToIndex(this.currentIndex - 1);
+			} else {
+				this.snapToIndex(this.totalItems - 1);
+			}
+		}
+
+		private updateCounter() {
+			if (this.counterEl) {
+				const activeNum = this.counterEl.querySelector('.active-num');
+				if (activeNum) {
+					activeNum.textContent = `0${this.currentIndex + 1}`;
+				}
+			}
+
+			// Update active class on items
+			this.items.forEach((item, idx) => {
+				if (idx === this.currentIndex) {
+					item.classList.add('is-active');
+				} else {
+					item.classList.remove('is-active');
+				}
+			});
+		}
+
+		private render = () => {
+			// Smooth lerping physics
+			this.currentX += (this.targetX - this.currentX) * 0.1;
+			this.track.style.transform = `translate3d(${this.currentX}px, 0, 0)`;
+
+			requestAnimationFrame(this.render);
+		};
+	}
+
+	// Mount on DOM Ready
+	document.addEventListener('DOMContentLoaded', () => {
+		new Farline3DHero();
+	});
+</script>
+
+<style lang="scss">
+	.farline-hero {
+		position: relative;
+		width: 100%;
+		min-height: 86vh;
+		padding: 3rem 0 4rem;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		user-select: none;
+		background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 60%);
+	}
+
+	.hero-ambient-glow {
+		position: absolute;
+		top: -10%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 70vw;
+		height: 400px;
+		background: radial-gradient(ellipse at center, rgba(120, 160, 255, 0.08), transparent 70%);
+		filter: blur(80px);
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.hero-top-bar {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		padding: 0 4vw;
+		margin-bottom: 2rem;
+	}
+
+	.hero-scroll-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--farline-text-muted);
+		opacity: 0.8;
+
+		.arrow-indicator {
+			font-size: 1rem;
+			animation: nudge 2s ease-in-out infinite;
+		}
+	}
+
+	@keyframes nudge {
+		0%, 100% { transform: translateX(0); }
+		50% { transform: translateX(4px); }
+	}
+
+	/* 3D Stage & Wire */
+	.spatial-stage {
+		position: relative;
+		width: 100%;
+		min-height: 560px;
+		perspective: 1200px;
+		perspective-origin: 50% 30%;
+		display: flex;
+		align-items: center;
+		cursor: grab;
+		z-index: 1;
+
+		&.is-dragging {
+			cursor: grabbing;
+		}
+	}
+
+	.hanging-wire {
+		position: absolute;
+		top: 36px;
+		left: 0;
+		right: 0;
+		height: 2px;
+		z-index: 1;
+		pointer-events: none;
+
+		.wire-strand {
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				transparent 0%,
+				rgba(255, 255, 255, 0.15) 15%,
+				rgba(255, 255, 255, 0.35) 50%,
+				rgba(255, 255, 255, 0.15) 85%,
+				transparent 100%
+			);
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+		}
+	}
+
+	:root:not(.theme-dark) .hanging-wire .wire-strand {
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			rgba(0, 0, 0, 0.1) 15%,
+			rgba(0, 0, 0, 0.25) 50%,
+			rgba(0, 0, 0, 0.1) 85%,
+			transparent 100%
+		);
+	}
+
+	/* Track & Hanging Cards */
+	.hanging-track {
+		display: flex;
+		align-items: flex-start;
+		gap: 64px;
+		padding-left: calc(50vw - 280px);
+		padding-right: calc(50vw - 280px);
+		transform-style: preserve-3d;
+		will-change: transform;
+		transition: none;
+	}
+
+	.hanging-item {
+		position: relative;
+		flex: 0 0 560px;
+		transform-style: preserve-3d;
+		transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+		transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+		outline: none;
+
+		&:nth-child(even) {
+			animation: idleSway 7s ease-in-out infinite alternate;
+		}
+
+		&:nth-child(odd) {
+			animation: idleSway 8s ease-in-out infinite alternate-reverse;
+		}
+
+		&.is-active {
+			opacity: 1;
+			.hang-card {
+				box-shadow: var(--farline-card-shadow);
+				border-color: var(--farline-border-hover);
+			}
+		}
+
+		&:not(.is-active) {
+			opacity: 0.72;
+		}
+	}
+
+	@keyframes idleSway {
+		0% {
+			transform: rotateZ(-0.6deg) translateY(0);
+		}
+		50% {
+			transform: rotateZ(0.6deg) translateY(2px);
+		}
+		100% {
+			transform: rotateZ(-0.3deg) translateY(-1px);
+		}
+	}
+
+	/* Hanging Peg / Clip */
+	.hang-clip {
+		position: absolute;
+		top: 14px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 5;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.clip-ring {
+			width: 14px;
+			height: 14px;
+			border: 2.5px solid rgba(200, 200, 210, 0.75);
+			border-radius: 50%;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		}
+
+		.clip-jaw {
+			width: 10px;
+			height: 22px;
+			margin-top: -3px;
+			background: linear-gradient(180deg, #d4d4d8, #71717a);
+			border-radius: 2px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+		}
+	}
+
+	/* Card Structure */
+	.hang-card {
+		margin-top: 36px;
+		background: var(--farline-surface);
+		border: 1px solid var(--farline-border);
+		border-radius: 18px;
+		padding: 20px;
+		box-shadow: var(--farline-card-shadow);
+		transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+		position: relative;
+		overflow: hidden;
+
+		&:hover {
+			border-color: var(--farline-border-hover);
+			transform: translateY(-4px);
+		}
+	}
+
+	.card-meta-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 14px;
+	}
+
+	.card-index-pill {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--farline-text-muted);
+	}
+
+	.card-category-tag {
+		font-size: 0.72rem;
+		color: var(--farline-text-secondary);
+		padding: 3px 8px;
+		border-radius: 9999px;
+		background: var(--farline-surface-muted);
+		border: 1px solid var(--farline-border);
+	}
+
+	.card-media-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		border-radius: 12px;
+		overflow: hidden;
+		background: var(--farline-surface-muted);
+		border: 1px solid var(--farline-hairline);
+
+		.card-link-overlay {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+		}
+
+		.card-cover-img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		.media-hover-vignette {
+			position: absolute;
+			inset: 0;
+			background: rgba(9, 9, 11, 0.3);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			backdrop-filter: blur(2px);
+			transition: opacity 0.3s ease;
+
+			.view-pill {
+				background: rgba(255, 255, 255, 0.95);
+				color: #09090b;
+				padding: 8px 18px;
+				border-radius: 9999px;
+				font-size: 0.75rem;
+				font-weight: 600;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+				transform: translateY(6px);
+				transition: transform 0.3s ease;
+			}
+		}
+
+		&:hover {
+			.card-cover-img {
+				transform: scale(1.04);
+			}
+
+			.media-hover-vignette {
+				opacity: 1;
+
+				.view-pill {
+					transform: translateY(0);
+				}
+			}
+		}
+	}
+
+	.card-content-footer {
+		margin-top: 16px;
+	}
+
+	.card-project-title {
+		font-size: 1.15rem;
+		font-weight: 600;
+		line-height: 1.4;
+		margin: 0 0 4px;
+		color: var(--farline-text-primary);
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: var(--farline-text-accent);
+			}
+		}
+	}
+
+	.card-project-subtitle {
+		font-size: 0.85rem;
+		color: var(--farline-text-muted);
+		margin: 0 0 14px;
+		line-height: 1.45;
+	}
+
+	.card-spec-bar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 12px;
+		border-top: 1px solid var(--farline-hairline);
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.card-award-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 0.78rem;
+		font-weight: 500;
+		color: var(--farline-text-secondary);
+	}
+
+	.card-tech-pills {
+		display: inline-flex;
+		gap: 6px;
+
+		.tech-pill-mini {
+			padding: 3px 8px;
+			background: var(--farline-surface-muted);
+			border: 1px solid var(--farline-border);
+			border-radius: 4px;
+			color: var(--farline-text-muted);
+			font-size: 0.68rem;
+		}
+	}
+
+	/* Hero Bottom Controls */
+	.hero-bottom-controls {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 4vw;
+		margin-top: 1.5rem;
+	}
+
+	.controls-left {
+		display: flex;
+		gap: 10px;
+
+		.nav-arrow-btn {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 1px solid var(--farline-border);
+			background: var(--farline-surface);
+			color: var(--farline-text-primary);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: all 0.2s ease;
+
+			&:hover {
+				background: var(--farline-surface-muted);
+				border-color: var(--farline-border-hover);
+				transform: translateY(-2px);
+			}
+
+			&:active {
+				transform: translateY(0);
+			}
+		}
+	}
+
+	.counter-display {
+		font-size: 0.85rem;
+		color: var(--farline-text-secondary);
+		display: flex;
+		gap: 6px;
+		align-items: center;
+
+		.active-num {
+			font-weight: 700;
+			color: var(--farline-text-primary);
+		}
+
+		.divider {
+			color: var(--farline-text-muted);
+		}
+	}
+
+	.hero-kbd-hint {
+		color: var(--farline-text-muted);
+		font-size: 0.75rem;
+	}
+
+	/* Responsive Media Queries */
+	@media (max-width: 768px) {
+		.farline-hero {
+			min-height: auto;
+			padding: 1.5rem 0 2rem;
+		}
+
+		.spatial-stage {
+			min-height: 460px;
+		}
+
+		.hanging-track {
+			padding-left: calc(50vw - 190px);
+			padding-right: calc(50vw - 190px);
+		}
+
+		.hanging-item {
+			flex: 0 0 380px;
+		}
+
+		.hero-kbd-hint {
+			display: none;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hanging-track {
+			padding-left: 6vw;
+			padding-right: 6vw;
+			gap: 20px;
+		}
+
+		.hanging-item {
+			flex: 0 0 88vw;
+		}
+	}
+</style>

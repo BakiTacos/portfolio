@@ -3,6 +3,7 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FloatingDock from '../components/farline/FloatingDock.astro';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -15,10 +16,11 @@ const { title, description,keywords } = Astro.props;
 		<MainHead title={title} description={description}  keywords={keywords} />
 	</head>
 	<body class="_body">
-		<div class="">
+		<div class="farline-app-container">
 			<Nav transition:persist/>
 			<slot />
 			<Footer />
+			<FloatingDock />
 		</div>
 
 		<script>

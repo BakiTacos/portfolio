@@ -6,6 +6,7 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FloatingDock from '../components/farline/FloatingDock.astro';
 interface Props {
 	title?: string | undefined;
 	keywords?: string | undefined;
@@ -29,6 +30,7 @@ const { title, description,keywords} = Astro.props;
 				</div>
 			</div>
 			<Footer />
+			<FloatingDock />
 		</div>
 
 		<style is:global lang="scss">

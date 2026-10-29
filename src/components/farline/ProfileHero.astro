@@ -1,0 +1,242 @@
+---
+import { Image } from "astro:assets";
+import myPortrait from "../../assets/portrait.jpg";
+import Social from "../Social.astro";
+
+const emailLink = "mailto:kevinsakia.p@gmail.com";
+---
+
+<section class="profile-hero-section" id="profile-hero">
+	<!-- Atmospheric Ambient Glow -->
+	<div class="profile-ambient-glow" aria-hidden="true"></div>
+
+	<div class="profile-container">
+		<!-- Avatar / Portrait (Aligned with about.astro) -->
+		<div class="profile-avatar-wrapper">
+			<Image
+				src={myPortrait}
+				alt="Kevin Sakia Putra"
+				width={88}
+				height={88}
+				class="portrait"
+				loading="eager"
+				decoding="async"
+			/>
+		</div>
+
+		<!-- Identity & Introduction -->
+		<div class="profile-content">
+			<h1 class="profile-name">Kevin Sakia Putra</h1>
+			<p class="profile-role">
+				Information Systems Student <span class="role-separator">•</span> Software & Data Architecture
+			</p>
+			<p class="profile-bio">
+				I turn real-world problems into practical, scalable solutions through technology. My focus sits at the intersection of software engineering, relational database architecture, and digital business systems.
+			</p>
+
+			<!-- Social Media Icons (Reusing Social Component Exactly) -->
+			<div class="profile-social-container">
+				<Social />
+			</div>
+
+			<!-- Direct Email Action -->
+			<div class="profile-actions-row">
+				<a href={emailLink} class="social-btn email-btn" aria-label="Send Email">
+					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+						<rect width="20" height="16" x="2" y="4" rx="2"/>
+						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+					</svg>
+					<span>Email Me</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.profile-hero-section {
+		position: relative;
+		width: 100%;
+		padding: 5rem 0 4rem;
+		overflow: hidden;
+		background: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+	}
+
+	.profile-ambient-glow {
+		position: absolute;
+		top: -15%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 65vw;
+		height: 360px;
+		background: radial-gradient(ellipse at center, rgba(120, 160, 255, 0.09), transparent 70%);
+		filter: blur(80px);
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.profile-container {
+		position: relative;
+		z-index: 1;
+		max-width: 860px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 1.75rem;
+	}
+
+	.profile-avatar-wrapper {
+		position: relative;
+
+		.portrait {
+			width: 88px;
+			height: 88px;
+			border-radius: 100px;
+			overflow: hidden;
+			display: block;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+	}
+
+	.profile-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.profile-name {
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: 700;
+		color: var(--farline-text-primary);
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+		margin: 0;
+	}
+
+	.profile-role {
+		font-size: 1.05rem;
+		font-weight: 500;
+		color: var(--farline-text-secondary);
+		margin: 0;
+
+		.role-separator {
+			color: var(--farline-text-muted);
+			margin: 0 6px;
+		}
+	}
+
+	.profile-bio {
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--farline-text-muted);
+		max-width: 640px;
+		margin: 0.25rem 0 0.5rem;
+	}
+
+	.profile-social-container {
+		margin-top: 0.25rem;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		:global(.author) {
+			border-bottom: none !important;
+		}
+
+		:global(.social) {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 0;
+		}
+
+		:global(.social-link) {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: transform 0.2s ease;
+
+			&:hover {
+				transform: translateY(-2px);
+			}
+		}
+
+		:global(.social-link svg),
+		:global(.ic-social) {
+			width: 22px !important;
+			height: 22px !important;
+			max-width: 22px !important;
+			max-height: 22px !important;
+			display: block;
+		}
+	}
+
+	.profile-actions-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 0.75rem;
+	}
+
+	.social-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 18px;
+		border-radius: 9999px;
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--farline-text-secondary);
+		background: var(--farline-surface-muted);
+		border: 1px solid var(--farline-border);
+		text-decoration: none;
+		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+		&.email-btn {
+			background: rgba(37, 99, 235, 0.1);
+			border-color: rgba(37, 99, 235, 0.3);
+			color: #60a5fa;
+
+			&:hover {
+				background: rgba(37, 99, 235, 0.18);
+				border-color: rgba(37, 99, 235, 0.5);
+				color: #93c5fd;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px -4px rgba(37, 99, 235, 0.3);
+			}
+		}
+	}
+
+	@media (max-width: 640px) {
+		.profile-hero-section {
+			padding: 3.5rem 0 3rem;
+		}
+
+		.profile-container {
+			gap: 1.25rem;
+		}
+
+		.profile-name {
+			font-size: 1.85rem;
+		}
+
+		.profile-role {
+			font-size: 0.95rem;
+		}
+
+		.profile-bio {
+			font-size: 0.92rem;
+		}
+	}
+</style>

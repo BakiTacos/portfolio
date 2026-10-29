@@ -1,8 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import DetailHeader from "../../components/DetailHeader.astro";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
-import CallToAction from "../../components/CallToAction.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
 import Icon from "../../components/Icon.astro";
 import imgCover from "../../assets/projects/bridgeu/bridgeu-cover.png";
 import imgCollaborate from "../../assets/projects/bridgeu/collaborate.png";
@@ -13,40 +12,23 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 
 <DetailPostLayout
 	title="BridgeU — University & Industry Collaboration Platform | Portfolio"
-	description="A multi-role platform connecting university students with verified companies for real-world academic collaboration, featuring weighted recommendations and automated portfolios. 2nd Place Winner at UBM Inspire 1.0."
+	description="BridgeU is a collaborative web platform connecting university students with verified companies for real-world projects, featuring weighted recommendations and automated portfolios."
 	keywords="BridgeU, nextjs, supabase, postgresql, recommendation system, university collaboration, portfolio tracker, ubm inspire"
 >
 	<div class="post">
 		<main class="post-wrapper">
-			<DetailHeader
+			<TechSpecPlate
+				title="BridgeU: University & Industry Collaboration Platform"
 				tag="COMPETITION • 2ND PLACE WINNER"
-				description="UBM Inspire 1.0 • Academic & Industry Bridge"
-			>
-				<h1 class="font-type">
-					BridgeU: University & Industry Collaboration Platform
-				</h1>
-			</DetailHeader>
+				demoUrl="https://bridge-u-one.vercel.app"
+				githubUrl="https://github.com/juliusmarselinus/BridgeU"
+				videoUrl="https://www.youtube.com/watch?v=WSNszd1CaZo"
+				backUrl="/#work-hero"
+			/>
 
 			<!-- Overview & Hero Cover -->
 			<section class="overview-section">
 				<div class="content">
-					<!-- Award Banner -->
-					<div class="award-banner">
-						<span class="award-badge">
-							<Icon icon="trophy" size="1.15rem" color="#f7d252" />
-							<span>2nd Place Winner</span>
-						</span>
-						<span class="award-event">UBM Inspire 1.0 Competition</span>
-						<a
-							href="https://www.instagram.com/inspirebigbang.official/"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="award-host"
-						>
-							@inspirebigbang.official ↗
-						</a>
-					</div>
-
 					<figure class="screenshot-figure hero-cover">
 						<Image
 							src={imgCover}
@@ -56,18 +38,6 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 							class="screenshot-img"
 						/>
 					</figure>
-
-					<div class="cta-buttons">
-						<CallToAction href="https://bridge-u-one.vercel.app" target="_blank">
-							Live Demo ↗
-						</CallToAction>
-						<CallToAction href="https://github.com/juliusmarselinus/BridgeU" target="_blank">
-							GitHub Repo ↗
-						</CallToAction>
-						<CallToAction href="https://www.youtube.com/watch?v=WSNszd1CaZo" target="_blank">
-							Motion Graphic ↗
-						</CallToAction>
-					</div>
 
 					<p class="lead-text">
 						BridgeU is a collaborative web platform designed to bridge the gap between higher education and industry. Built as a competitive submission for <strong>UBM Inspire 1.0</strong>, the platform enables university students to discover verified company case studies, engage in real-world research or internships, and automatically build an authenticated portfolio of their achievements.

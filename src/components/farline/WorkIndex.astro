@@ -1,0 +1,42 @@
+---
+import SectionHeader from "../SectionHeader.astro";
+import ProjectList from "../ProjectList.astro";
+import { pageTag, pageDescription } from "../../data/content";
+---
+
+<section class="work-index-section" id="work-index">
+	<div class="post-wrapper about index-container">
+		<SectionHeader
+			tag={pageTag.project}
+			description={pageDescription.project}
+		>
+			Projects & Works
+		</SectionHeader>
+		<section class="border-top">
+			<div class="posts">
+				<div class="posts-container">
+					<ProjectList />
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+
+<style lang="scss">
+	.work-index-section {
+		position: relative;
+		padding: 3rem 0 6rem;
+		border-top: 1px solid var(--farline-hairline);
+		background: var(--farline-bg);
+	}
+
+	.index-container {
+		max-width: 1020px;
+		margin: 0 auto;
+		padding: 0 1.25rem;
+	}
+
+	.posts {
+		margin-top: 24px;
+	}
+</style>

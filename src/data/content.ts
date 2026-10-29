@@ -19,8 +19,8 @@ export const nav: Nav = {
 	avatar: '/assets/author.png',
     items: [
         { label: 'Home', href: '/', target: '_self' },
-        { label: 'Projects', href: '/project', target: '_self' },
-        { label: 'About', href: '/about', target: '_self' },
+        { label: 'Projects', href: '/#projects', target: '_self' },
+        { label: 'About', href: '/#about', target: '_self' },
     ],
 };
 
@@ -116,7 +116,7 @@ interface PageDescription {
 }
 export const pageDescription: PageDescription = {
 	index: 'Welcome to my portfolio! Explore my selected projects, experiments, and articles across software development, data, and technology.',
-	project: "A collection of projects, applications, and practical solutions I've developed.",
+	project: "Selected production systems, multi-stage data architectures, and competition award-winning platforms.",
 	about: 'Information Systems student • Software Development, Data, Business & AI',
 	blog: 'Articles, technical notes, and ideas on development and tech. Hope you find them helpful!',
 }

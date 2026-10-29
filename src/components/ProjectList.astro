@@ -104,20 +104,23 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 			width: 100%;
 			margin-bottom: 24px;
 			overflow: hidden;
-			transition: all 0.25s ease-in-out;
-			&:nth-child(n):hover{
-				background: var(--color-yellow);
-			}
-			&:nth-child(2n):hover{
-				background: var(--color-blue);
-			}
-			&:nth-child(3n):hover{
-				background: var(--color-green);
+			border-radius: 14px;
+			border: 1px solid var(--farline-hairline, rgba(255, 255, 255, 0.08));
+			background: var(--farline-surface, transparent);
+			transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+			&:hover {
+				background: var(--farline-surface-muted, rgba(255, 255, 255, 0.03));
+				border-color: var(--farline-border-hover, rgba(255, 255, 255, 0.2));
+				transform: translateY(-2px);
+				box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.2);
 			}
 			&:hover .project-icon .icon {
 				transform: rotate(-45deg);
-				border: 1px solid var(--color-900);
-				background: var(--color-900);
+				border-color: #3b82f6;
+				background: #3b82f6;
+				svg path {
+					fill: #ffffff;
+				}
 			}
 
 		}

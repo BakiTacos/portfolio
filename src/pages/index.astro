@@ -1,27 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Cards from "../components/Cards.astro";
-import SectionHeader from "../components/SectionHeader.astro";
-import {pageTag, pageDescription,homeTdk} from '../data/content';
+import ProfileHero from '../components/farline/ProfileHero.astro';
+import HangingHero from '../components/farline/HangingHero.astro';
+import { homeTdk } from '../data/content';
 ---
 
 <BaseLayout
-title={homeTdk.title  || ''}
-description ={homeTdk.description  || ''}
-keywords = {homeTdk.keywords  || ''}
+	title={homeTdk.title || 'Kevin Sakia Putra - Portfolio'}
+	description={homeTdk.description || 'Personal portfolio showcasing projects in software development, data, business, and AI.'}
+	keywords={homeTdk.keywords || 'portfolio, software development, data, business, AI, information systems'}
 >
-	<div class="section hero">
-		<div class="container">
-			<SectionHeader
-				tag={pageTag.index}
-				description={pageDescription.index}>
-    			Design & Development
-			</SectionHeader>
-			<Cards />
-		</div>
-	</div>
+	<main class="farline-main-wrapper">
+		<!-- Section 1 (Profile & Social Media Icons) -->
+		<ProfileHero />
 
+		<!-- Section 2 (3D Hanging Hero Showcase) Kept! -->
+		<HangingHero />
+	</main>
 </BaseLayout>
 
-
-
+<style lang="scss">
+	.farline-main-wrapper {
+		width: 100%;
+		padding-bottom: 96px; /* Safe space for the floating bottom dock */
+		position: relative;
+	}
+</style>

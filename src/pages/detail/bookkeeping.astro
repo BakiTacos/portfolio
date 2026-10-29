@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import DetailHeader from "../../components/DetailHeader.astro";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
 import imgCover from "../../assets/projects/bookkeeping/cover.png";
 import imgStart from "../../assets/projects/bookkeeping/start.png";
 import imgV1 from "../../assets/projects/bookkeeping/v1.png";
@@ -16,14 +16,11 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 >
 	<div class="post">
 		<main class="post-wrapper">
-			<DetailHeader
-				tag="SYSTEM ARCHITECTURE"
-				description="Transactions, Inventory, Accounts & Financial Reporting"
-			>
-				<h1 class="font-type">
-					Bookkeeping & Financial Management System
-				</h1>
-			</DetailHeader>
+			<TechSpecPlate
+				title="Bookkeeping & Financial Management System"
+				tag="SYSTEM & DATA ARCHITECTURE"
+				backUrl="/#work-hero"
+			/>
 
 			<section class="overview-section">
 				<div class="content">
