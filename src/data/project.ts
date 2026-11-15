@@ -64,4 +64,18 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['LARAVEL', 'PHP', 'MYSQL', 'MARKETPLACE', 'HEURISTIC MATCHING', 'OPTIMIZATION']
 	},
+	{
+		title: "SUPARTA — Brand Building, Multi-Language & Sales Enablement",
+		title_en: "Official Brand Platform, Bilingual Architecture & High-Ticket Sales Conversion",
+		date: "2026-11-15",
+		url: "https://www.suparta.com/id",
+		detail: "/detail/suparta",
+		cover: [
+			'suparta/suparta-cover.webp',
+			'suparta/home.webp',
+			'suparta/project.webp',
+			'suparta/story.webp'
+		],
+		tags: ['BRAND BUILDING', 'BRAND MANAGEMENT', 'NEXT.JS', 'I18N MULTI-LANGUAGE', 'SALES CONVERSION', 'WEBP']
+	},
 ];

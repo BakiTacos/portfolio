@@ -1,0 +1,404 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgCover from "../../assets/projects/suparta/suparta-cover.webp";
+import imgHome from "../../assets/projects/suparta/home.webp";
+import imgProject from "../../assets/projects/suparta/project.webp";
+import imgStory from "../../assets/projects/suparta/story.webp";
+---
+
+<DetailPostLayout
+	title="SUPARTA — Brand Building, Multi-Language Platform & Sales Enablement | Portfolio"
+	description="Studi kasus perancangan brand building, brand management, implementasi website multi-bahasa, serta peran platform digital dalam mengonversi penjualan produk furnitur mewah SUPARTA."
+	keywords="SUPARTA, Brand Building, Brand Management, Multi-Language Website, Next.js, Sales Conversion, Luxury Furniture, High-Ticket E-Commerce"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="SUPARTA: Brand Building, Multi-Language Platform & Sales Enablement"
+				tag="BRAND BUILDING & DIGITAL SALES CONVERSION"
+				demoUrl="https://www.suparta.com/id"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="SUPARTA Luxury Smart Furniture Platform Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						<strong>SUPARTA</strong> adalah jenama pelopor meja mahjong otomatis (*automated table*) dan furnitur cerdas premium di Indonesia. Pada kategori barang mewah (*high-ticket category*), keputusan beli pelanggan tidak terjadi impulsif melalui keranjang belanja biasa. Proyek ini berfokus pada <strong>strategi pembangunan merek (Brand Building), manajemen identitas brand (Brand Management), penerapan website multi-bahasa terstruktur, serta pembuktian peran platform web dalam mengikis keraguan pembeli dan mengonversi transaksi bernilai puluhan juta rupiah</strong>.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & System Architecture -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Brand Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Arsitektur Merek & Peran Website dalam Penjualan High-Ticket</h3>
+								<span class="tech-pill pg">Brand Management • Multi-Language i18n • Sales Pipeline</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Menjual furnitur cerdas mekanis berharga premium memerlukan orkestrasi merek yang presisi antara narasi budaya dan legitimasi teknis:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Pondasi Brand Building & Positioning:</strong> Mengangkat mahjong bukan sekadar permainan meja biasa, melainkan cabang olahraga asah otak (*mind sport*) dan warisan filosofi keluarga yang dipadukan dengan kenyamanan motor mekanis senyap (*ultra-silent motor*).
+								</li>
+								<li>
+									<strong>Penerapan Struktur Multi-Bahasa Dinamis (`/[lang]`):</strong> Mengimplementasikan lokalisasi konten terpisah (Bahasa Indonesia dan Internasional) untuk menyasar segmen pasar domestik serta ekspatriat yang mencari furnitur standar global di Indonesia.
+								</li>
+								<li>
+									<strong>Website sebagai Katalis Penjualan Langsung:</strong> Mengubah fungsi website dari sekadar brosur digital menjadi instrumen penjualan aktif—menyajikan transparansi hardware, sertifikasi garansi resmi, dan tombol reservasi showroom yang terhubung langsung ke WhatsApp Sales Specialist.
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Fokus Pembelajaran:</strong> Pada produk bernilai tinggi, website bekerja sebagai validator reputasi merek. Pembeli bersedia membayar harga premium ketika mereka melihat standar dokumentasi resmi, kejelasan garansi, dan kemudahan uji coba produk secara nyata.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Brand Essence & Editorial Storytelling -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Brand Story Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Brand Building: Menyatukan Warisan Budaya & Inovasi Modern</h3>
+								<span class="tech-pill">Module: Brand Storytelling</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgHome}
+									alt="SUPARTA Homepage Experience"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Komunikasi visual dirancang menggunakan palet warna monokrom hangat, tipografi proporsional, serta tata ruang baca yang tenang untuk menegaskan citra produk mewah (*luxury craftsmanship*).
+							</p>
+							<p>
+								Pesan utama menonjolkan nilai fungsional sasis: material pilar baja aviasi kokoh, karpet beludru akustik anti-statis peredam getaran, serta mekanisme pelipatan hidrolik (*space-saving*) yang cocok untuk ruang keluarga apartemen maupun rumah modern.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: The Heritage Series Catalog -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Product Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Brand Management: Standardisasi Varian Seri Heritage</h3>
+								<span class="tech-pill">Module: Product Catalog</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgProject}
+									alt="SUPARTA The Heritage Series Showcase"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Manajemen merek diaplikasikan ke dalam diferensiasi produk yang tegas: varian <strong>Minimalist JY4</strong> untuk pengguna yang mengutamakan keringkasan sasis dan seri <strong>Deluxe 118</strong> untuk kestabilan permanen berbahan baja aviasi.
+							</p>
+							<p>
+								Informasi spesifikasi disajikan transparan tanpa klaim kosong: ukuran ubin magnetik yang didukung (36mm hingga 44mm), konsumsi daya hemat listrik, hingga fungsi ganda pelindung meja (*hardtop dining cover*) agar meja otomatis dapat difungsikan sebagai meja makan sehari-hari.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 3: Digital Manuals & Knowledge Center -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Documentation Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Sales Enablement: Pustaka Panduan Digital & Dukungan Resmi</h3>
+								<span class="tech-pill">Module: Digital Documentation</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgStory}
+									alt="SUPARTA Knowledge Center and Manual Book Library"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Hambatan terbesar calon pembeli meja otomatis adalah kekhawatiran terhadap kerusakan mekanik dan sulitnya suku cadang. SUPARTA mengatasi keraguan ini dengan menyediakan pusat unduh dokumen PDF buku manual resmi berbahasa Indonesia dan panduan hardware digital.
+							</p>
+							<p>
+								Ketersediaan panduan operasional, petunjuk kalibrasi sensor magnetik, dan transparansi kebijakan garansi terbukti mempercepat siklus keputusan beli pelanggan dari fase pertimbangan ke tahap transaksi.
+							</p>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Pelajaran fundamental mengenai sinergi antara manajemen brand dan konversi penjualan digital:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="Brand Building Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Strategi Brand Building Kategori Niche</span>
+								</div>
+								<p>Membangun narasi merek yang mengangkat persepsi produk dari sekadar perangkat hiburan menjadi furnitur prestisius pelatih fokus kognitif, sehingga membenarkan penetapan harga premium di pasar.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="Brand Management Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Konsistensi Brand Management</span>
+								</div>
+								<p>Menjaga keseragaman identitas merek di seluruh titik kontak—dari tipografi elegan dan standar penamaan varian produk, hingga penyusunan dokumen manual resmi yang rapi dan terverifikasi.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="Multi-Language Website Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Penerapan Website Multi-Bahasa (i18n)</span>
+								</div>
+								<p>Mempelajari arsitektur routing multi-bahasa Next.js App Router (`/[lang]`) untuk menyajikan konten bilingual yang kontekstual bagi pembeli lokal maupun ekspatriat tanpa mengorbankan indeks SEO.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/image.png" alt="Pengaruh Website Terhadap Penjualan Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Peran Website dalam Menutup Penjualan</span>
+								</div>
+								<p>Memahami bagaimana kehadiran website profesional meruntuhkan resistensi pembeli produk bernilai tinggi: transparansi garansi, edukasi teknis, dan kemudahan booking kunjungan langsung ke showroom.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
