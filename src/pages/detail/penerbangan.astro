@@ -1,0 +1,384 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgStart from "../../assets/projects/penerbangan/start.webp";
+import imgPredict from "../../assets/projects/penerbangan/predict.webp";
+---
+
+<DetailPostLayout
+	title="Flight Delay Prediction & Analytics (XGBoost) — CRISP-DM Framework | Portfolio"
+	description="Studi kasus data analytics dan machine learning untuk memprediksi keterlambatan penerbangan komersial menggunakan XGBoost Classifier terstruktur dengan metodologi CRISP-DM."
+	keywords="Flight Delay Prediction, XGBoost, CRISP-DM, Data Analytics, Python, Streamlit, Machine Learning, Feature Engineering, Kaggle Dataset"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="Flight Delay Predictive Analytics: End-to-End CRISP-DM with XGBoost"
+				tag="DATA ANALYTICS & ML PIPELINE"
+				demoUrl="https://penerbangan-xgboost-qeeypdn7svm7rqb6pkrghd.streamlit.app/"
+				githubUrl="https://github.com/BakiTacos/penerbangan-xgboost"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgStart}
+							alt="Flight Delay Prediction App Interface Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						Keterlambatan penerbangan (*flight delay*) menimbulkan kerugian operasional masif bagi maskapai dan mengacaukan jadwal penumpang. Proyek ini mengembangkan model prediktif berbasis <strong>XGBoost Classifier</strong> untuk memprediksi probabilitas keterlambatan jadwal keberangkatan (*departure delay > 15 menit*) sebelum pesawat lepas landas. Seluruh siklus rekayasa data dieksekusi secara disiplin mengikuti metodologi <strong>CRISP-DM (Cross-Industry Standard Process for Data Mining)</strong>, memproses dataset penerbangan komersial skala besar (1,3 GB), merekayasa fitur temporal dan spasial, hingga mengemas pipeline ke aplikasi web interaktif menggunakan <strong>Streamlit</strong>.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & System Architecture -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Implementasi Terstruktur Metodologi CRISP-DM</h3>
+								<span class="tech-pill pg">CRISP-DM Framework • Big Data Wrangling • XGBoost Pipeline</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Enam tahapan standar industri CRISP-DM diterapkan secara berurutan untuk menjamin integritas data dan kegunaan bisnis model:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>1. Business Understanding:</strong> Merumuskan masalah bisnis maskapai: keterlambatan keberangkatan memiliki efek domino terhadap rotasi armada dan gerbang bandara (*gate congestion*). Target keberhasilan adalah mendeteksi potensi delay lebih awal agar mitigasi operasional dapat disiapkan.
+								</li>
+								<li>
+									<strong>2. Data Understanding:</strong> Menganalisis dataset penerbangan komersial tahun 2024 (1,3 GB di Kaggle) yang mencakup dimensi waktu keberangkatan terencana (`crs_dep_time`), kode maskapai (`op_unique_carrier`), bandara asal-tujuan (`origin`, `dest`), durasi jadwal (`crs_elapsed_time`), dan jarak tempuh (`distance`).
+								</li>
+								<li>
+									<strong>3. Data Preparation & Memory Optimization:</strong> Menangani volume data masif dengan teknik *downcasting* tipe data memori (misalnya mengubah integer default ke `int8`/`int16` dan float ke `float32`), membersihkan rekaman penerbangan yang dibatalkan (*cancelled*) atau dialihkan (*diverted*), serta membuang duplikasi rekaman untuk menghemat beban RAM komputasi.
+								</li>
+								<li>
+									<strong>4. Feature Engineering:</strong> Mengekstraksi variabel prediktif baru: ekstraksi jam keberangkatan (`Departure_Hour`), penandaan jam sibuk bandara (`is_peak`), status akhir pekan (`is_weekend`), binning jarak tempuh (`distance_bin`), indeks kepadatan rute asal (`congestion_index`), serta klasifikasi bandara penghubung utama (*hub origin/dest* kuantil 90%).
+								</li>
+								<li>
+									<strong>5. Modeling:</strong> Membangun `Pipeline` terintegrasi dengan `ColumnTransformer` (One-Hot Encoding untuk fitur kategorikal dengan threshold frekuensi minimum dan *passthrough* numerik) yang dipasangkan ke algoritma **XGBoost Classifier** (`n_estimators=400`, `max_depth=12`, `learning_rate=0.1`, `tree_method='hist'`).
+								</li>
+								<li>
+									<strong>6. Evaluation & Deployment:</strong> Mengevaluasi performa menggunakan metrik *ROC-AUC*, *Classification Report*, dan *Confusion Matrix*. Menetapkan ambang batas probabilitas klasifikasi (*decision threshold*) pada 0.3 untuk mengoptimalkan sensitivitas penangkapan risiko delay, lalu mendistribusikan model terlatih (`xgboost_model.sav`) ke antarmuka web interaktif Streamlit Cloud.
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Prinsip Inti Analitik Data:</strong> Model *machine learning* yang akurat lahir dari pemrosesan data hulu yang bersih. Tanpa pemahaman bisnis mengenai dinamika jadwal penerbangan dan rekayasa fitur temporal yang tepat, algoritma kompleks sekalipun hanya akan memproses *noise*.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Pre-Flight Parameter Configuration -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Configuration Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Konfigurasi Parameter Penerbangan & Simulasi Variabel</h3>
+								<span class="tech-pill">Module: Pre-Flight Inputs</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgStart}
+									alt="Streamlit Pre-Flight Configuration Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Antarmuka Streamlit memungkinkan pengguna (analis operasional maupun calon penumpang) memasukkan parameter jadwal penerbangan secara intuitif: tanggal perjalanan, jam keberangkatan terjadwal, kode maskapai penerbangan, bandara asal, bandara tujuan, serta estimasi jarak tempuh.
+							</p>
+							<p>
+								Formulir memvalidasi input masukan secara instan sebelum mereplikasi logika *feature engineering* satu baris data (*single-row pipeline*) persis seperti yang dipelajari model saat tahap pelatihan.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: Delay Probability & Operational Classification -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/rocket.png" alt="Prediction Result Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Prediksi Probabilitas Delay & Rekomendasi Mitigasi</h3>
+								<span class="tech-pill">Module: Inference Engine</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgPredict}
+									alt="Streamlit Flight Delay Prediction Output"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Setelah tombol prediksi ditekan, model menghitung probabilitas matematis apakah penerbangan berpotensi mengalami keterlambatan keberangkatan lebih dari 15 menit.
+							</p>
+							<p>
+								Hasil inferensi ditampilkan dalam indikator visual yang jelas (status *Delayed* atau *On Time*), persentase tingkat kepercayaan probabilitas, serta rincian faktor kontributor seperti status jam sibuk bandara keberangkatan dan kepadatan rute.
+							</p>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Pelajaran mendalam dalam eksekusi data analytics terstruktur dan machine learning terapan:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="CRISP-DM Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Disiplin Kerangka Kerja CRISP-DM</span>
+								</div>
+								<p>Memahami bahwa alur analitik data harus berakar dari kebutuhan bisnis nyata: setiap transformasi data, pemilihan variabel, dan penentuan target metrik harus memiliki korelasi langsung dengan pemecahan masalah operasional.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/image.png" alt="Optimasi Memori Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Manajemen Memori Big Data (1,3 GB)</span>
+								</div>
+								<p>Menerapkan teknik efisiensi memori pada Pandas melalui seleksi kolom selektif dan downcasting tipe data (`int8`, `float32`, `category`), memungkinkan manipulasi data skala jutaan baris tanpa kehabisan RAM komputasi.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="Feature Engineering Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Rekayasa Fitur Spasial & Temporal</span>
+								</div>
+								<p>Menggali sinyal prediktif tersembunyi dari data mentah: memetakan indeks kepadatan bandara (`congestion_index`), mengidentifikasi bandara hub kuantil 90%, dan mengelompokkan jam sibuk serta kategori jarak penerbangan.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="Deployment Streamlit Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Model Deployment & Threshold Tuning</span>
+								</div>
+								<p>Mempelajari pentingnya penyesuaian *decision threshold* (0.3) pada kelas data imbalanced agar model lebih peka terhadap risiko, serta mengemas model teruji ke aplikasi web interaktif Streamlit Cloud yang siap diuji pengguna.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

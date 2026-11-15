@@ -92,4 +92,16 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['FIRST WEBSITE', 'HTML5', 'CSS3', 'JAVASCRIPT', 'EARLY DATABASE', 'USER INTERVIEWS']
 	},
+	{
+		title: "Flight Delay Predictive Analytics — CRISP-DM & XGBoost",
+		title_en: "Big Data Processing, Advanced Feature Engineering & Streamlit Deployment",
+		date: "2026-11-15",
+		url: "https://penerbangan-xgboost-qeeypdn7svm7rqb6pkrghd.streamlit.app/",
+		detail: "/detail/penerbangan",
+		cover: [
+			'penerbangan/start.webp',
+			'penerbangan/predict.webp'
+		],
+		tags: ['DATA ANALYTICS', 'CRISP-DM', 'XGBOOST', 'PYTHON', 'BIG DATA', 'STREAMLIT']
+	},
 ];

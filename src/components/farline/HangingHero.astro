@@ -7,6 +7,7 @@ import imgDapurTwin from "../../assets/projects/dapurtwin/cover-dapurtwin.png";
 import imgTukangin from "../../assets/projects/tukangin/tukangin-cover.png";
 import imgSuparta from "../../assets/projects/suparta/suparta-cover.webp";
 import imgStudentSupport from "../../assets/projects/studentsupport/studsop-cover.webp";
+import imgPenerbangan from "../../assets/projects/penerbangan/start.webp";
 
 const projects = [
 	{
@@ -86,6 +87,19 @@ const projects = [
 		demoUrl: "https://studentsupport.sakia.id/",
 		image: imgStudentSupport,
 		tags: ["HTML5", "CSS3", "JavaScript", "First Database", "Interviews"]
+	},
+	{
+		id: "07",
+		title: "Flight Delay Analytics (XGBoost)",
+		subtitle: "Big Data Processing, CRISP-DM & Predictive Modeling",
+		category: "Data Analytics & ML",
+		date: "2026",
+		award: "End-to-End CRISP-DM Pipeline",
+		awardIcon: "rocket",
+		detailUrl: "/detail/penerbangan",
+		demoUrl: "https://penerbangan-xgboost-qeeypdn7svm7rqb6pkrghd.streamlit.app/",
+		image: imgPenerbangan,
+		tags: ["CRISP-DM", "XGBoost", "Python", "Streamlit", "Feature Eng."]
 	}
 ];
 ---
@@ -204,11 +218,22 @@ const projects = [
 		<div class="counter-display fl-mono" id="hero-counter">
 			<span class="active-num">01</span>
 			<span class="divider">/</span>
-			<span class="total-num">02</span>
+			<span class="total-num">{String(projects.length).padStart(2, '0')}</span>
+		</div>
+
+		<!-- Interactive Slide Indicator Dots for Quick Jump -->
+		<div class="hero-dots" id="hero-dots">
+			{projects.map((_, idx) => (
+				<button
+					class={`dot-btn ${idx === 0 ? "is-active" : ""}`}
+					data-target-index={idx}
+					aria-label={`Jump to slide ${idx + 1}`}
+				></button>
+			))}
 		</div>
 
 		<div class="controls-right">
-			<span class="hero-kbd-hint fl-mono">Use keys ← →</span>
+			<span class="hero-kbd-hint fl-mono">Use keys ← → or drag</span>
 		</div>
 	</div>
 </section>
@@ -221,6 +246,7 @@ const projects = [
 		private prevBtn: HTMLElement | null;
 		private nextBtn: HTMLElement | null;
 		private counterEl: HTMLElement | null;
+		private dotBtns: NodeListOf<HTMLButtonElement>;
 
 		private currentIndex: number = 0;
 		private targetX: number = 0;
@@ -239,6 +265,7 @@ const projects = [
 			this.prevBtn = document.getElementById('hero-prev-btn');
 			this.nextBtn = document.getElementById('hero-next-btn');
 			this.counterEl = document.getElementById('hero-counter');
+			this.dotBtns = document.querySelectorAll('.hero-dots .dot-btn');
 
 			if (!this.stage || !this.track || this.items.length === 0) return;
 
@@ -298,6 +325,25 @@ const projects = [
 			// Button controls
 			this.prevBtn?.addEventListener('click', () => this.prev());
 			this.nextBtn?.addEventListener('click', () => this.next());
+
+			// Direct dot indicator navigation
+			this.dotBtns.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const idx = parseInt(btn.getAttribute('data-target-index') || '0', 10);
+					this.snapToIndex(idx);
+				});
+			});
+
+			// Direct click on hanging card to slide it into center
+			this.items.forEach((item, idx) => {
+				item.addEventListener('click', (e) => {
+					// Only snap if clicking the card body outside the direct detail link
+					const target = e.target as HTMLElement;
+					if (target && !target.closest('a') && idx !== this.currentIndex) {
+						this.snapToIndex(idx);
+					}
+				});
+			});
 
 			// Parallax tilt on mousemove
 			this.stage.addEventListener('mousemove', (e) => {
@@ -374,9 +420,18 @@ const projects = [
 			if (this.counterEl) {
 				const activeNum = this.counterEl.querySelector('.active-num');
 				if (activeNum) {
-					activeNum.textContent = `0${this.currentIndex + 1}`;
+					activeNum.textContent = String(this.currentIndex + 1).padStart(2, '0');
 				}
 			}
+
+			// Update dot indicators
+			this.dotBtns.forEach((dot, idx) => {
+				if (idx === this.currentIndex) {
+					dot.classList.add('is-active');
+				} else {
+					dot.classList.remove('is-active');
+				}
+			});
 
 			// Update active class on items
 			this.items.forEach((item, idx) => {
@@ -810,6 +865,34 @@ const projects = [
 
 		.divider {
 			color: var(--farline-text-muted);
+		}
+	}
+
+	.hero-dots {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		.dot-btn {
+			width: 28px;
+			height: 8px;
+			border-radius: 999px;
+			border: 1px solid var(--farline-border);
+			background: var(--farline-surface-muted);
+			cursor: pointer;
+			transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+			padding: 0;
+
+			&:hover {
+				background: var(--farline-border-hover);
+				transform: scaleY(1.2);
+			}
+
+			&.is-active {
+				width: 44px;
+				background: var(--color-0);
+				border-color: var(--color-0);
+			}
 		}
 	}
 
