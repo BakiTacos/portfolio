@@ -104,4 +104,18 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['DATA ANALYTICS', 'CRISP-DM', 'XGBOOST', 'PYTHON', 'BIG DATA', 'STREAMLIT']
 	},
+	{
+		title: "ISFEST UMN 2026 — Backend Architecture, Failover Strategy & Cloud Object Storage",
+		title_en: "Event Operations Platform, Graceful Fallback Mechanisms & Backblaze B2 Security",
+		date: "2026-11-15",
+		url: "https://www.isfestumn.my.id/",
+		detail: "/detail/isfest",
+		cover: [
+			'isfest/cover.webp',
+			'isfest/home.webp',
+			'isfest/arena.webp',
+			'isfest/login.webp'
+		],
+		tags: ['BACKEND', 'FALLBACK STRATEGY', 'BACKBLAZE B2', 'DATA SECURITY', 'ORGANIZATION', 'WEBP']
+	},
 ];

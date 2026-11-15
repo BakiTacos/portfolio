@@ -1,0 +1,429 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgCover from "../../assets/projects/isfest/cover.webp";
+import imgHome from "../../assets/projects/isfest/home.webp";
+import imgArena from "../../assets/projects/isfest/arena.webp";
+import imgLogin from "../../assets/projects/isfest/login.webp";
+---
+
+<DetailPostLayout
+	title="ISFEST UMN 2026 — Backend Architecture, Failover Strategy & Cloud Object Storage | Portfolio"
+	description="Studi kasus teknis pengembangan platform Information Systems Festival (ISFEST) UMN 2026: peran backend & desain, manajemen risiko & failover fallback, tata kelola tim lintas divisi, keamanan data peserta, dan integrasi Backblaze B2."
+	keywords="ISFEST UMN 2026, Backend Development, Fallback Strategy, Failover System, Backblaze B2, S3 Compatible, Data Security, Organisasi Mahasiswa, UMN, Information Systems Festival"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="ISFEST UMN 2026: Backend Architecture, Graceful Fallback & Object Storage"
+				tag="BACKEND ENGINEERING, SECURITY & ORGANIZATIONAL OPERATIONS"
+				demoUrl="https://www.isfestumn.my.id/"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="ISFEST UMN 2026 Grand Wizarding Conquest Platform Cover"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						<strong>Information Systems Festival (ISFEST) UMN 2026</strong> adalah acara tahunan tingkat universitas yang diselenggarakan oleh Himpunan Mahasiswa Sistem Informasi UMN. Mengusung konsep kompetisi <em>The Grand Wizarding Conquest</em>, situs web ini menjadi pintu utama untuk pendaftaran tim, pengumpulan berkas seleksi, serta manajemen cabang kompetisi (Data Competition, UI/UX Design, Valorant, dan Mobile Legends).
+					</p>
+					<p class="lead-text">
+						Pada proyek ini, saya memegang tanggung jawab pada <strong>rekayasa backend dan pengawalan desain antarmuka</strong>. Melepas sistem ke ratusan pengguna dalam batas waktu ketat memberikan pelajaran rekayasa nyata: <strong>tidak semua rencana fitur di atas kertas harus dipaksakan ke tahap produksi, perlunya mekanisme failover cadangan (*fallback*) saat layanan pihak ketiga macet, tata kelola komunikasi antar divisi, perlindungan data pribadi mahasiswa, dan integrasi perdana penyimpanan berbasis cloud Backblaze B2</strong>.
+					</p>
+				</div>
+			</section>
+
+			<!-- Detailed Iterations & Engineering Deep Dive -->
+			<section class="iteration-section">
+				<div class="content">
+					<!-- Chapter 1: Backend Engineering & Fallback Mechanisms -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Backend Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Arsitektur Backend & Strategi Graceful Fallback</h3>
+								<span class="tech-pill pg">Backend Services • Failover Design • API Resiliency</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Awalnya, tim merencanakan otomatisasi penuh untuk seluruh alur pendaftaran—mulai dari *webhook* verifikasi pembayaran instan hingga sinkronisasi status live. Namun, keterbatasan waktu rilis publik dan ketidakstabilan API pihak ketiga menuntut keputusan teknis cepat: memaksakan fitur rapuh hanya akan menggagalkan pendaftaran pengguna.
+							</p>
+
+							<figure class="screenshot-figure">
+								<Image
+									src={imgHome}
+									alt="ISFEST UMN 2026 Home Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+
+							<ul class="iteration-list">
+								<li>
+									<strong>Desain Pertahanan Kegagalan (*Graceful Degradation*):</strong> Setiap rute API pendaftaran dibekali mekanisme failover. Ketika gateway otomatis mengalami *timeout* atau penolakan, backend tidak melempar error fatal 500 ke pengguna. Sistem mengalihkan alur secara transparan ke penampungan antrean verifikasi manual panitia, sehingga peserta tidak kehilangan progres pengisian.
+								</li>
+								<li>
+									<strong>Pragmatisme Ruang Lingkup (*Scope Pruning*):</strong> Memangkas modul-modul pelengkap yang berisiko tinggi terhadap performa dan menggantinya dengan alur kerja yang sudah teruji. Fokus dialokasikan sepenuhnya untuk mengamankan data transaksi formulir.
+								</li>
+								<li>
+									<strong>Validasi Input & Relasi Entitas:</strong> Memasang pemeriksaan relasi data ketat di lapisan backend guna mencegah duplikasi pendaftaran mahasiswa (KTM/email ganda) pada beberapa cabang lomba yang bersamaan.
+								</li>
+							</ul>
+
+							<div class="takeaway-box">
+								<strong>Pelajaran Kunci:</strong> Tolok ukur rekayasa perangkat lunak bukan deretan fitur canggih yang belum teruji, melainkan ketangguhan sistem dalam melayani pengguna di bawah tekanan rilis. Membangun <strong>skema fallback yang matang</strong> menjaga operasional registrasi tetap stabil tanpa kegagalan massal.
+							</div>
+						</div>
+					</div>
+
+					<!-- Chapter 2: Object Storage & Data Privacy -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/image.png" alt="Cloud Storage & Security Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Integrasi Backblaze B2 & Proteksi Privasi Berkas</h3>
+								<span class="tech-pill pg">Backblaze B2 • S3 API • Access Control • Media Pipeline</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Setiap peserta wajib mengunggah dokumen pribadi: scan Kartu Tanda Mahasiswa (KTM), identitas diri, dan bukti pembayaran biaya pendaftaran. Menyimpan berkas ini di penyimpanan server web lokal menimbulkan risiko server kehabisan kapasitas *storage* saat lonjakan unggahan, serta bahaya kebocoran dokumen jika direktori publik diakses langsung.
+							</p>
+
+							<figure class="screenshot-figure">
+								<Image
+									src={imgArena}
+									alt="ISFEST UMN 2026 Competition Arena Section"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+
+							<ul class="iteration-list">
+								<li>
+									<strong>Implementasi Perdana Backblaze B2 via S3-Compatible API:</strong> Memindahkan beban aset statis dan berkas pendaftar ke layanan object storage cloud terpisah. Langkah ini mengurangi beban komputasi server utama dan menekan biaya infrastruktur secara signifikan dibandingkan *cloud storage* konvensional.
+								</li>
+								<li>
+									<strong>Isolasi Berkas dengan Pre-Signed URL:</strong> Seluruh bucket dikonfigurasi dalam status privat tanpa akses publik. Panitia verifikator hanya dapat meninjau berkas peserta melalui token *pre-signed URL* yang kedaluwarsa secara otomatis dalam hitungan menit.
+								</li>
+								<li>
+									<strong>Penyaringan MIME-Type & Verifikasi File:</strong> Memvalidasi struktur header berkas (*magic numbers*) di backend sebelum diteruskan ke bucket, mencegah penyelundupan skrip biner berbahaya berkedok dokumen gambar atau PDF.
+								</li>
+							</ul>
+
+							<div class="takeaway-box">
+								<strong>Pelajaran Kunci:</strong> Keamanan data mahasiswa merupakan prioritas utama. Mengombinasikan <strong>private object storage</strong> dengan <strong>token tautan berbatas waktu</strong> menutup celah kebocoran data identitas peserta ke ranah umum.
+							</div>
+						</div>
+					</div>
+
+					<!-- Chapter 3: Organizational Management & Cross-Division Synchronization -->
+					<div class="iteration-card">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/compass.png" alt="Organization & Governance Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Tata Kelola Organisasi & Sinkronisasi Lintas Divisi</h3>
+								<span class="tech-pill pg">Cross-Division Workflow • Role Separation • Feature Freeze</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Membangun situs web untuk festival organisasi skala universitas menuntut sinkronisasi ritme kerja antara tim teknis dan divisi non-teknis (Divisi Acara, Lomba, Publikasi, dan Keuangan). Setiap divisi memiliki kebutuhan data yang berbeda pada linimasa yang saling bergantung.
+							</p>
+
+							<figure class="screenshot-figure">
+								<Image
+									src={imgLogin}
+									alt="ISFEST UMN 2026 Authentication & Portal Access"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+
+							<ul class="iteration-list">
+								<li>
+									<strong>Kolaborasi Backend & Sentuhan Desain UI/UX:</strong> Selain menyusun arsitektur data dan API, saya mengawal konsistensi visual antarmuka agar selaras dengan nuansa tematik acara tanpa menyulitkan keterbacaan formulir dan alur navigasi pengguna.
+								</li>
+								<li>
+									<strong>Standarisasi Status Berkas Tim:</strong> Merumuskan siklus status peserta secara eksplisit (<em>Pending</em>, <em>Verified</em>, dan <em>Revision Required</em>). Hal ini menghentikan kebingungan operasional saat Divisi Keuangan dan Divisi Lomba meninjau tim yang sama.
+								</li>
+								<li>
+									<strong>Kedisiplinan Feature Freeze:</strong> Menetapkan batas akhir perubahan kebutuhan menjelang hari pembukaan registrasi. Kebijakan ini melindungi integritas skema database dari perubahan mendadak yang rawan merusak kestabilan sistem.
+								</li>
+							</ul>
+
+							<div class="takeaway-box">
+								<strong>Pelajaran Kunci:</strong> Perangkat lunak yang baik tidak bekerja dalam ruang hampa. Keberhasilan implementasi sistem di lapangan ditentukan oleh seberapa rapi kesepakatan alur kerja, komunikasi antar panitia, dan kedisiplinan pembagian peran.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- What's Learned / Retrospective Summary -->
+			<section class="lessons-section border-top">
+				<div class="content">
+					<div class="lessons-header">
+						<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="36" height="36" class="icon-3d-title" loading="lazy" />
+						<h3 class="post-title">Refleksi & Nilai Rekayasa yang Dipelajari</h3>
+					</div>
+
+					<p class="lead-text">
+						Pengalaman rekayasa dan operasional di ISFEST UMN 2026 menegaskan prinsip-prinsip penting dalam pengembangan perangkat lunak:
+					</p>
+
+					<div class="lessons-grid">
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/hourglass.png" alt="Fallback Strategy Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Graceful Fallback & Prioritas Rilis</span>
+							</div>
+							<p>Menyadari bahwa tidak semua fitur ideal harus dipaksakan ke tahap produksi. Selalu sediakan jalur mitigasi cadangan (*fallback*) agar pengguna tetap dapat menyelesaikan tujuannya saat layanan otomatis terhambat.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/image.png" alt="Object Storage Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Penyimpanan Modern Backblaze B2</span>
+							</div>
+							<p>Memisahkan berkas unggahan dari server aplikasi web ke cloud object storage Backblaze B2 via S3-compatible protocol demi efisiensi biaya, skalabilitas penyimpanan, dan performa tinggi.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/battery.png" alt="Data Security Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Keamanan & Privasi Dokumen</span>
+							</div>
+							<p>Melindungi privasi berkas peserta (KTM, bukti pembayaran) melalui mode private bucket, penyaringan tipe berkas yang ketat, dan pemberian akses sementara berbasis *pre-signed URL*.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/rocket.png" alt="Team Operations Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Tata Kelola Organisasi Lintas Divisi</span>
+							</div>
+							<p>Menyelaraskan bahasa teknis sistem dengan kebutuhan operasional panitia, menetapkan *feature freeze*, dan menjaga transparansi alur verifikasi antara divisi lomba dan keuangan.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
