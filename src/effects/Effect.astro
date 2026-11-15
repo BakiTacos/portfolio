@@ -314,6 +314,7 @@ a:focus-visible {
 	background: var(--color-bg-content);
 	position: relative;
 	z-index: 100;
+	pointer-events: none !important;
 }
 
 .effects__img {
@@ -326,6 +327,7 @@ a:focus-visible {
 	opacity: 0;
 	overflow: hidden;
 	will-change: transform, filter;
+	pointer-events: none !important;
 }
 
 .effects__img-inner {
@@ -337,6 +339,7 @@ a:focus-visible {
 	position: absolute;
 	top: calc( -1 * var(--img-offset-y) / 2 );
 	left: calc( -1 * var(--img-offset-x) / 2 );
+	pointer-events: none !important;
 }
 
 @media screen and (min-width: 53em) {

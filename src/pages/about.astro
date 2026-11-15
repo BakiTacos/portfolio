@@ -43,14 +43,26 @@ import myPortrait from "../assets/portrait.jpg";
 						Outside of coding and business projects, I enjoy exploring new technologies, watching drama films, and read comics.
 					</p>
 					<p>Interested in collaborating or discussing an idea? Feel free to reach out!</p>
-					<p style="margin-top:24px;">
+					<div style="display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; align-items:center;">
 						<CallToAction
 						target="_self"
 						href="mailto:contact@sakia.id"
 						>
 							Contact Me
 						</CallToAction>
-					</p>
+						<a 
+							href="/assets/CV_Kevin_Sakia_Putra.pdf"
+							download="CV_Kevin_Sakia_Putra.pdf"
+							class="cv-cta-btn"
+						>
+							<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+								<polyline points="7 10 12 15 17 10"/>
+								<line x1="12" y1="15" x2="12" y2="3"/>
+							</svg>
+							<span>Download CV</span>
+						</a>
+					</div>
 				</div>
 			</section>
 			<p></p>
@@ -80,5 +92,29 @@ import myPortrait from "../assets/portrait.jpg";
 	}
 	a, a:link{
 		color:var(--color-blue);
+	}
+
+	.cv-cta-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 1.125em 2em;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-100) !important;
+		background: rgba(var(--color-100-rgb), 0.04);
+		border: 1px solid var(--color-700);
+		border-radius: 36px;
+		text-decoration: none;
+		min-width: 144px;
+		transition: all 0.25s ease;
+
+		&:hover {
+			background: rgba(var(--color-100-rgb), 0.08);
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+			color: #fff !important;
+		}
 	}
 </style>

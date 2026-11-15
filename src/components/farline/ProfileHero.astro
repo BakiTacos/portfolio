@@ -4,6 +4,7 @@ import myPortrait from "../../assets/portrait.jpg";
 import Social from "../Social.astro";
 
 const emailLink = "mailto:contact@sakia.id";
+const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 ---
 
 <section class="profile-hero-section" id="profile-hero">
@@ -39,14 +40,22 @@ const emailLink = "mailto:contact@sakia.id";
 				<Social />
 			</div>
 
-			<!-- Direct Email Action -->
+			<!-- Direct Actions Row (Email & Download CV) -->
 			<div class="profile-actions-row">
 				<a href={emailLink} class="social-btn email-btn" aria-label="Send Email">
-					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 						<rect width="20" height="16" x="2" y="4" rx="2"/>
 						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
 					</svg>
 					<span>Email Me</span>
+				</a>
+				<a href={cvLink} download="CV_Kevin_Sakia_Putra.pdf" class="social-btn cv-btn" aria-label="Download CV">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+						<polyline points="7 10 12 15 17 10"/>
+						<line x1="12" y1="15" x2="12" y2="3"/>
+					</svg>
+					<span>Download CV</span>
 				</a>
 			</div>
 		</div>
@@ -60,6 +69,7 @@ const emailLink = "mailto:contact@sakia.id";
 		padding: 5rem 0 4rem;
 		overflow: hidden;
 		background: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+		z-index: 10;
 	}
 
 	.profile-ambient-glow {
@@ -77,7 +87,7 @@ const emailLink = "mailto:contact@sakia.id";
 
 	.profile-container {
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 		max-width: 860px;
 		margin: 0 auto;
 		padding: 0 1.5rem;
@@ -186,7 +196,9 @@ const emailLink = "mailto:contact@sakia.id";
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		gap: 12px;
 		margin-top: 0.75rem;
+		flex-wrap: wrap;
 	}
 
 	.social-btn {
@@ -214,6 +226,20 @@ const emailLink = "mailto:contact@sakia.id";
 				color: #93c5fd;
 				transform: translateY(-2px);
 				box-shadow: 0 6px 20px -4px rgba(37, 99, 235, 0.3);
+			}
+		}
+
+		&.cv-btn {
+			background: rgba(247, 210, 82, 0.08);
+			border-color: rgba(247, 210, 82, 0.3);
+			color: #f7d252;
+
+			&:hover {
+				background: rgba(247, 210, 82, 0.16);
+				border-color: rgba(247, 210, 82, 0.5);
+				color: #fde047;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px -4px rgba(247, 210, 82, 0.25);
 			}
 		}
 	}
