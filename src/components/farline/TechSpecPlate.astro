@@ -17,6 +17,7 @@ interface Props {
 	demoUrl?: string;
 	githubUrl?: string;
 	videoUrl?: string;
+	videoLabel?: string;
 	backUrl?: string;
 }
 
@@ -28,6 +29,7 @@ const {
 	demoUrl,
 	githubUrl,
 	videoUrl,
+	videoLabel = "Motion Graphic ↗",
 	backUrl = "/#work-hero"
 } = Astro.props;
 ---
@@ -84,7 +86,7 @@ const {
 			)}
 			{videoUrl && (
 				<CallToAction href={videoUrl} target="_blank">
-					Motion Graphic ↗
+					{videoLabel}
 				</CallToAction>
 			)}
 		</div>

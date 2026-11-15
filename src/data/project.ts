@@ -33,4 +33,20 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['NEXT.JS', 'SUPABASE', 'POSTGRESQL', 'ALGORITHM', 'AWARD', 'COLLABORATION']
 	},
+	{
+		title: "DapurTwin — Fullstack F&B Operational & POS SaaS",
+		title_en: "Smart Recipe BOM, Dynamic HPP & Real-Time Kitchen Display System",
+		date: "2026-11-15",
+		url: "https://gtnich.vercel.app",
+		detail: "/detail/dapurtwin",
+		cover: [
+			'dapurtwin/cover-dapurtwin.png',
+			'dapurtwin/overview.png',
+			'dapurtwin/menu_resep.png',
+			'dapurtwin/proses_pesanan.png',
+			'dapurtwin/kondisi_bahan.png',
+			'dapurtwin/laporan.png'
+		],
+		tags: ['NEXT.JS', 'SUPABASE', 'POSTGRESQL', 'POS & KDS', 'F&B SAAS', 'BOM ENGINE']
+	},
 ];

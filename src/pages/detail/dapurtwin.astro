@@ -1,0 +1,492 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgCover from "../../assets/projects/dapurtwin/cover-dapurtwin.png";
+import imgOverview from "../../assets/projects/dapurtwin/overview.png";
+import imgMenuResep from "../../assets/projects/dapurtwin/menu_resep.png";
+import imgProsesPesanan from "../../assets/projects/dapurtwin/proses_pesanan.png";
+import imgKondisiBahan from "../../assets/projects/dapurtwin/kondisi_bahan.png";
+import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
+---
+
+<DetailPostLayout
+	title="DapurTwin — Fullstack F&B Operational & POS SaaS | Portfolio"
+	description="Ekosistem operasional F&B terpadu dengan Smart Recipe BOM, sinkronisasi stok atomik, KDS real-time, dan kalkulasi HPP otomatis."
+	keywords="DapurTwin, F&B SaaS, POS, Next.js, Supabase, PostgreSQL, Recipe BOM, HPP Calculator, KDS, inventory management"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="DapurTwin: Sistem Operasional Dapur, Smart Recipe BOM & HPP Otomatis"
+				tag="FULLSTACK F&B OPERATIONAL & POS SAAS"
+				demoUrl="https://gtnich.vercel.app"
+				githubUrl="https://github.com/juliusmarselinus/gtnich"
+				videoUrl="https://youtu.be/6CZ2BkhhyW0?si=5aWg4MK0X5nfJ5OR"
+				videoLabel="YouTube Demo ↗"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="DapurTwin F&B Operational & POS SaaS Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						DapurTwin adalah ekosistem operasional F&B *full-stack* yang menjembatani interaksi pelanggan di meja makan dengan presisi stok di dapur. Platform ini dirancang untuk mengatasi *blind spot* terbesar bisnis kuliner: ketidaktahuan atas HPP riil per porsi, kebocoran bahan baku tanpa jejak audit, serta pesanan pelanggan yang tertolak akibat ketiadaan verifikasi bahan secara *real-time*.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & System Architecture -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Arsitektur Logika & Kolaborasi Tim Lotus Biru</h3>
+								<span class="tech-pill pg">Logic, BOM Engine & Multi-Actor Workflow</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								DapurTwin dikembangkan secara kolaboratif oleh <strong>Tim Lotus Biru</strong> yang beranggotakan <strong>Kevin Sakia Putra</strong>, <strong>Audrey Imanuella Wijaya</strong>, dan <strong>Julius Marselinus</strong>. Dalam proyek ini, fokus rekayasa arsitektural saya berpusat pada perancangan <strong>alur multi-aktor, engine konversi satuan bahan (BOM), kalkulator HPP otomatis, serta integritas mutasi stok atomik</strong>:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Orkestrasi Alur Multi-Aktor:</strong> Menghubungkan 4 aktor kunci secara mulus: <em>Pelanggan Meja</em> (Self-Order QR mandiri), <em>Koki Dapur</em> (Kitchen Display System dengan Live Recipe Check), <em>Kasir POS</em> (Toko langsung, WhatsApp, GrabFood, GoFood, ShopeeFood), dan <em>Purchasing/Owner</em> (PO, supplier, ekstraksi struk belanja).
+								</li>
+								<li>
+									<strong>Smart Recipe BOM & Unit Normalizer (`lib/satuan.ts`):</strong> Menormalisasi takaran resep praktis dapur (gram, ml, sdm, sdt) ke satuan master gudang (kg, liter, pcs) untuk menghitung HPP per porsi serta memotong stok gudang secara otomatis saat transaksi selesai.
+								</li>
+								<li>
+									<strong>Integritas Mutasi Stok Atomik & RLS Multi-Tenant:</strong> Skema relasional PostgreSQL di Supabase yang mencatat setiap gram perpindahan bahan ke tabel audit `stok_logs` dengan isolasi data berbasis *Row Level Security* (RLS).
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Kolaborasi & Tanggung Jawab:</strong> Bersama Tim Lotus Biru menyelaraskan ideasi produk, rancangan antarmuka, dan arsitektur data agar sinkronisasi antar kasir, koki, dan meja berjalan transaksional tanpa risiko *race condition* atau selisih stok saat jam operasional sibuk.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Dashboard Overview & Live Metrics -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Overview Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Pusat Kendali Operasional Dapur & Indikator Kesiapan</h3>
+								<span class="tech-pill">Module: Command Center</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgOverview}
+									alt="DapurTwin Operational Command Center & Metrics"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Dasbor operasional dirancang dengan ergonomi visual ramah pengguna, menyatukan metrik omzet harian, sisa saldo kas, serta radar kesiapan bahan baku secara seketika.
+							</p>
+							<p>
+								Dilengkapi maskot reaktif <strong>Dapi</strong> yang memberikan indikator visual intuitif atas status operasional dapur (kondisi sehat saat stok aman dan omzet optimal, waspada saat bahan baku kritis mendekati batas *safety stock*).
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: Recipe BOM & Dynamic HPP Calculator -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Recipe Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Formula Resep (BOM) & Kalkulator Margin HPP Otomatis</h3>
+								<span class="tech-pill">Module: Smart BOM Engine</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgMenuResep}
+									alt="DapurTwin Recipe BOM & HPP Calculation Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Setiap menu makanan dikaitkan dengan komposisi resep bahan (*Bill of Materials*). Saat pemilik bisnis menentukan takaran dan harga jual, sistem langsung mengalkulasi HPP kumulatif serta persentase *Gross Margin* secara dinamis.
+							</p>
+							<p>
+								Jika harga bahan mentah di pasar mengalami kenaikan pada siklus PO terbaru, HPP menu diperbarui secara otomatis sehingga potensi margin tipis dapat diantisipasi sebelum merugikan bisnis.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 3: Kitchen Display System (KDS) & Order Processing -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="KDS Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Kitchen Display System (KDS) & Verifikasi Stok Live</h3>
+								<span class="tech-pill">Module: Kitchen Hub</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgProsesPesanan}
+									alt="DapurTwin Kitchen Display System Order Queue"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Tiket pesanan dari scan meja QR, kasir toko, WhatsApp, maupun pesanan online masuk ke papan kendali antrean koki secara terpadu tanpa selip kertas nota.
+							</p>
+							<p>
+								Fitur *Live Recipe Check* memvalidasi ketersediaan stok riil sebelum pesanan dimasak: label hijau menandakan bahan siap, sedangkan label merah merinci bahan yang defisit. Saat pesanan diselesaikan atau kasir mengonfirmasi pembayaran lunas, sistem secara atomik memotong stok gudang dan menerbitkan struk digital resmi via Resend API.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 4: Freshness Tracking & Inventory Condition -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/battery.png" alt="Inventory Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Monitoring Kesegaran & Masa Simpan Bahan Baku</h3>
+								<span class="tech-pill">Module: Freshness Tracker</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgKondisiBahan}
+									alt="DapurTwin Freshness & Shelf-Life Tracker Interface"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Bahan basah dan mudah rusak seperti daging, susu, dan produk segar dipantau berdasarkan tanggal penerimaan barang dan estimasi masa simpan (*shelf-life*). Sistem mengelompokkan bahan ke dalam status prioritas *Sangat Segar*, *Perlu Segera Digunakan*, hingga *Kritis*, lengkap dengan panduan suhu penyimpanan (*chilled/frozen*).
+							</p>
+							<p>
+								Fitur ini membantu staf dapur menentukan urutan penggunaan bahan baku secara disiplin (FIFO - *First In, First Out*) serta menjadi acuan validasi fisik saat audit berkala (*Stock Opname*).
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 5: Financial Analytics & Business Simulation -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/rocket.png" alt="Analytics Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Analitik Keuangan Interaktif & Simulasi Skenario Bisnis</h3>
+								<span class="tech-pill">Module: Financial Intelligence</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgLaporan}
+									alt="DapurTwin Financial Reports & Analytics Dashboard"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Laporan penjualan menyajikan grafik tren omzet, laba kotor, dan *Average Order Value* (AOV) secara interaktif. Pengeluaran dipisahkan antara belanja bahan baku (COGS) dan biaya operasional harian.
+							</p>
+							<p>
+								Modul simulasi bisnis memungkinkan pemilik usaha menguji skenario nyata sebelum mengambil keputusan: kalkulasi kebutuhan modal belanja katering skala besar, proyeksi porsi untuk mencapai target laba bersih, serta simulasi sensitivitas kenaikan harga bahan distributor terhadap batas aman harga jual.
+							</p>
+						</div>
+					</div>
+
+					<!-- Technical Challenges -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Engineering Challenges Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Tantangan Teknis & Solusi Rekayasa</h3>
+								<span class="tech-pill">Engineering Deep-Dive</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<ul class="iteration-list">
+								<li>
+									<strong>Matriks Normalisasi Multi-Unit Resep vs Gudang:</strong> Mengatasi selisih presisi antara takaran sendok/gram resep dapur dengan satuan beli grosir (karung/dus/kg) melalui *Unit Normalization Matrix* di `src/lib/satuan.ts` yang teruji via automated unit test.
+								</li>
+								<li>
+									<strong>Pencegahan Race Condition Pemotongan Stok:</strong> Mengisolasi transaksi penjualan dengan state blocker `BusyContext` di sisi klien dan mutasi database atomik untuk mencegah kuantitas stok bernilai negatif ketika pesanan meja dan kasir selesai secara bersamaan.
+								</li>
+								<li>
+									<strong>Sinkronisasi State Multi-Aktor Dapur & Kasir:</strong> Menyusun mesin status pesanan yang terintegrasi sehingga verifikasi pembayaran kasir memicu *webhook* penerbitan nota email pelanggan (Resend) dan memperbarui antrean koki seketika.
+								</li>
+								<li>
+									<strong>Ekstraksi Struk Belanja Tradisional via AI Vision OCR:</strong> Menggabungkan model Computer Vision (Gemini Vision / Tesseract) dengan alur peninjauan *review-before-commit*, memudahkan konversi nota pasar tulisan tangan ke draf PO terverifikasi tanpa input manual yang rentan salah.
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Pelajaran penting dalam membangun ekosistem F&B yang terintegrasi secara end-to-end:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/lamp.png" alt="Penerapan AI Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Penerapan AI di Berbagai Area</span>
+								</div>
+								<p>Implementasi AI yang efektif adalah yang berfokus menyelesaikan friksi nyata proses kerja—mulai dari rekomendasi takaran resep standar porsi menu hingga prediksi masa simpan bahan segar untuk menjaga kualitas bahan baku.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/image.png" alt="OCR AI Vision Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Pembelajaran OCR AI Vision</span>
+								</div>
+								<p>Memahami tantangan ekstraksi data tak terstruktur dari nota belanja fisik/pasar dan pentingnya mekanisme peninjauan *review-before-commit* agar data PO yang masuk ke database tetap valid dan akurat.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="Flow Data Relasional Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Flow Data Terhubung & Berelasi</span>
+								</div>
+								<p>Merancang relasi database dari hulu ke hilir: dari master bahan, resep BOM, pesanan multi-kanal, hingga stok gudang yang saling memicu mutasi atomik secara presisi tanpa inkonsistensi status.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="Notifikasi & Email Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Penerapan Notifikasi hingga Email</span>
+								</div>
+								<p>Mengintegrasikan sistem feedback operasional secara menyeluruh: notifikasi toast non-blocking bagi staf, pembaruan antrean KDS live, hingga otomasi penerbitan struk transaksi resmi ke email pelanggan via Resend API.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
