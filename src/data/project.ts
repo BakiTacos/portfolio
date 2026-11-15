@@ -78,4 +78,18 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['BRAND BUILDING', 'BRAND MANAGEMENT', 'NEXT.JS', 'I18N MULTI-LANGUAGE', 'SALES CONVERSION', 'WEBP']
 	},
+	{
+		title: "Student Support UMN — First Website, Early Database & User Research",
+		title_en: "Fundamental Web Development, Early Database Modeling & Counseling Needs Validation",
+		date: "2026-11-15",
+		url: "https://studentsupport.sakia.id/",
+		detail: "/detail/studentsupport",
+		cover: [
+			'studentsupport/studsop-cover.webp',
+			'studentsupport/home.webp',
+			'studentsupport/home-section.webp',
+			'studentsupport/footer.webp'
+		],
+		tags: ['FIRST WEBSITE', 'HTML5', 'CSS3', 'JAVASCRIPT', 'EARLY DATABASE', 'USER INTERVIEWS']
+	},
 ];

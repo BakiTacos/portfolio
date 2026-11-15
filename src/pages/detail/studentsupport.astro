@@ -1,0 +1,404 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgCover from "../../assets/projects/studentsupport/studsop-cover.webp";
+import imgHome from "../../assets/projects/studentsupport/home.webp";
+import imgHomeSection from "../../assets/projects/studentsupport/home-section.webp";
+import imgFooter from "../../assets/projects/studentsupport/footer.webp";
+---
+
+<DetailPostLayout
+	title="Student Support UMN — First Website, Early Database & User Interview Case Study | Portfolio"
+	description="Studi kasus pembuatan website pertama dan perancangan database awal untuk layanan Student Support Universitas Multimedia Nusantara berbasis HTML, CSS, JavaScript, dan validasi wawancara pengguna langsung."
+	keywords="Student Support UMN, First Website, Early Database, HTML, CSS, JavaScript, User Interview, Requirements Engineering, University Project"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="Student Support UMN: First Website, Early Database & User Research"
+				tag="FIRST CODEBASE • USER INTERVIEWS • EARLY DATABASE"
+				demoUrl="https://studentsupport.sakia.id/"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="Student Support UMN Platform Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						<strong>Student Support UMN</strong> adalah proyek website dan perancangan database pertama yang saya bangun dari nol menggunakan dasar fondasi web murni (HTML, CSS, JavaScript). Proyek ini lahir dari proses riset kebutuhan lapangan melalui <strong>wawancara mendalam bersama staf konselor dan koordinator Student Support Universitas Multimedia Nusantara</strong>—menggali kendala operasional pencatatan sesi konseling manual, kerahasiaan data mahasiswa, hingga rancangan alur pendaftaran layanan kesehatan mental yang mudah diakses.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & System Architecture -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Early Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Pondasi Awal: Sintesis Wawancara ke Desain Solusi Digital</h3>
+								<span class="tech-pill pg">First Codebase • Vanilla Web • Field Interview</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Sebagai proyek perdana dalam rekayasa perangkat lunak, fokus pembelajaran berpusat pada bagaimana mentranslasikan kebutuhan pengguna nyata ke dalam kode fungsional dan model data terstruktur:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Validasi Kebutuhan via Wawancara Langsung:</strong> Berdialog dengan divisi konseling kampus untuk memahami friksi operasional utama: mahasiswa kerap enggan mendaftar konseling tatap muka karena privasi, serta ketiadaan pelacakan status antrean konsultasi secara mandiri.
+								</li>
+								<li>
+									<strong>Eksplorasi Database & Entitas Pertama:</strong> Merancang skema relasional dasar untuk menampung biodata mahasiswa, jadwal ketersediaan konselor spesialis, jenis layanan (individual, kelompok, konselor sebaya), serta rekam jejak tiket konsultasi.
+								</li>
+								<li>
+									<strong>Konstruksi Kode Fundamental (HTML5 & Modular CSS):</strong> Menulis markup semantik murni, membedah struktur layout responsif (Flexbox & Grid), interaktivitas navigasi JavaScript, dan integrasi Bootstrap untuk mempercepat pembuatan purwarupa fungsional.
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Titik Tolak Pembelajaran:</strong> Proyek ini membuktikan bahwa teknologi canggih berawal dari pemahaman dasar yang kokoh. Tanpa memahami anatomi HTML semantik, manipulasi DOM, dan relasi data entitas dasar, membangun arsitektur sistem skala besar di masa depan akan rapuh.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Home & Service Directory -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Home Interface Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Pusat Informasi Layanan & Aksesibilitas Kampus Inklusif</h3>
+								<span class="tech-pill">Module: Information Hub</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgHome}
+									alt="Student Support UMN Homepage and Campus Accessibility"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Beranda dirancang dengan suasana visual tenang dan empatik. Menampilkan direktori layanan komprehensif: Konseling Individual, Psikotest, Konselor Sebaya, Ruang Berkisah, hingga Layanan Kedukaan.
+							</p>
+							<p>
+								Berdasarkan masukan wawancara, platform juga menyematkan informasi fasilitas inklusif kampus secara transparan: rute ramah kursi roda (*ramp access*), lift bertombol braille, dan jalur pedestrian khusus disabilitas.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: Counselor Directory & Booking Pipeline -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Counselor Profile Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Direktori Konselor Terverifikasi & Alur Pengajuan Konsultasi</h3>
+								<span class="tech-pill">Module: Counselor Directory</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgHomeSection}
+									alt="Student Support UMN Counselors and Booking Flow"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Menampilkan profil resmi konselor profesional kampus beserta bidang kepakaran psikologis masing-masing. Informasi ini membantu mahasiswa memilih konselor yang paling sesuai dengan kendala akademik maupun emosional yang dialami.
+							</p>
+							<p>
+								Formulir pendaftaran dirancang dengan pendekatan bertahap guna menjaga kerahasiaan identitas dan keluhan personal mahasiswa sebelum jadwal temu disepakati.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 3: Footer & Contact Integration -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Emergency Help Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Kanal Bantuan Krisis & Jalur Komunikasi Responsif</h3>
+								<span class="tech-pill">Module: Emergency & Contact</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgFooter}
+									alt="Student Support UMN Footer and Crisis Contacts"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Bagian penutup menyediakan informasi kontak darurat, lokasi ruang konseling di gedung kampus, jam operasional layanan, dan tautan langsung ke hotline krisis kesehatan mental.
+							</p>
+							<p>
+								Dilengkapi halaman mandiri pelacakan status permohonan (*student view*) agar mahasiswa dapat mengetahui apakah jadwal konsultasi mereka telah diverifikasi oleh konselor tanpa harus bertanya berulang ke loket fisik.
+							</p>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Pelajaran fundamental dari langkah pertama membangun aplikasi web dan merancang sistem data:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="First Website Codebase Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Pengalaman First Website (HTML, CSS, JS)</span>
+								</div>
+								<p>Memahami inti kerja peramban: bagaimana pohon DOM dibangun oleh HTML, bagaimana CSS mengatur hirarki visual dan box-model, serta bagaimana JavaScript menangani interaksi pengguna secara asinkron tanpa framework pembungkus.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/image.png" alt="First Database Design Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Perancangan First Database</span>
+								</div>
+								<p>Belajar memetakan entitas dunia nyata ke skema tabel database: normalisasi kolom relasi antara data mahasiswa, jadwal konselor, dan riwayat konsultasi agar tidak terjadi duplikasi rekaman data.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="Wawancara Lapangan Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Uji Coba Berbasis Wawancara Pengguna</span>
+								</div>
+								<p>Menyadari bahwa kode terbaik adalah yang menyelesaikan kebutuhan riil manusia. Wawancara bersama staf konselor mengajarkan pentingnya empati, privasi data pengguna, dan alur pendaftaran yang tidak membebani mental mahasiswa.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/rocket.png" alt="Evolusi Engineering Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Batu Loncatan Rekayasa Perangkat Lunak</span>
+								</div>
+								<p>Menghargai proses evolusi rekayasa perangkat lunak: memahami keterbatasan kode prosedural dasar yang memicu ketertarikan mendalam saya untuk mempelajari framework modern (Next.js/Laravel) dan arsitektur database relasional tingkat lanjut.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
