@@ -49,4 +49,19 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['NEXT.JS', 'SUPABASE', 'POSTGRESQL', 'POS & KDS', 'F&B SAAS', 'BOM ENGINE']
 	},
+	{
+		title: "Tukang.in — On-Demand Home Service & Technician Marketplace",
+		title_en: "Early-Stage Laravel Monolith, Relational Database & Recommendation Matching",
+		date: "2026-11-15",
+		url: "https://tukangin.sakia.id",
+		detail: "/detail/tukangin",
+		cover: [
+			'tukangin/tukangin-cover.png',
+			'tukangin/home.png',
+			'tukangin/layanan.png',
+			'tukangin/teknisi.png',
+			'tukangin/profile.png'
+		],
+		tags: ['LARAVEL', 'PHP', 'MYSQL', 'MARKETPLACE', 'HEURISTIC MATCHING', 'OPTIMIZATION']
+	},
 ];

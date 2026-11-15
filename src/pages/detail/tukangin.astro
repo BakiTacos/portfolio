@@ -1,0 +1,463 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgCover from "../../assets/projects/tukangin/tukangin-cover.png";
+import imgHome from "../../assets/projects/tukangin/home.png";
+import imgLayanan from "../../assets/projects/tukangin/layanan.png";
+import imgTeknisi from "../../assets/projects/tukangin/teknisi.png";
+import imgProfile from "../../assets/projects/tukangin/profile.png";
+---
+
+<DetailPostLayout
+	title="Tukang.in — On-Demand Home Service & Technician Marketplace | Portfolio"
+	description="Platform direktori dan pemesanan jasa teknisi perawatan rumah berbasis Laravel, eksplorasi optimasi query database tahap awal, dan algoritma matching rekomendasi teknisi."
+	keywords="Tukang.in, Laravel, MySQL, Home Services, Technician Marketplace, Database Optimization, Location Matching, Scheduling Heuristics"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="Tukang.in: On-Demand Home Service & Technician Marketplace"
+				tag="EARLY-STAGE LARAVEL & DATA OPTIMIZATION"
+				demoUrl="https://tukangin.sakia.id"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgCover}
+							alt="Tukang.in Platform Cover Overview"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						<strong>Tukang.in</strong> adalah platform direktori dan pemesanan layanan perawatan rumah *on-demand* yang menghubungkan pemilik rumah dengan ribuan teknisi profesional terverifikasi di berbagai bidang spesialisasi: perbaikan kebocoran, instalasi listrik, AC service, renovasi konstruksi, hingga perawatan sanitasi. Proyek ini menjadi laboratorium pembelajaran tahap awal dalam membangun aplikasi monolitik menggunakan <strong>Laravel</strong>, merancang skema relasional transaksi jasa, serta membedah tantangan performa beban database dan algoritma *matching* rekomendasi cerdas.
+					</p>
+				</div>
+			</section>
+
+			<!-- Role & System Architecture -->
+			<section class="iteration-section">
+				<div class="content">
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Arsitektur Tahap Awal & Fokus Rekayasa Sistem</h3>
+								<span class="tech-pill pg">Laravel MVC • Relational Schemas • Matching Logic</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Pada tahap inisiasi, platform dikembangkan untuk membuktikan model bisnis *service marketplace* lokal. Eksplorasi rekayasa difokuskan pada tiga pilar fungsional utama:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Pondasi MVC Monolitik Laravel:</strong> Mengonstruksi struktur Controller, Model Eloquent, dan Blade Templating yang rapi untuk menangani katalog multi-kategori, sistem pemesanan langsung, hingga form keluhan pelanggan.
+								</li>
+								<li>
+									<strong>Skema Relasional Database Multi-Entitas:</strong> Menghubungkan profil pengguna, kemitraan teknisi (*partners*), katalog jasa spesialis, ketersediaan jadwal (*time slots*), serta status pemesanan (*orders*).
+								</li>
+								<li>
+									<strong>Logika Pencocokan Rekomendasi (Location & Schedule Matching):</strong> Merumuskan filter heuristik teknisi berdasarkan kedekatan wilayah operasional (kota/kecamatan) dan kecocokan jendela jam kerja aktif guna meminimalkan penolakan order.
+								</li>
+							</ul>
+							<div class="takeaway-box">
+								<strong>Fokus Pembelajaran:</strong> Membangun platform fungsional dengan cepat adalah langkah awal, namun mempertahankan kecepatan respon aplikasi saat relasi database berkembang membutuhkan pemahaman arsitektur query dan efisiensi *rendering* yang disiplin.
+							</div>
+						</div>
+					</div>
+
+					<!-- Module 1: Catalog & Home Experience -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Home Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Katalog Layanan & Penemuan Cepat (Quick Discovery)</h3>
+								<span class="tech-pill">Module: Customer Portal</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgHome}
+									alt="Tukang.in Homepage and Service Categories"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Antarmuka beranda dirancang untuk memandu pengguna menemukan bantuan teknisi secara instan melalui navigasi kategori visual: perbaikan pipa bocor, kelistrikan, tata udara (HVAC), hingga pengecatan dinding.
+							</p>
+							<p>
+								Menampilkan kurasi <strong>Top Rated Partners</strong> di kota pengguna guna membangun kepercayaan awal (*social proof*) serta menyediakan akses pemesanan cepat tanpa hambatan birokrasi navigasi.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 2: Service Directory & Scope Detail -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Service Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Direktori Jasa Terstruktur & Standardisasi Lingkup Kerja</h3>
+								<span class="tech-pill">Module: Service Directory</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgLayanan}
+									alt="Tukang.in Service Directory and Package Catalog"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Setiap layanan memiliki deskripsi spesifikasi pekerjaan yang terstandardisasi. Ketiadaan kejelasan lingkup kerja adalah sumber utama perselisihan antara teknisi dan pemilik rumah.
+							</p>
+							<p>
+								Melalui pengelompokan paket jasa yang transparan, pengguna memahami cakupan pemeriksaan awal, estimasi durasi penanganan, serta komponen biaya sebelum teknisi diberangkatkan ke lokasi.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 3: Partner Verification & Directory Filter -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/compass.png" alt="Technician Directory Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Direktori Mitra Teknisi & Verifikasi Portofolio</h3>
+								<span class="tech-pill">Module: Partner Verification</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgTeknisi}
+									alt="Tukang.in Technician Partner Directory"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Katalog mitra menyajikan daftar teknisi dengan lencana verifikasi (*Verified Partner*), akumulasi skor ulasan dari pelanggan sebelumnya, dan cakupan domisili kerja.
+							</p>
+							<p>
+								Pengguna dapat menyaring mitra berdasarkan bidang keahlian khusus atau menelusuri teknisi dengan ketersediaan darurat di area terdekat mereka.
+							</p>
+						</div>
+					</div>
+
+					<!-- Module 4: Order Lifecycle & Account Control -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/rocket.png" alt="Profile Management Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Manajemen Akun & Siklus Transaksi Pesanan</h3>
+								<span class="tech-pill">Module: Booking Lifecycle</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<figure class="screenshot-figure">
+								<Image
+									src={imgProfile}
+									alt="Tukang.in User Profile and Booking Management"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+							<p>
+								Dasbor pengguna mengonsolidasikan riwayat pemesanan yang sedang berjalan (*in-progress*) maupun yang telah selesai. Dilengkapi mekanisme pelaporan terintegrasi seperti form pembatalan berstruktur dan formulir eskalasi komplain.
+							</p>
+							<p>
+								Sistem memastikan seluruh riwayat alamat rumah, preferensi kontak, dan catatan pekerjaan tersimpan secara aman dalam profil pelanggan.
+							</p>
+						</div>
+					</div>
+
+					<!-- Engineering Deep-Dive: Optimization & Matching -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Engineering Deep-Dive Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Evaluasi Teknis, Bottleneck & Solusi Optimasi</h3>
+								<span class="tech-pill">Performance & Algorithm Audit</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Implementasi awal Laravel memberikan kecepatan *time-to-market*, namun pengujian beban dan pertumbuhan entitas data mengungkap beberapa area krusial yang memerlukan refaktorisasi arsitektur:
+							</p>
+							<ul class="iteration-list">
+								<li>
+									<strong>Pencegahan Masalah N+1 Query pada Eloquent:</strong> Pada iterasi awal, pengambilan daftar teknisi beserta relasi ulasan dan layanannya memicu puluhan query berulang. Optimasi dilakukan dengan menerapkan *Eager Loading* (`with(['category', 'reviews', 'coverage_areas'])`) untuk memangkas *database round-trip* secara drastis.
+								</li>
+								<li>
+									<strong>Indexing Relasional & Normalisasi Skema:</strong> Memperbaiki performa pencarian teks dan filter status dengan menyematkan indeks komposit pada kolom `(status, city_id, category_id)` di MySQL, mencegah *full table scan* saat ribuan riwayat transaksi tercatat.
+								</li>
+								<li>
+									<strong>Algoritma Rekomendasi Berbasis Lokasi & Jam Operasional:</strong> Mengganti pencocokan manual dengan formula *ranking heuristic*: menghitung bobot kedekatan koordinat domisili teknisi terhadap radius pelanggan, digabungkan dengan ketersediaan slot waktu (*availability matrix*) agar pesanan tidak dialokasikan ke teknisi yang sedang menangani order aktif.
+								</li>
+								<li>
+									<strong>Optimasi Aset Statis & Server-Side Caching:</strong> Mengompresi aset visual berukuran besar, menerapkan penundaan muat gambar (*lazy-loading*), serta menempatkan hasil query katalog statis ke dalam *Laravel Cache* (Redis/File Cache) untuk mempercepat waktu render pertama (FCP).
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- What I Learned -->
+					<div class="lessons-section">
+						<div class="lessons-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<h3 class="post-title">What I Learned</h3>
+						</div>
+						<p>Pelajaran fundamental dari pengembangan dan evaluasi platform Tukang.in:</p>
+						<div class="lessons-grid">
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/bezier.png" alt="Framework Laravel Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Pengembangan Website Tahap Awal (Laravel)</span>
+								</div>
+								<p>Memahami ekosistem Laravel secara mendalam: pola MVC, arsitektur routing, manajemen state form, dan kemudahan scaffolding monolitik untuk memvalidasi ide produk secara cepat ke pengguna nyata.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/hourglass.png" alt="Optimasi Performa Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Kebutuhan Optimasi Performa Website</span>
+								</div>
+								<p>Menyadari bahwa kecepatan muat halaman berbanding lurus dengan konversi pengguna. Mempelajari pentingnya kompresi aset gambar, caching layer, serta pencegahan query ORM yang boros sumber daya server.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/image.png" alt="Database Tahap Awal Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Desain Database Tahap Awal</span>
+								</div>
+								<p>Pelajaran penting dalam merancang skema relasional sejak hari pertama: normalisasi kunci asing, penerapan indexing yang tepat, dan mitigasi redundansi data agar struktur siap diskalakan tanpa refactor masif.</p>
+							</div>
+							<div class="lesson-card">
+								<div class="lesson-top">
+									<img src="/assets/effects/3dicons/compass.png" alt="Rekomendasi Matching Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<span class="lesson-ver">Matching Rekomendasi (Lokasi & Jam)</span>
+								</div>
+								<p>Mengonseptualisasikan logika pencocokan riil di dunia nyata: menyelaraskan parameter geografis, estimasi jarak tempuh, dan jendela waktu ketersediaan teknisi demi menciptakan pengalaman pemesanan yang reliabel.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
