@@ -1,0 +1,476 @@
+---
+import { Image } from "astro:assets";
+import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
+import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+
+import imgOrchestra from "../../assets/projects/n8n-orchestra/orchestra.webp";
+import imgN8nCanvas from "../../assets/projects/n8n-orchestra/n8n-image.webp";
+import imgBi from "../../assets/projects/n8n-orchestra/workflow-bi.webp";
+import imgMarketing from "../../assets/projects/n8n-orchestra/workflow-marketing.webp";
+import imgContentIdea from "../../assets/projects/n8n-orchestra/workflow-content-idea.webp";
+import imgLibrary from "../../assets/projects/n8n-orchestra/workflow-library.webp";
+import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media.webp";
+---
+
+<DetailPostLayout
+	title="Telegram AI Orchestrator — Multi-Agent n8n & LangChain Business Assistant | Portfolio"
+	description="Studi kasus perancangan AI Business Assistant berbasis n8n dan LangChain: konsolidasi bot terfragmentasi menjadi satu Unified Main Orchestrator yang memanggil specialized tools (BI Supabase, Social Analytics, Marketing Events, Content Strategy, dan Script Library Validator)."
+	keywords="n8n, LangChain, AI Agent, Multi-Agent Architecture, Telegram Bot, Tool Calling, OpenAI, Supabase, Business Intelligence, Marketing Automation, Content Strategy"
+>
+	<div class="post">
+		<main class="post-wrapper">
+			<TechSpecPlate
+				title="Telegram AI Orchestrator: Unified Multi-Agent Business Assistant"
+				tag="AI AGENT ORCHESTRATION, N8N WORKFLOWS & LANGCHAIN"
+				backUrl="/#work-hero"
+			/>
+
+			<!-- Overview & Hero Cover -->
+			<section class="overview-section">
+				<div class="content">
+					<figure class="screenshot-figure hero-cover">
+						<Image
+							src={imgOrchestra}
+							alt="Telegram AI Orchestrator Main Multi-Agent Canvas Architecture"
+							loading="eager"
+							decoding="async"
+							class="screenshot-img"
+						/>
+					</figure>
+
+					<p class="lead-text">
+						<strong>Telegram AI Orchestrator</strong> adalah asisten operasional bisnis yang menghubungkan 5 fungsi internal: query database transaksi Supabase/PostgreSQL, analitik performa media sosial, penjadwalan kampanye, penulisan naskah video pendek, serta validasi pustaka skrip.
+					</p>
+					<p class="lead-text">
+						Sistem ini memecahkan kendala <strong>banyak bot terpisah dengan perintah kaku yang membingungkan</strong>. Melalui satu akun Telegram, agen LangChain di n8n membaca instruksi pengguna secara natural dan memanggil sub-workflow spesialis yang sesuai dengan konteks pertanyaan.
+					</p>
+				</div>
+			</section>
+
+			<!-- Detailed Iterations & Engineering Deep Dive -->
+			<section class="iteration-section">
+				<div class="content">
+					<!-- Chapter 1: The Fragmentation Problem & Unified Orchestrator Architecture -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Penyatuan Bot Terpisah ke Satu Pintu Orkestrasi</h3>
+								<span class="tech-pill pg">LangChain Agent • Tool Routing • Memory Buffer</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Sebelumnya, pengecekan data tersebar di berbagai bot berbeda. Kondisi ini menyulitkan saat tim membutuhkan korelasi langsung antara penjualan produk dan performa video promosi.
+							</p>
+
+							<figure class="screenshot-figure">
+								<Image
+									src={imgN8nCanvas}
+									alt="n8n Full Orchestrator Flow Canvas"
+									loading="lazy"
+									decoding="async"
+									class="screenshot-img"
+								/>
+							</figure>
+
+							<ul class="iteration-list">
+								<li>
+									<strong>Arsitektur Orchestrator:</strong> Agen LangChain memecah instruksi pengguna dan meneruskannya ke sub-workflow yang tepat tanpa memproses seluruh logika di dalam satu prompt raksasa.
+								</li>
+								<li>
+									<strong>Window Memory Buffer:</strong> Mengikat riwayat percakapan per ID sesi Telegram, memungkinkan revisi bertahap tanpa mengulang konteks dari awal.
+								</li>
+								<li>
+									<strong>Parser Output HTML:</strong> Membersihkan entitas karakter khusus sebelum pesan dikirim ke Telegram untuk mencegah kegagalan format teks.
+								</li>
+							</ul>
+
+							<div class="takeaway-box">
+								<strong>Pelajaran Kunci:</strong> Solusi praktis bukan menambah jumlah bot, melainkan menyatukan antarmukanya. Menggabungkan agen orkestrator dengan sub-workflow modular menjaga sistem tetap teratur dan mudah digunakan.
+							</div>
+						</div>
+					</div>
+
+					<!-- Chapter 2: The 5 Specialized Business Tools -->
+					<div class="iteration-card border-bottom">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/lamp.png" alt="Tool Registry Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">5 Sub-Workflow Spesialis yang Dipanggil Sesuai Konteks</h3>
+								<span class="tech-pill pg">Tool Registry • Separation of Concerns • Deterministic Execution</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Setiap alat memiliki batasan tugas yang tegas agar agen tidak salah mengambil sumber data atau mencampuradukkan metrik:
+							</p>
+
+							<!-- Sub-tool 1: BI Supabase -->
+							<div style="margin-top: 1.5rem;">
+								<h4 style="color: var(--color-100); margin-bottom: 0.5rem; font-size: 1.05rem;">1. BI_Supabase (Data Operasional & Keuangan)</h4>
+								<p>
+									Mengeksekusi query langsung ke database Supabase/PostgreSQL untuk omzet penjualan, laba, retur barang, invoice, dan data stok aktual.
+								</p>
+								<figure class="screenshot-figure">
+									<Image
+										src={imgBi}
+										alt="n8n BI Supabase Workflow"
+										loading="lazy"
+										decoding="async"
+										class="screenshot-img"
+									/>
+								</figure>
+							</div>
+
+							<!-- Sub-tool 2: Social Media Analytics -->
+							<div style="margin-top: 1.5rem;">
+								<h4 style="color: var(--color-100); margin-bottom: 0.5rem; font-size: 1.05rem;">2. Social_Media_Analytics (Performa Video Multi-Platform)</h4>
+								<p>
+									Membaca metrik penayangan, jangkauan, interaksi, dan retensi penonton video YouTube, Instagram, serta TikTok dari lembar data internal.
+								</p>
+								<figure class="screenshot-figure">
+									<Image
+										src={imgSocial}
+										alt="n8n Social Media Analytics Workflow"
+										loading="lazy"
+										decoding="async"
+										class="screenshot-img"
+									/>
+								</figure>
+							</div>
+
+							<!-- Sub-tool 3: Marketing Events Manager -->
+							<div style="margin-top: 1.5rem;">
+								<h4 style="color: var(--color-100); margin-bottom: 0.5rem; font-size: 1.05rem;">3. Marketing_Events_Manager (Jadwal Kampanye)</h4>
+								<p>
+									Mengelola linimasa promosi lewat dua aksi: <code>action=list</code> untuk melihat agenda aktif dan <code>action=plan</code> untuk menyusun jadwal kampanye baru.
+								</p>
+								<figure class="screenshot-figure">
+									<Image
+										src={imgMarketing}
+										alt="n8n Marketing Events Manager Workflow"
+										loading="lazy"
+										decoding="async"
+										class="screenshot-img"
+									/>
+								</figure>
+							</div>
+
+							<!-- Sub-tool 4 & 5: Content Strategy & Script Library Validator -->
+							<div style="margin-top: 1.5rem;">
+								<h4 style="color: var(--color-100); margin-bottom: 0.5rem; font-size: 1.05rem;">4 & 5. Content_Strategy_Writer & Script_Library_Validator</h4>
+								<p>
+									<strong>Content_Strategy_Writer</strong> merancang draf naskah video pendek beserta hook pembuka. <strong>Script_Library_Validator</strong> memvalidasi struktur naskah dan mengunci penyimpanan ke database hanya setelah disetujui pengguna.
+								</p>
+								<figure class="screenshot-figure">
+									<Image
+										src={imgContentIdea}
+										alt="n8n Content Strategy Writer Workflow"
+										loading="lazy"
+										decoding="async"
+										class="screenshot-img"
+									/>
+								</figure>
+								<figure class="screenshot-figure" style="margin-top: 1rem;">
+									<Image
+										src={imgLibrary}
+										alt="n8n Script Library Validator Workflow"
+										loading="lazy"
+										decoding="async"
+										class="screenshot-img"
+									/>
+								</figure>
+							</div>
+
+							<div class="takeaway-box" style="margin-top: 1.5rem;">
+								<strong>Pelajaran Kunci:</strong> Memisahkan logika ke dalam sub-workflow mandiri membuat alur kerja tetap terisolasi, mudah diuji, dan menghasilkan data yang konsisten.
+							</div>
+						</div>
+					</div>
+
+					<!-- Chapter 3: Two-Phase Confirmation & Operational Safety -->
+					<div class="iteration-card">
+						<div class="iteration-header">
+							<img src="/assets/effects/3dicons/hourglass.png" alt="Safety Mechanism Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<div class="iteration-title-group">
+								<h3 class="post-title">Verifikasi Dua Tahap Sebelum Perubahan Data</h3>
+								<span class="tech-pill pg">Human-in-the-Loop • State Machine • Safe Mutations</span>
+							</div>
+						</div>
+						<div class="iteration-body">
+							<p>
+								Menjalankan perubahan basis data otomatis tanpa kendali pengguna berisiko merusak data bisnis. Sistem menerapkan protokol pengamanan:
+							</p>
+
+							<ul class="iteration-list">
+								<li>
+									<strong>Pola Konfirmasi Bertahap:</strong> Tindakan penyimpanan (seperti menambah naskah ke pustaka atau membuat jadwal promosi) selalu menampilkan pratinjau terlebih dahulu (<code>confirmed=false</code>) dan baru disimpan permanen (<code>confirmed=true</code>) setelah konfirmasi pengguna di Telegram.
+								</li>
+								<li>
+									<strong>Pelaporan Data Faktual:</strong> Jika data transaksi atau metrik media sosial kosong pada periode yang diminta, sistem menyatakan data tidak ditemukan tanpa memberikan angka karangan.
+								</li>
+								<li>
+									<strong>Pencatatan Identitas:</strong> Parameter <code>userId</code>, <code>chatId</code>, dan <code>sessionId</code> diteruskan ke setiap sub-workflow untuk memastikan jejak penanggung jawab tercatat.
+								</li>
+							</ul>
+
+							<div class="takeaway-box">
+								<strong>Pelajaran Kunci:</strong> Menjaga persetujuan manusia sebelum perubahan data menjamin operasional bisnis tetap aman tanpa memperlambat pekerjaan rutin.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- What's Learned / Retrospective Summary -->
+			<section class="lessons-section border-top">
+				<div class="content">
+					<div class="lessons-header">
+						<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="36" height="36" class="icon-3d-title" loading="lazy" />
+						<h3 class="post-title">Pelajaran Rekayasa Sistem</h3>
+					</div>
+
+					<p class="lead-text">
+						Poin pembelajaran utama dari pengembangan sistem orkestrator ini:
+					</p>
+
+					<div class="lessons-grid">
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/bezier.png" alt="Unified Bot Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Penyatuan Bot Terpisah</span>
+							</div>
+							<p>Mengganti banyak bot kaku dengan satu pintu Telegram cerdas yang memahami maksud pengguna secara langsung.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/compass.png" alt="Contextual Tool Calling Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Pemanggilan Alat Sesuai Konteks</span>
+							</div>
+							<p>Mendelegasikan tugas ke sub-workflow spesialis berdasarkan domain pertanyaan tanpa mencampur data operasional dan media sosial.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/hourglass.png" alt="Human-in-the-Loop Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Persetujuan Sebelum Simpan</span>
+							</div>
+							<p>Wajib menampilkan pratinjau draf terlebih dahulu sebelum mengeksekusi penulisan atau perubahan data permanen ke database.</p>
+						</div>
+
+						<div class="lesson-card">
+							<div class="lesson-top">
+								<img src="/assets/effects/3dicons/rocket.png" alt="Modularity Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<span class="lesson-ver">Struktur Alur Kerja Modular</span>
+							</div>
+							<p>Pemisahan modul orkestrator dari pelaksana teknis memudahkan penambahan tool baru tanpa merusak alur yang sudah berjalan.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</DetailPostLayout>
+
+<style lang="scss">
+	.overview-section {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.lead-text {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-100);
+	}
+
+	.iteration-card {
+		padding: 2.5rem 0;
+		&:first-child {
+			padding-top: 1rem;
+		}
+	}
+
+	.iteration-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.icon-3d-direct {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+		flex-shrink: 0;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: scale(1.12) rotate(6deg);
+		}
+	}
+
+	.iteration-title-group {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tech-pill {
+		font-size: 0.8rem;
+		color: var(--color-400);
+		background: rgba(var(--color-100-rgb), 0.05);
+		border: 1px solid var(--color-700);
+		padding: 2px 10px;
+		border-radius: 6px;
+		&.pg {
+			border-color: rgba(51, 103, 145, 0.6);
+			color: #5ea8d8;
+		}
+	}
+
+	.screenshot-figure {
+		margin: 1.5rem auto 2rem;
+		max-width: 720px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid var(--color-700);
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+		background: rgba(var(--color-999-rgb), 0.4);
+
+		&.hero-cover {
+			max-width: 780px;
+			margin: 1rem auto 2rem;
+		}
+	}
+
+	.screenshot-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.iteration-body {
+		p {
+			margin-bottom: 1rem;
+			color: var(--color-200);
+			line-height: 1.65;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.iteration-list {
+		margin: 1rem 0 1.5rem 1.25rem;
+		padding-left: 0;
+		li {
+			margin-bottom: 0.75rem;
+			color: var(--color-200);
+			line-height: 1.6;
+		}
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.takeaway-box {
+		margin: 1.5rem 0 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		background: rgba(var(--color-100-rgb), 0.03);
+		border-left: 3px solid var(--color-400);
+		color: var(--color-100);
+		font-size: 0.95rem;
+		line-height: 1.6;
+
+		strong, b {
+			font-weight: 700 !important;
+			color: var(--color-100);
+		}
+	}
+
+	.lessons-section {
+		padding: 3rem 0 2rem;
+	}
+
+	.lessons-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		.post-title {
+			margin-bottom: 0;
+		}
+	}
+
+	.icon-3d-title {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 8px rgba(247, 210, 82, 0.4));
+	}
+
+	.lessons-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.lesson-card {
+		padding: 1.5rem;
+		border: 1px solid var(--color-700);
+		border-radius: 10px;
+		background: rgba(var(--color-100-rgb), 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		&:hover {
+			border-color: var(--color-400);
+			transform: translateY(-2px);
+		}
+		p {
+			margin: 0;
+			font-size: 0.925rem;
+			color: var(--color-200);
+			line-height: 1.55;
+		}
+	}
+
+	.lesson-top {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.icon-3d-mini {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.lesson-ver {
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--color-100);
+	}
+
+	@media (max-width: 768px) {
+		.lessons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

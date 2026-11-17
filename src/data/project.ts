@@ -118,4 +118,20 @@ export const projectItems: ProjectItem[] = [
 		],
 		tags: ['BACKEND', 'FALLBACK STRATEGY', 'BACKBLAZE B2', 'DATA SECURITY', 'ORGANIZATION', 'WEBP']
 	},
+	{
+		title: "Telegram AI Orchestrator — Multi-Agent BI, Marketing & Content System",
+		title_en: "Unified LangChain Agent in n8n Consolidating Fragmented Bots into Context-Aware Tool Calling",
+		date: "2026-11-17",
+		detail: "/detail/n8n-orchestra",
+		cover: [
+			'n8n-orchestra/orchestra.webp',
+			'n8n-orchestra/n8n-image.webp',
+			'n8n-orchestra/workflow-bi.webp',
+			'n8n-orchestra/workflow-marketing.webp',
+			'n8n-orchestra/workflow-content-idea.webp',
+			'n8n-orchestra/workflow-library.webp',
+			'n8n-orchestra/workflow-social-media.webp'
+		],
+		tags: ['N8N', 'AI AGENT', 'LANGCHAIN', 'ORCHESTRATOR', 'TOOL CALLING', 'SUPABASE', 'TELEGRAM']
+	},
 ];
