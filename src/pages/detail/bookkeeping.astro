@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 import imgCover from "../../assets/projects/bookkeeping/cover.png";
 import imgStart from "../../assets/projects/bookkeeping/start.png";
 import imgV1 from "../../assets/projects/bookkeeping/v1.png";
@@ -38,7 +39,7 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 					<!-- Excel Starting Point -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Starting Point Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Excel — The Starting Point</h3>
 								<span class="tech-pill">Tool: Microsoft Excel</span>
@@ -71,7 +72,7 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 					<!-- V1 -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/rocket.png" alt="V1 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">V1 — Building the Foundation</h3>
 								<span class="tech-pill">Stack: Next.js & Firebase</span>
@@ -96,7 +97,7 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 					<!-- V2 -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/compass.png" alt="V2 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="magnifier" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">V2 — Connecting the Workflow</h3>
 								<span class="tech-pill">Stack: Next.js & Firebase</span>
@@ -126,7 +127,7 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 					<!-- V3 -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="V3 Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="chart" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">V3 — Redesigning the Data Architecture</h3>
 								<span class="tech-pill pg">Stack: Next.js & PostgreSQL</span>
@@ -164,28 +165,28 @@ import imgV3 from "../../assets/projects/bookkeeping/v3.png";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Each version taught me something different about building software:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="V1 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">V1</span>
 								</div>
 								<p>Features need to serve a connected workflow rather than standalone functions.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="V2 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">V2</span>
 								</div>
 								<p>Improving the user flow without addressing underlying architecture creates bottlenecks as the system scales.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="V3 Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">V3</span>
 								</div>
 								<p>Think about the data model and relationships first, especially when reporting accuracy and traceability matter.</p>

@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgCover from "../../assets/projects/suparta/suparta-cover.webp";
 import imgHome from "../../assets/projects/suparta/home.webp";
@@ -47,7 +48,7 @@ import imgStory from "../../assets/projects/suparta/story.webp";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Brand Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Arsitektur Merek & Peran Website dalam Penjualan High-Ticket</h3>
 								<span class="tech-pill pg">Brand Management • Multi-Language i18n • Sales Pipeline</span>
@@ -77,7 +78,7 @@ import imgStory from "../../assets/projects/suparta/story.webp";
 					<!-- Module 1: Brand Essence & Editorial Storytelling -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Brand Story Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="coffee" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Brand Building: Menyatukan Warisan Budaya & Inovasi Modern</h3>
 								<span class="tech-pill">Module: Brand Storytelling</span>
@@ -105,7 +106,7 @@ import imgStory from "../../assets/projects/suparta/story.webp";
 					<!-- Module 2: The Heritage Series Catalog -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Product Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Brand Management: Standardisasi Varian Seri Heritage</h3>
 								<span class="tech-pill">Module: Product Catalog</span>
@@ -133,7 +134,7 @@ import imgStory from "../../assets/projects/suparta/story.webp";
 					<!-- Module 3: Digital Manuals & Knowledge Center -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Documentation Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="books" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Sales Enablement: Pustaka Panduan Digital & Dukungan Resmi</h3>
 								<span class="tech-pill">Module: Digital Documentation</span>
@@ -161,35 +162,35 @@ import imgStory from "../../assets/projects/suparta/story.webp";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Pelajaran fundamental mengenai sinergi antara manajemen brand dan konversi penjualan digital:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="Brand Building Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="lightbulb" size={24} />
 									<span class="lesson-ver">Strategi Brand Building Kategori Niche</span>
 								</div>
 								<p>Membangun narasi merek yang mengangkat persepsi produk dari sekadar perangkat hiburan menjadi furnitur prestisius pelatih fokus kognitif, sehingga membenarkan penetapan harga premium di pasar.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="Brand Management Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="goggles" size={24} />
 									<span class="lesson-ver">Konsistensi Brand Management</span>
 								</div>
 								<p>Menjaga keseragaman identitas merek di seluruh titik kontak—dari tipografi elegan dan standar penamaan varian produk, hingga penyusunan dokumen manual resmi yang rapi dan terverifikasi.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="Multi-Language Website Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Penerapan Website Multi-Bahasa (i18n)</span>
 								</div>
 								<p>Mempelajari arsitektur routing multi-bahasa Next.js App Router (`/[lang]`) untuk menyajikan konten bilingual yang kontekstual bagi pembeli lokal maupun ekspatriat tanpa mengorbankan indeks SEO.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/image.png" alt="Pengaruh Website Terhadap Penjualan Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">Peran Website dalam Menutup Penjualan</span>
 								</div>
 								<p>Memahami bagaimana kehadiran website profesional meruntuhkan resistensi pembeli produk bernilai tinggi: transparansi garansi, edukasi teknis, dan kemudahan booking kunjungan langsung ke showroom.</p>

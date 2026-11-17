@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
+import SakiPropElement from "../saki/SakiPropElement.astro";
+import type { SakiPropName, SakiGraphicMood } from "../saki/sakiMoods";
 import imgBookkeeping from "../../assets/projects/bookkeeping/cover.png";
 import imgBridgeU from "../../assets/projects/bridgeu/bridgeu-cover.png";
 import imgDapurTwin from "../../assets/projects/dapurtwin/cover-dapurtwin.png";
@@ -11,7 +13,21 @@ import imgPenerbangan from "../../assets/projects/penerbangan/start.webp";
 import imgIsfest from "../../assets/projects/isfest/cover.webp";
 import imgOrchestra from "../../assets/projects/n8n-orchestra/orchestra.webp";
 
-const projects = [
+const projects: {
+	id: string;
+	title: string;
+	subtitle: string;
+	category: string;
+	date: string;
+	award: string;
+	awardIcon: string;
+	sakiProp: SakiPropName;
+	sakiMood: SakiGraphicMood;
+	detailUrl: string;
+	demoUrl: string;
+	image: ImageMetadata;
+	tags: string[];
+}[] = [
 	{
 		id: "01",
 		title: "Bookkeeping & Financial Management System",
@@ -20,6 +36,8 @@ const projects = [
 		date: "2026",
 		award: "4-Stage Architecture Evolution",
 		awardIcon: "bezier",
+		sakiProp: "database",
+		sakiMood: "presenting",
 		detailUrl: "/detail/bookkeeping",
 		demoUrl: "",
 		image: imgBookkeeping,
@@ -33,6 +51,8 @@ const projects = [
 		date: "2026",
 		award: "Juara 2 — UBM Inspire 1.0",
 		awardIcon: "trophy",
+		sakiProp: "trophy",
+		sakiMood: "reading",
 		detailUrl: "/detail/bridgeu",
 		demoUrl: "https://bridge-u-one.vercel.app",
 		image: imgBridgeU,
@@ -46,6 +66,8 @@ const projects = [
 		date: "2026",
 		award: "Fullstack F&B Operational System",
 		awardIcon: "bezier",
+		sakiProp: "coffee",
+		sakiMood: "coffee",
 		detailUrl: "/detail/dapurtwin",
 		demoUrl: "https://gtnich.vercel.app",
 		image: imgDapurTwin,
@@ -59,6 +81,8 @@ const projects = [
 		date: "2026",
 		award: "Early-Stage Platform & Optimization",
 		awardIcon: "compass",
+		sakiProp: "code-terminal",
+		sakiMood: "working",
 		detailUrl: "/detail/tukangin",
 		demoUrl: "https://tukangin.sakia.id",
 		image: imgTukangin,
@@ -72,6 +96,8 @@ const projects = [
 		date: "2026",
 		award: "Brand Building & Sales Enablement",
 		awardIcon: "lamp",
+		sakiProp: "lightbulb",
+		sakiMood: "idea",
 		detailUrl: "/detail/suparta",
 		demoUrl: "https://www.suparta.com/id",
 		image: imgSuparta,
@@ -85,6 +111,8 @@ const projects = [
 		date: "2024",
 		award: "Foundation Project & Field Research",
 		awardIcon: "bezier",
+		sakiProp: "open-book",
+		sakiMood: "books",
 		detailUrl: "/detail/studentsupport",
 		demoUrl: "https://studentsupport.sakia.id/",
 		image: imgStudentSupport,
@@ -98,6 +126,8 @@ const projects = [
 		date: "2026",
 		award: "End-to-End CRISP-DM Pipeline",
 		awardIcon: "rocket",
+		sakiProp: "magnifier",
+		sakiMood: "searching",
 		detailUrl: "/detail/penerbangan",
 		demoUrl: "https://penerbangan-xgboost-qeeypdn7svm7rqb6pkrghd.streamlit.app/",
 		image: imgPenerbangan,
@@ -111,6 +141,8 @@ const projects = [
 		date: "2026",
 		award: "Graceful Fallback & Object Storage",
 		awardIcon: "folder",
+		sakiProp: "shield",
+		sakiMood: "working",
 		detailUrl: "/detail/isfest",
 		demoUrl: "https://www.isfestumn.my.id/",
 		image: imgIsfest,
@@ -124,6 +156,8 @@ const projects = [
 		date: "2026",
 		award: "Multi-Agent Tool Orchestration",
 		awardIcon: "rocket",
+		sakiProp: "ai-spark",
+		sakiMood: "idea",
 		detailUrl: "/detail/n8n-orchestra",
 		demoUrl: "",
 		image: imgOrchestra,
@@ -158,6 +192,8 @@ const projects = [
 					class="hanging-item"
 					data-index={index}
 					data-url={item.detailUrl}
+					data-saki-mood={item.sakiMood}
+					data-saki-category={item.category}
 					tabindex="0"
 					role="group"
 					aria-label={`${item.id}: ${item.title}`}
@@ -205,13 +241,14 @@ const projects = [
 								<p class="card-project-subtitle">{item.subtitle}</p>
 							</div>
 
-							<!-- Badges & Tags -->
+							<!-- Badges & Tags with Saki Prop Element -->
 							<div class="card-spec-bar">
-								<div class="card-award-chip">
-									{item.awardIcon === "trophy" ? (
-										<Icon icon="trophy" size="0.95rem" color="#f7d252" />
-									) : (
-										<Icon icon="bezier" size="0.95rem" color="#60a5fa" />
+								<div class="card-award-chip" style="display: inline-flex; align-items: center; gap: 7px;">
+									<span class="award-saki-prop" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(254, 247, 238, 0.06); border: 1px solid rgba(254, 205, 94, 0.2);">
+										<SakiPropElement name={item.sakiProp} size={20} />
+									</span>
+									{item.awardIcon === "trophy" && (
+										<Icon icon="trophy" size="0.95rem" color="#FECD5E" />
 									)}
 									<span>{item.award}</span>
 								</div>
@@ -461,10 +498,21 @@ const projects = [
 				}
 			});
 
-			// Update active class on items
+			// Update active class on items and Saki companion mood
+			const companionEl = document.getElementById('hero-saki-companion');
+			const companionLabel = document.getElementById('hero-saki-label');
+
 			this.items.forEach((item, idx) => {
 				if (idx === this.currentIndex) {
 					item.classList.add('is-active');
+					const mood = item.getAttribute('data-saki-mood');
+					const cat = item.getAttribute('data-saki-category');
+					if (companionEl && mood) {
+						companionEl.setAttribute('data-active-mood', mood);
+					}
+					if (companionLabel && cat) {
+						companionLabel.textContent = cat;
+					}
 				} else {
 					item.classList.remove('is-active');
 				}
@@ -819,10 +867,86 @@ const projects = [
 	.card-award-chip {
 		display: inline-flex;
 		align-items: center;
-		gap: 6px;
+		gap: 7px;
 		font-size: 0.78rem;
 		font-weight: 500;
 		color: var(--farline-text-secondary);
+
+		.award-saki-prop {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 26px;
+			height: 26px;
+			border-radius: 8px;
+			background: rgba(254, 247, 238, 0.06);
+			border: 1px solid rgba(254, 205, 94, 0.2);
+		}
+	}
+
+	.controls-right {
+		display: flex;
+		align-items: center;
+	}
+
+	.hero-saki-companion {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		padding: 4px 14px 4px 8px;
+		border-radius: 9999px;
+		background: var(--farline-surface);
+		border: 1px solid var(--farline-border);
+		box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.25);
+
+		.companion-poses {
+			position: relative;
+			width: 48px;
+			height: 48px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.companion-pose-item {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transform: scale(0.75) translateY(4px);
+			transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+			pointer-events: none;
+		}
+
+		&[data-active-mood="presenting"] .companion-pose-item[data-pose="presenting"],
+		&[data-active-mood="reading"] .companion-pose-item[data-pose="reading"],
+		&[data-active-mood="coffee"] .companion-pose-item[data-pose="coffee"],
+		&[data-active-mood="working"] .companion-pose-item[data-pose="working"],
+		&[data-active-mood="idea"] .companion-pose-item[data-pose="idea"],
+		&[data-active-mood="books"] .companion-pose-item[data-pose="books"],
+		&[data-active-mood="searching"] .companion-pose-item[data-pose="searching"] {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+
+		.companion-meta {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 2px;
+		}
+
+		.companion-category {
+			font-size: 0.68rem;
+			font-weight: 700;
+			color: var(--saki-yellow, #FECD5E);
+		}
+	}
+
+	:root:not(.theme-dark) .hero-saki-companion .companion-category {
+		color: #9A6700;
 	}
 
 	.card-tech-pills {

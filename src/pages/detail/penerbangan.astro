@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgStart from "../../assets/projects/penerbangan/start.webp";
 import imgPredict from "../../assets/projects/penerbangan/predict.webp";
@@ -46,7 +47,7 @@ import imgPredict from "../../assets/projects/penerbangan/predict.webp";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Implementasi Terstruktur Metodologi CRISP-DM</h3>
 								<span class="tech-pill pg">CRISP-DM Framework • Big Data Wrangling • XGBoost Pipeline</span>
@@ -85,7 +86,7 @@ import imgPredict from "../../assets/projects/penerbangan/predict.webp";
 					<!-- Module 1: Pre-Flight Parameter Configuration -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Configuration Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="magnifier" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Konfigurasi Parameter Penerbangan & Simulasi Variabel</h3>
 								<span class="tech-pill">Module: Pre-Flight Inputs</span>
@@ -113,7 +114,7 @@ import imgPredict from "../../assets/projects/penerbangan/predict.webp";
 					<!-- Module 2: Delay Probability & Operational Classification -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/rocket.png" alt="Prediction Result Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="chart" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Prediksi Probabilitas Delay & Rekomendasi Mitigasi</h3>
 								<span class="tech-pill">Module: Inference Engine</span>
@@ -141,35 +142,35 @@ import imgPredict from "../../assets/projects/penerbangan/predict.webp";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Pelajaran mendalam dalam eksekusi data analytics terstruktur dan machine learning terapan:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="CRISP-DM Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="books" size={24} />
 									<span class="lesson-ver">Disiplin Kerangka Kerja CRISP-DM</span>
 								</div>
 								<p>Memahami bahwa alur analitik data harus berakar dari kebutuhan bisnis nyata: setiap transformasi data, pemilihan variabel, dan penentuan target metrik harus memiliki korelasi langsung dengan pemecahan masalah operasional.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/image.png" alt="Optimasi Memori Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Manajemen Memori Big Data (1,3 GB)</span>
 								</div>
 								<p>Menerapkan teknik efisiensi memori pada Pandas melalui seleksi kolom selektif dan downcasting tipe data (`int8`, `float32`, `category`), memungkinkan manipulasi data skala jutaan baris tanpa kehabisan RAM komputasi.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="Feature Engineering Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">Rekayasa Fitur Spasial & Temporal</span>
 								</div>
 								<p>Menggali sinyal prediktif tersembunyi dari data mentah: memetakan indeks kepadatan bandara (`congestion_index`), mengidentifikasi bandara hub kuantil 90%, dan mengelompokkan jam sibuk serta kategori jarak penerbangan.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="Deployment Streamlit Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">Model Deployment & Threshold Tuning</span>
 								</div>
 								<p>Mempelajari pentingnya penyesuaian *decision threshold* (0.3) pada kelas data imbalanced agar model lebih peka terhadap risiko, serta mengemas model teruji ke aplikasi web interaktif Streamlit Cloud yang siap diuji pengguna.</p>

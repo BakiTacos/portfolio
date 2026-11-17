@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgOrchestra from "../../assets/projects/n8n-orchestra/orchestra.webp";
 import imgN8nCanvas from "../../assets/projects/n8n-orchestra/n8n-image.webp";
@@ -53,7 +54,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 					<!-- Chapter 1: The Fragmentation Problem & Unified Orchestrator Architecture -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Penyatuan Bot Terpisah ke Satu Pintu Orkestrasi</h3>
 								<span class="tech-pill pg">LangChain Agent • Tool Routing • Memory Buffer</span>
@@ -95,7 +96,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 					<!-- Chapter 2: The 5 Specialized Business Tools -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Tool Registry Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">5 Sub-Workflow Spesialis yang Dipanggil Sesuai Konteks</h3>
 								<span class="tech-pill pg">Tool Registry • Separation of Concerns • Deterministic Execution</span>
@@ -192,7 +193,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 					<!-- Chapter 3: Two-Phase Confirmation & Operational Safety -->
 					<div class="iteration-card">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Safety Mechanism Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Verifikasi Dua Tahap Sebelum Perubahan Data</h3>
 								<span class="tech-pill pg">Human-in-the-Loop • State Machine • Safe Mutations</span>
@@ -227,7 +228,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 			<section class="lessons-section border-top">
 				<div class="content">
 					<div class="lessons-header">
-						<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="36" height="36" class="icon-3d-title" loading="lazy" />
+						<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 						<h3 class="post-title">Pelajaran Rekayasa Sistem</h3>
 					</div>
 
@@ -238,7 +239,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 					<div class="lessons-grid">
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/bezier.png" alt="Unified Bot Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="laptop" size={24} />
 								<span class="lesson-ver">Penyatuan Bot Terpisah</span>
 							</div>
 							<p>Mengganti banyak bot kaku dengan satu pintu Telegram cerdas yang memahami maksud pengguna secara langsung.</p>
@@ -246,7 +247,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/compass.png" alt="Contextual Tool Calling Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="magnifier" size={24} />
 								<span class="lesson-ver">Pemanggilan Alat Sesuai Konteks</span>
 							</div>
 							<p>Mendelegasikan tugas ke sub-workflow spesialis berdasarkan domain pertanyaan tanpa mencampur data operasional dan media sosial.</p>
@@ -254,7 +255,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/hourglass.png" alt="Human-in-the-Loop Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="goggles" size={24} />
 								<span class="lesson-ver">Persetujuan Sebelum Simpan</span>
 							</div>
 							<p>Wajib menampilkan pratinjau draf terlebih dahulu sebelum mengeksekusi penulisan atau perubahan data permanen ke database.</p>
@@ -262,7 +263,7 @@ import imgSocial from "../../assets/projects/n8n-orchestra/workflow-social-media
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/rocket.png" alt="Modularity Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="chart" size={24} />
 								<span class="lesson-ver">Struktur Alur Kerja Modular</span>
 							</div>
 							<p>Pemisahan modul orkestrator dari pelaksana teknis memudahkan penambahan tool baru tanpa merusak alur yang sudah berjalan.</p>

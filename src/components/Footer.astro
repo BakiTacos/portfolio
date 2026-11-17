@@ -1,23 +1,48 @@
 ---
 import { footerText } from '../data/content';
+import SakiHead from './saki/SakiHead.astro';
+import SakiPropElement from './saki/SakiPropElement.astro';
 ---
 
 <footer>
+	<div class="saki-footer-signature" aria-hidden="true" style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border-radius: 9999px; background: var(--farline-surface, rgba(255, 255, 255, 0.03)); border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));">
+		<span class="footer-prop" style="display: inline-flex; align-items: center; justify-content: center;"><SakiPropElement name="coffee" size={22} /></span>
+		<span class="footer-mascot" style="display: inline-flex; align-items: center; justify-content: center;"><SakiHead size={34} mood="senang" /></span>
+		<span class="footer-prop" style="display: inline-flex; align-items: center; justify-content: center;"><SakiPropElement name="plant" size={22} /></span>
+	</div>
 	<div class="group">
 		<p>{footerText}</p>
 	</div>
-
 </footer>
+
 <style>
 	footer {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
-		margin-top: 4rem;
-		padding: 3rem 2rem 3rem;
+		align-items: center;
+		gap: 0.85rem;
+		margin-top: 3rem;
+		padding: 2.5rem 2rem 3.5rem;
 		text-align: center;
 		color: var(--color-400);
 		font-size: var(--text-sm);
+	}
+
+	.saki-footer-signature {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		padding: 6px 14px;
+		border-radius: 9999px;
+		background: var(--farline-surface, rgba(255, 255, 255, 0.03));
+		border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));
+	}
+
+	.footer-prop,
+	.footer-mascot {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	footer a {
@@ -37,16 +62,8 @@ import { footerText } from '../data/content';
 		width: 100%;
 		text-align: center;
 	}
-	.group p{
+	.group p {
 		text-align: center;
+		margin: 0;
 	}
-
-	.socials {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
-
 </style>
-

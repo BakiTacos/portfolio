@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgCover from "../../assets/projects/dapurtwin/cover-dapurtwin.png";
 import imgOverview from "../../assets/projects/dapurtwin/overview.png";
@@ -52,7 +53,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Arsitektur Logika & Kolaborasi Tim Lotus Biru</h3>
 								<span class="tech-pill pg">Logic, BOM Engine & Multi-Actor Workflow</span>
@@ -82,7 +83,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Module 1: Dashboard Overview & Live Metrics -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Overview Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="coffee" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Pusat Kendali Operasional Dapur & Indikator Kesiapan</h3>
 								<span class="tech-pill">Module: Command Center</span>
@@ -110,7 +111,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Module 2: Recipe BOM & Dynamic HPP Calculator -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Recipe Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Formula Resep (BOM) & Kalkulator Margin HPP Otomatis</h3>
 								<span class="tech-pill">Module: Smart BOM Engine</span>
@@ -138,7 +139,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Module 3: Kitchen Display System (KDS) & Order Processing -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="KDS Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Kitchen Display System (KDS) & Verifikasi Stok Live</h3>
 								<span class="tech-pill">Module: Kitchen Hub</span>
@@ -166,7 +167,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Module 4: Freshness Tracking & Inventory Condition -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/battery.png" alt="Inventory Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="plant" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Monitoring Kesegaran & Masa Simpan Bahan Baku</h3>
 								<span class="tech-pill">Module: Freshness Tracker</span>
@@ -194,7 +195,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Module 5: Financial Analytics & Business Simulation -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/rocket.png" alt="Analytics Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="chart" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Analitik Keuangan Interaktif & Simulasi Skenario Bisnis</h3>
 								<span class="tech-pill">Module: Financial Intelligence</span>
@@ -222,7 +223,7 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- Technical Challenges -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Engineering Challenges Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Tantangan Teknis & Solusi Rekayasa</h3>
 								<span class="tech-pill">Engineering Deep-Dive</span>
@@ -249,35 +250,35 @@ import imgLaporan from "../../assets/projects/dapurtwin/laporan.png";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Pelajaran penting dalam membangun ekosistem F&B yang terintegrasi secara end-to-end:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/lamp.png" alt="Penerapan AI Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="lightbulb" size={24} />
 									<span class="lesson-ver">Penerapan AI di Berbagai Area</span>
 								</div>
 								<p>Implementasi AI yang efektif adalah yang berfokus menyelesaikan friksi nyata proses kerja—mulai dari rekomendasi takaran resep standar porsi menu hingga prediksi masa simpan bahan segar untuk menjaga kualitas bahan baku.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/image.png" alt="OCR AI Vision Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">Pembelajaran OCR AI Vision</span>
 								</div>
 								<p>Memahami tantangan ekstraksi data tak terstruktur dari nota belanja fisik/pasar dan pentingnya mekanisme peninjauan *review-before-commit* agar data PO yang masuk ke database tetap valid dan akurat.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="Flow Data Relasional Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Flow Data Terhubung & Berelasi</span>
 								</div>
 								<p>Merancang relasi database dari hulu ke hilir: dari master bahan, resep BOM, pesanan multi-kanal, hingga stok gudang yang saling memicu mutasi atomik secara presisi tanpa inkonsistensi status.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="Notifikasi & Email Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">Penerapan Notifikasi hingga Email</span>
 								</div>
 								<p>Mengintegrasikan sistem feedback operasional secara menyeluruh: notifikasi toast non-blocking bagi staf, pembaruan antrean KDS live, hingga otomasi penerbitan struk transaksi resmi ke email pelanggan via Resend API.</p>

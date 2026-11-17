@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
 import Icon from "../../components/Icon.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 import imgCover from "../../assets/projects/bridgeu/bridgeu-cover.png";
 import imgCollaborate from "../../assets/projects/bridgeu/collaborate.png";
 import imgTracker from "../../assets/projects/bridgeu/portfolio-tracker.png";
@@ -50,7 +51,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">My Core Role & Architecture Responsibility</h3>
 								<span class="tech-pill pg">Logic, Database & Recommendations</span>
@@ -80,7 +81,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- Module 1: Collaboration Exploration -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/compass.png" alt="Collaborate Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="magnifier" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Verified Companies & Opportunity Discovery</h3>
 								<span class="tech-pill">Module: Exploration & Matching</span>
@@ -108,7 +109,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- Module 2: Automated Portfolio Tracker -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/rocket.png" alt="Portfolio Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="books" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Automated Track Record & Portfolio Generation</h3>
 								<span class="tech-pill">Module: Portfolio Tracker</span>
@@ -136,7 +137,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- Module 3: Profile & Gamification -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/battery.png" alt="Gamification Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="plant" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Student Profile & Gamified Achievement Badges</h3>
 								<span class="tech-pill">Module: Gamification Engine</span>
@@ -164,7 +165,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- Module 4: Competition Journey & Certificate -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Award Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">UBM Inspire 1.0 Award & Motion Graphic</h3>
 								<span class="tech-pill pg award-pill">
@@ -205,7 +206,7 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- Technical Challenges -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Challenges Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Technical Challenges Overcome</h3>
 								<span class="tech-pill">Engineering Insights</span>
@@ -232,28 +233,28 @@ import imgCertificate from "../../assets/projects/bridgeu/e_certificate.jpg";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Key takeaways from building an award-winning collaboration platform under competition conditions:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="Role Logic Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Role Logic</span>
 								</div>
 								<p>Multi-role authorization requires clear database-level state machines, not merely client-side route protection.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="Recommendation Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">Matching</span>
 								</div>
 								<p>Heuristic weighted recommendations offer exceptional user satisfaction without the overhead of heavy ML models for early-stage platforms.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="Execution Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">Execution</span>
 								</div>
 								<p>Effective team communication—aligning backend logic with motion graphics and UI delivery—is what turns a solid idea into an award-winning solution.</p>

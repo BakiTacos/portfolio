@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgCover from "../../assets/projects/isfest/cover.webp";
 import imgHome from "../../assets/projects/isfest/home.webp";
@@ -51,7 +52,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 					<!-- Chapter 1: Backend Engineering & Fallback Mechanisms -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Backend Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Arsitektur Backend & Strategi Graceful Fallback</h3>
 								<span class="tech-pill pg">Backend Services • Failover Design • API Resiliency</span>
@@ -93,7 +94,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 					<!-- Chapter 2: Object Storage & Data Privacy -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/image.png" alt="Cloud Storage & Security Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Integrasi Backblaze B2 & Proteksi Privasi Berkas</h3>
 								<span class="tech-pill pg">Backblaze B2 • S3 API • Access Control • Media Pipeline</span>
@@ -135,7 +136,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 					<!-- Chapter 3: Organizational Management & Cross-Division Synchronization -->
 					<div class="iteration-card">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/compass.png" alt="Organization & Governance Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Tata Kelola Organisasi & Sinkronisasi Lintas Divisi</h3>
 								<span class="tech-pill pg">Cross-Division Workflow • Role Separation • Feature Freeze</span>
@@ -180,7 +181,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 			<section class="lessons-section border-top">
 				<div class="content">
 					<div class="lessons-header">
-						<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="36" height="36" class="icon-3d-title" loading="lazy" />
+						<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 						<h3 class="post-title">Refleksi & Nilai Rekayasa yang Dipelajari</h3>
 					</div>
 
@@ -191,7 +192,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 					<div class="lessons-grid">
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/hourglass.png" alt="Fallback Strategy Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="laptop" size={24} />
 								<span class="lesson-ver">Graceful Fallback & Prioritas Rilis</span>
 							</div>
 							<p>Menyadari bahwa tidak semua fitur ideal harus dipaksakan ke tahap produksi. Selalu sediakan jalur mitigasi cadangan (*fallback*) agar pengguna tetap dapat menyelesaikan tujuannya saat layanan otomatis terhambat.</p>
@@ -199,7 +200,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/image.png" alt="Object Storage Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="backpack" size={24} />
 								<span class="lesson-ver">Penyimpanan Modern Backblaze B2</span>
 							</div>
 							<p>Memisahkan berkas unggahan dari server aplikasi web ke cloud object storage Backblaze B2 via S3-compatible protocol demi efisiensi biaya, skalabilitas penyimpanan, dan performa tinggi.</p>
@@ -207,7 +208,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/battery.png" alt="Data Security Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="goggles" size={24} />
 								<span class="lesson-ver">Keamanan & Privasi Dokumen</span>
 							</div>
 							<p>Melindungi privasi berkas peserta (KTM, bukti pembayaran) melalui mode private bucket, penyaringan tipe berkas yang ketat, dan pemberian akses sementara berbasis *pre-signed URL*.</p>
@@ -215,7 +216,7 @@ import imgLogin from "../../assets/projects/isfest/login.webp";
 
 						<div class="lesson-card">
 							<div class="lesson-top">
-								<img src="/assets/effects/3dicons/rocket.png" alt="Team Operations Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+								<SakiPropElement name="plant" size={24} />
 								<span class="lesson-ver">Tata Kelola Organisasi Lintas Divisi</span>
 							</div>
 							<p>Menyelaraskan bahasa teknis sistem dengan kebutuhan operasional panitia, menetapkan *feature freeze*, dan menjaga transparansi alur verifikasi antara divisi lomba dan keuangan.</p>

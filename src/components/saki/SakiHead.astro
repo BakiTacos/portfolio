@@ -1,0 +1,149 @@
+---
+import type { SakiMood } from './sakiMoods';
+
+interface Props {
+  size?: number;
+  mood?: SakiMood;
+  class?: string;
+}
+
+const { size = 40, mood = 'senang', class: className = '' } = Astro.props;
+const uid = 'saki-hd-' + Math.random().toString(36).substring(2, 9);
+const worried = mood === 'khawatir';
+const h = Math.round((size * 165) / 180);
+---
+
+<svg
+  viewBox="30 14 180 165"
+  width={size}
+  height={h}
+  aria-hidden="true"
+  class={`select-none ${className}`}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <radialGradient id={`${uid}-cream`} cx="48%" cy="35%" r="72%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="68%" stop-color="#FEF7EE" />
+      <stop offset="100%" stop-color="#FDE2C8" />
+    </radialGradient>
+    <linearGradient id={`${uid}-leather`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A87C6F" />
+      <stop offset="55%" stop-color="#8D6458" />
+      <stop offset="100%" stop-color="#6E4B40" />
+    </linearGradient>
+    <linearGradient id={`${uid}-lens`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#CBE8F6" />
+      <stop offset="55%" stop-color="#A6D2E6" />
+      <stop offset="100%" stop-color="#86B9D2" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M 88 64 C 120 56, 172 68, 188 112 L 190 128 C 198 130, 204 136, 203 144 C 202 152, 192 158, 178 160 C 144 168, 96 168, 62 160 C 48 158, 38 152, 37 144 C 36 136, 42 130, 50 128 L 52 112 C 64 78, 80 66, 88 64 Z"
+    fill={`url(#${uid}-cream)`}
+    stroke="#231F25"
+    stroke-width="4.5"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M 88 66 C 82 48, 86 30, 102 22 C 118 15, 134 21, 139 34 C 141 38, 138 40, 133 41 C 125 43, 120 49, 119 56 L 122 68 Z"
+    fill={`url(#${uid}-cream)`}
+  />
+  <path
+    d="M 88 62 C 82 46, 86 30, 102 22 C 118 15, 134 21, 139 34 C 141 38, 138 40, 133 41 C 125 43, 120 49, 119 55"
+    fill="none"
+    stroke="#231F25"
+    stroke-width="4.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <ellipse cx="76" cy="140" rx="13" ry="8" fill="#FDD5B8" />
+  <ellipse cx="164" cy="140" rx="13" ry="8" fill="#FDD5B8" />
+
+  {worried && (
+    <g stroke="#231F25" stroke-width="3.8" stroke-linecap="round">
+      <path d="M 82 114 L 98 110" />
+      <path d="M 158 114 L 142 110" />
+    </g>
+  )}
+
+  <ellipse cx="93" cy="126" rx="6.2" ry="9.2" fill="#231F25" />
+  <ellipse cx="91.5" cy="122.5" rx="2" ry="2.6" fill="#FFFFFF" />
+  {worried ? (
+    <>
+      <ellipse cx="147" cy="126" rx="6.2" ry="9.2" fill="#231F25" />
+      <ellipse cx="145.5" cy="122.5" rx="2" ry="2.6" fill="#FFFFFF" />
+    </>
+  ) : (
+    <path
+      d="M 139 127 Q 145 119 151 127"
+      fill="none"
+      stroke="#231F25"
+      stroke-width="4.8"
+      stroke-linecap="round"
+    />
+  )}
+
+  <ellipse cx="120" cy="129" rx="2.5" ry="1.5" fill="#F29A76" />
+  {worried ? (
+    <path
+      d="M 112 140 Q 120 134 128 140"
+      fill="none"
+      stroke="#231F25"
+      stroke-width="3.6"
+      stroke-linecap="round"
+    />
+  ) : (
+    <path
+      d="M 111 134 Q 115.5 139 120 134 Q 124.5 139 129 134"
+      fill="none"
+      stroke="#231F25"
+      stroke-width="3.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  )}
+
+  <path
+    d="M 48 126 C 48 108, 56 94, 68 84 L 76 94 C 66 104, 56 116, 50 128 Z"
+    fill={`url(#${uid}-leather)`}
+    stroke="#231F25"
+    stroke-width="4.2"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M 192 126 C 192 108, 184 94, 172 84 L 164 94 C 174 104, 184 116, 190 128 Z"
+    fill={`url(#${uid}-leather)`}
+    stroke="#231F25"
+    stroke-width="4.2"
+    stroke-linejoin="round"
+  />
+  <rect
+    x="111"
+    y="72"
+    width="18"
+    height="14"
+    rx="3"
+    fill={`url(#${uid}-leather)`}
+    stroke="#231F25"
+    stroke-width="4.2"
+  />
+
+  <g transform="translate(89 80) rotate(-12)">
+    <ellipse cx="0" cy="3" rx="24" ry="19" fill={`url(#${uid}-leather)`} stroke="#231F25" stroke-width="4.5" />
+    <ellipse cx="0" cy="-2" rx="22" ry="16" fill="#785247" stroke="#231F25" stroke-width="3.8" />
+    <ellipse cx="0" cy="-2" rx="18" ry="12.5" fill={`url(#${uid}-lens)`} stroke="#231F25" stroke-width="3.2" />
+    <path d="M -11 6 L -2 -12 L 4 -12 L -5 8 Z" fill="#FFFFFF" opacity="0.88" />
+    <path d="M -2 8 L 7 -10 L 10 -9 L 1 9 Z" fill="#FFFFFF" opacity="0.65" />
+  </g>
+
+  <g transform="translate(151 80) rotate(12)">
+    <ellipse cx="0" cy="3" rx="24" ry="19" fill={`url(#${uid}-leather)`} stroke="#231F25" stroke-width="4.5" />
+    <ellipse cx="0" cy="-2" rx="22" ry="16" fill="#785247" stroke="#231F25" stroke-width="3.8" />
+    <ellipse cx="0" cy="-2" rx="18" ry="12.5" fill={`url(#${uid}-lens)`} stroke="#231F25" stroke-width="3.2" />
+    <path d="M -11 6 L -2 -12 L 4 -12 L -5 8 Z" fill="#FFFFFF" opacity="0.88" />
+    <path d="M -2 8 L 7 -10 L 10 -9 L 1 9 Z" fill="#FFFFFF" opacity="0.65" />
+  </g>
+</svg>

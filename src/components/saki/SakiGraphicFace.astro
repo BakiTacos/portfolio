@@ -1,0 +1,1077 @@
+---
+import { SAKI_MOOD_CONFIG, type SakiGraphicMood } from './sakiMoods';
+
+interface Props {
+  mood: SakiGraphicMood;
+  size?: 'splash' | 'card' | 'compact' | number;
+  transparentBg?: boolean;
+  class?: string;
+  hideBubble?: boolean;
+  customSay?: string;
+}
+
+const {
+  mood = 'hero',
+  size = 'card',
+  transparentBg = true,
+  class: className = '',
+  hideBubble = true,
+  customSay,
+} = Astro.props;
+
+const uid = 'saki-g-' + Math.random().toString(36).substring(2, 9);
+const config = SAKI_MOOD_CONFIG[mood] || SAKI_MOOD_CONFIG.hero;
+const displayedSay = customSay || config.say;
+
+const C = {
+  cream: '#FEF7EE',
+  peach: '#FEE0C6',
+  yellow: '#FECD5E',
+  yellowDark: '#F0B030',
+  green: '#91A672',
+  greenDark: '#6E835C',
+  blue: '#9DC6D8',
+  slate: '#343C50',
+  ink: '#231F25',
+  leather: '#8D6458',
+  mouth: '#86432D',
+  tongue: '#FA9068',
+  blush: '#FDD5B8',
+};
+
+const creamGrad = `url(#${uid}-cream)`;
+const scarfGrad = `url(#${uid}-scarf)`;
+const leatherGrad = `url(#${uid}-leather)`;
+const lensGrad = `url(#${uid}-lens)`;
+const bagGrad = `url(#${uid}-bag)`;
+
+const svgSize = typeof size === 'number' ? size : size === 'splash' ? 240 : size === 'compact' ? 120 : 185;
+const svgWidth = size === 'splash' ? '100%' : `${svgSize}px`;
+const svgHeight = size === 'splash' ? '100%' : `${svgSize}px`;
+---
+
+
+    <div
+      class={`saki-gf-wrapper ${className}`}
+      style={`width: ${svgWidth}; height: ${svgHeight};`}
+    >
+      {!hideBubble && (
+        <div class="saki-gf-bubble">
+          {displayedSay}
+          <span class="saki-gf-bubble-arrow" />
+        </div>
+      )}
+
+      <svg
+        viewBox="0 0 240 260"
+        width={svgSize}
+        height={(svgSize * 260) / 240}
+        aria-hidden="true"
+        class="saki-gf-svg"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <radialGradient id={`${uid}-cream`} cx="48%" cy="35%" r="72%">
+            <stop offset="0%" stop-color="#FFFDF9" />
+            <stop offset="68%" stop-color={C.cream} />
+            <stop offset="100%" stop-color="#FDE2C8" />
+          </radialGradient>
+          <linearGradient id={`${uid}-scarf`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFE184" />
+            <stop offset="55%" stop-color={C.yellow} />
+            <stop offset="100%" stop-color={C.yellowDark} />
+          </linearGradient>
+          <linearGradient id={`${uid}-leather`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#AA7E70" />
+            <stop offset="55%" stop-color={C.leather} />
+            <stop offset="100%" stop-color="#6E4B40" />
+          </linearGradient>
+          <linearGradient id={`${uid}-lens`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#CDE9F6" />
+            <stop offset="55%" stop-color="#A6D2E6" />
+            <stop offset="100%" stop-color="#86B9D2" />
+          </linearGradient>
+          <linearGradient id={`${uid}-bag`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#9EB486" />
+            <stop offset="60%" stop-color={C.green} />
+            <stop offset="100%" stop-color={C.greenDark} />
+          </linearGradient>
+          <linearGradient id={`${uid}-laptop`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8B6C6" />
+            <stop offset="100%" stop-color="#8D8B9C" />
+          </linearGradient>
+        </defs>
+
+        {!transparentBg && (
+          <rect width="240" height="260" rx="24" fill="#FFFFFF" />
+        )}
+
+        {/* =========================================================================
+            KHUSUS POSE 1: HERO (SAMA PERSIS DENGAN MASKOT UTAMA SAKI.PNG)
+            ========================================================================= */}
+        {mood === 'hero' ? (
+          <g>
+            <path
+              d="M 38 106 C 14 106, 6 118, 6 142 L 6 198 C 6 218, 18 228, 40 224 L 88 214 L 186 56 C 212 50, 228 60, 228 84 L 228 170 C 228 190, 216 198, 196 201 Z"
+              fill="#DCECF2"
+            />
+            <ellipse cx="130" cy="238" rx="78" ry="8.5" fill="#DFD9D8" />
+            <path d="M 38 31 C 36 27, 40 23, 45 22 C 50 21, 52 24, 53 29 L 56 45 C 57 49, 54 52, 50 52 C 47 52, 45 49, 43 45 Z" fill={C.yellow} />
+            <path d="M 18 48 C 15 52, 15 57, 20 60 L 36 67 C 40 69, 43 67, 43 63 C 43 60, 40 57, 36 54 L 24 46 C 21 44, 19 45, 18 48 Z" fill={C.yellow} />
+            <path d="M 18 77 C 16 80, 16 85, 20 86 L 31 86 C 35 85, 36 83, 35 80 C 34 78, 31 77, 24 76 C 20 75, 19 75, 18 77 Z" fill={C.yellow} />
+
+            <path d="M 42 116 C 34 117, 34 128, 40 133 L 46 129 Z" fill="#9BB3A6" stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path d="M 42 168 C 35 184, 37 206, 50 213 C 58 217, 68 216, 75 214 L 66 166 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 49 172 C 46 188, 48 204, 56 211 L 71 211 L 64 170 Z" fill="#6F8578" />
+            <path d="M 42 168 C 35 184, 37 206, 50 213 C 58 217, 68 216, 75 214" fill="none" stroke={C.ink} stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+            <path d="M 204 102 C 218 95, 231 103, 231 119 C 230 135, 221 147, 211 154 L 196 134 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 201 136 C 213 148, 218 166, 214 182 C 211 190, 205 194, 199 194 L 196 142 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+
+            <path
+              d="M 68 190 L 75 213 C 79 229, 90 238, 106 238 C 119 238, 128 230, 132 220 L 148 218 C 154 226, 163 228, 174 226 C 188 223, 196 211, 200 193 C 206 177, 206 157, 200 141 L 68 168 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="104" cy="224" rx="22" ry="10" fill={C.peach} opacity="0.75" />
+            <ellipse cx="171" cy="212" rx="22" ry="10" transform="rotate(-12 171 212)" fill={C.peach} opacity="0.75" />
+            <path
+              d="M 73 202 L 75 213 C 79 229, 90 238, 106 238 C 119 238, 128 230, 132 220 L 148 218 C 154 226, 163 228, 174 226 C 188 223, 196 211, 200 193 C 206 177, 206 157, 200 141"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <path d="M 46 145 C 32 144, 24 152, 17 166 C 16 169, 22 174, 32 177 C 44 179, 55 176, 61 168 L 60 150 Z" fill={scarfGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 58 150 C 55 156, 56 165, 62 169 L 76 154 L 72 147 Z" fill="#F3B33D" stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path
+              d="M 96 146 C 136 144, 176 136, 205 121 C 209 123, 207 132, 201 143 C 193 158, 182 170, 172 178 C 169 180, 162 179, 152 176 L 114 164 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            <path d="M 47 104 C 49 88, 55 76, 62 68" fill="none" stroke={C.ink} stroke-width="4.2" stroke-linecap="round" />
+            <path
+              d="M 89 48 C 82 32, 88 14, 108 7 C 124 2, 137 10, 140 19 C 141 22, 138 23, 133 25 C 125 28, 121 34, 121 40 C 146 44, 172 58, 188 82 L 197 92 C 205 97, 209 105, 207 114 C 206 119, 202 123, 196 126 C 166 140, 126 148, 84 148 C 74 148, 66 151, 56 151 C 45 151, 38 144, 39 134 C 40 125, 47 120, 56 118 C 56 92, 70 58, 89 48 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            <path d="M 65 164 C 72 148, 92 142, 108 148 C 120 154, 122 172, 114 186 C 105 200, 84 206, 66 202 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 65 166 C 72 151, 90 146, 102 152 C 112 158, 110 176, 99 189 C 88 201, 68 204, 61 193 C 56 185, 58 174, 65 166 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+
+            <ellipse cx="102" cy="121" rx="13.5" ry="8" transform="rotate(-6 102 121)" fill={C.blush} />
+            <ellipse cx="189" cy="103" rx="10.5" ry="7.5" transform="rotate(-6 189 103)" fill={C.blush} />
+
+            <ellipse cx="118" cy="104" rx="6.8" ry="9.8" transform="rotate(-8 118 104)" fill={C.ink} />
+            <ellipse cx="116" cy="99.5" rx="2" ry="2.5" fill="#FFFFFF" />
+            <path d="M 174 87 L 164 95 L 178 98" fill="none" stroke={C.ink} stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+
+            <ellipse cx="147" cy="99" rx="3" ry="1.8" fill="#F2C8AD" />
+            <path d="M 137 107 Q 143 108 147 104 Q 152 107 158 103 C 160 113, 158 126, 149 127 C 141 128, 136 118, 137 107 Z" fill={C.mouth} stroke={C.ink} stroke-width="3.2" stroke-linejoin="round" />
+            <path d="M 139 117 C 143 111, 153 111, 156 119 C 154 125, 149 127, 145 126 C 141 125, 139 121, 139 117 Z" fill={C.tongue} />
+            <path d="M 137 107 Q 143 108 147 104 Q 152 107 158 103 C 160 113, 158 126, 149 127 C 141 128, 136 118, 137 107 Z" fill="none" stroke={C.ink} stroke-width="3.2" stroke-linejoin="round" />
+
+            <path d="M 44 120 C 46 106, 56 90, 68 77 L 82 89 C 70 101, 62 111, 56 118 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 66 79 C 64 85, 68 91, 76 93 L 83 87 L 72 75 Z" fill="#9E7366" stroke={C.ink} stroke-width="4" stroke-linejoin="round" />
+            <path d="M 178 61 C 186 66, 191 74, 192 82 L 176 72 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path d="M 121 52 L 136 50 L 138 64 L 123 66 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+
+            <g transform="translate(98 65) rotate(-14)">
+              <ellipse cx="0" cy="3" rx="26" ry="20" fill={leatherGrad} stroke={C.ink} stroke-width="4.5" />
+              <ellipse cx="0" cy="-2" rx="24" ry="16.5" fill="#785247" stroke={C.ink} stroke-width="3.8" />
+              <ellipse cx="0" cy="-2" rx="20" ry="13" fill={lensGrad} stroke={C.ink} stroke-width="3.2" />
+              <path d="M -12 7 L -2 -13 L 4 -13 L -6 9 Z" fill="#FFFFFF" opacity="0.9" />
+              <path d="M -2 9 L 8 -11 L 11 -10 L 1 10 Z" fill="#FFFFFF" opacity="0.65" />
+            </g>
+
+            <g transform="translate(157 55) rotate(10)">
+              <ellipse cx="0" cy="3" rx="23" ry="17" fill={leatherGrad} stroke={C.ink} stroke-width="4.5" />
+              <ellipse cx="0" cy="-2" rx="21" ry="14" fill="#785247" stroke={C.ink} stroke-width="3.8" />
+              <ellipse cx="0" cy="-2" rx="17.5" ry="11" fill={lensGrad} stroke={C.ink} stroke-width="3.2" />
+              <path d="M -10 6 L -1 -11 L 5 -11 L -4 8 Z" fill="#FFFFFF" opacity="0.9" />
+              <path d="M -1 8 L 7 -9 L 10 -8 L 2 9 Z" fill="#FFFFFF" opacity="0.65" />
+            </g>
+          </g>
+        ) : mood === 'sleeping' ? (
+          /* =========================================================================
+             KHUSUS POSE TIDUR PULAS (BARIS 2 #5 SAKI.PNG — KEPALA REBAHAN DI LANTAI)
+             ========================================================================= */
+          <g>
+            {/* Bayangan lantai lebar di bawah seluruh badan & kepala */}
+            <ellipse cx="120" cy="227" rx="96" ry="9" fill="#DFD9D8" />
+
+            {/* Huruf z z Z bertingkat di kanan atas (dekat headphone kanan) */}
+            <g stroke={C.slate} stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M 152 104 L 164 104 L 152 116 L 164 116" />
+              <path d="M 172 84 L 186 84 L 172 98 L 186 98" />
+              <path d="M 194 62 L 210 62 L 194 78 L 210 78" />
+            </g>
+
+            {/* Ujung simpul syal kuning di lantai kiri bawah (di bawah pipi kiri) */}
+            <path
+              d="M 38 198 C 25 201, 17 207, 19 215 C 21 221, 33 222, 46 218 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            {/* Simpul ekor syal kuning di kanan atas (belakang headphone kanan) */}
+            <path
+              d="M 164 146 C 175 135, 190 134, 196 141 C 199 147, 189 155, 176 158 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            {/* Badan bulat mochi & kaki belakang rebahan di kanan (menempel lantai y=224) */}
+            <path
+              d="M 138 154 C 168 144, 206 148, 214 182 C 218 204, 204 224, 178 224 L 114 224 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="192" cy="209" rx="18" ry="9" transform="rotate(-14 192 209)" fill={C.peach} opacity="0.72" />
+            <path
+              d="M 138 154 C 168 144, 206 148, 214 182 C 218 204, 204 224, 178 224 L 114 224"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            {/* Garis lekuk paha/kaki bulat di sisi kanan */}
+            <path
+              d="M 183 152 C 167 168, 165 198, 177 223"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linecap="round"
+            />
+
+            {/* Syal kuning melingkar di antara kepala dan badan */}
+            <path
+              d="M 150 148 C 166 153, 176 170, 175 194 C 174 208, 166 219, 156 224 L 110 224 C 126 204, 140 176, 150 148 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            {/* Bantalan headphone hijau kiri mengintip di sisi kiri kepala */}
+            <path
+              d="M 42 152 C 30 158, 26 176, 32 192 L 46 188 Z"
+              fill={bagGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+
+            {/* Kepala Mochi & Jambul Swirl Rebahan Miring (dagu & pipi menempel lantai y=224) */}
+            <path
+              d="M 72 122 C 66 106, 72 90, 88 85 C 102 80, 113 88, 115 97 C 116 100, 113 102, 108 103 C 101 105, 97 111, 97 117 C 122 118, 148 132, 158 158 C 165 164, 167 173, 163 182 C 157 198, 138 216, 114 222 C 92 226, 64 226, 46 218 C 35 213, 32 202, 36 192 C 38 186, 42 182, 46 178 C 44 152, 56 130, 72 122 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            {/* Bantalan headphone hijau kanan menempel di sisi kanan atas kepala */}
+            <g transform="translate(152 142) rotate(-28)">
+              <ellipse cx="0" cy="0" rx="13" ry="20" fill={bagGrad} stroke={C.ink} stroke-width="4.5" />
+              <path d="M 3 -10 C 7 -5, 7 5, 3 10" fill="none" stroke="#B7C99E" stroke-width="2.6" stroke-linecap="round" />
+            </g>
+
+            {/* Tali kulit goggle di sisi kiri kepala */}
+            <path
+              d="M 36 186 C 36 168, 44 152, 56 140 L 66 150 C 56 160, 48 174, 42 188 Z"
+              fill={leatherGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+
+            {/* Rona Pipi Peach */}
+            <ellipse cx="59" cy="198" rx="12" ry="7" transform="rotate(-14 59 198)" fill={C.blush} />
+            <ellipse cx="131" cy="180" rx="12" ry="7" transform="rotate(-14 131 180)" fill={C.blush} />
+
+            {/* Mata Terpejam Tidur Pulas (melengkung ke bawah dekat lantai) */}
+            <path d="M 65 184 Q 75 190 83 180" fill="none" stroke={C.ink} stroke-width="4.4" stroke-linecap="round" />
+            <path d="M 109 173 Q 119 179 127 169" fill="none" stroke={C.ink} stroke-width="4.4" stroke-linecap="round" />
+
+            {/* Mulut Kucing :3 */}
+            <path
+              d="M 90 186 Q 94.5 191 98 184 Q 102.5 189 106 182"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="3.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            {/* Kacamata Goggle Aviator di Dahi */}
+            <rect
+              x="86"
+              y="128"
+              width="16"
+              height="12"
+              rx="3"
+              transform="rotate(-14 94 134)"
+              fill={leatherGrad}
+              stroke={C.ink}
+              stroke-width="4"
+            />
+            <g transform="translate(69 141) rotate(-22)">
+              <ellipse cx="0" cy="2" rx="22" ry="16" fill={leatherGrad} stroke={C.ink} stroke-width="4.4" />
+              <ellipse cx="0" cy="-1.5" rx="19.5" ry="13" fill="#785247" stroke={C.ink} stroke-width="3.6" />
+              <ellipse cx="0" cy="-1.5" rx="16" ry="10.5" fill={lensGrad} stroke={C.ink} stroke-width="3" />
+              <path d="M -9 5 L -1 -10 L 4 -10 L -4 6 Z" fill="#FFFFFF" opacity="0.88" />
+              <path d="M -1 6 L 6 -8 L 9 -7 L 2 7 Z" fill="#FFFFFF" opacity="0.65" />
+            </g>
+            <g transform="translate(119 130) rotate(-4)">
+              <ellipse cx="0" cy="2" rx="22" ry="16" fill={leatherGrad} stroke={C.ink} stroke-width="4.4" />
+              <ellipse cx="0" cy="-1.5" rx="19.5" ry="13" fill="#785247" stroke={C.ink} stroke-width="3.6" />
+              <ellipse cx="0" cy="-1.5" rx="16" ry="10.5" fill={lensGrad} stroke={C.ink} stroke-width="3" />
+              <path d="M -9 5 L -1 -10 L 4 -10 L -4 6 Z" fill="#FFFFFF" opacity="0.88" />
+              <path d="M -1 6 L 6 -8 L 9 -7 L 2 7 Z" fill="#FFFFFF" opacity="0.65" />
+            </g>
+          </g>
+        ) : mood === 'turn-quarter' || mood === 'turn-side' ? (
+          /* =========================================================================
+             KHUSUS TURNAROUND #2 (3/4 KIRI) & #3 (SAMPING KIRI) DARI SAKI.PNG
+             ========================================================================= */
+          <g>
+            <ellipse cx="120" cy="238" rx="72" ry="8.5" fill="#DFD9D8" />
+            <path
+              d="M 60 164 C 54 184, 56 204, 66 216 L 70 226 C 74 236, 84 240, 96 240 C 106 240, 112 234, 116 227 L 128 227 C 132 234, 140 240, 150 240 C 162 240, 172 234, 174 222 C 180 206, 180 184, 174 164 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="94" cy="228" rx="17" ry="7.5" fill={C.peach} opacity="0.7" />
+            <ellipse cx="148" cy="228" rx="17" ry="7.5" fill={C.peach} opacity="0.7" />
+            <path
+              d="M 152 154 L 182 154 C 194 154, 200 164, 198 182 L 194 202 C 192 212, 182 216, 170 214 L 152 210 Z"
+              fill={bagGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 176 144 C 190 144, 200 152, 204 164 C 204 168, 196 172, 186 172 L 172 158 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 48 150 C 86 160, 144 156, 184 142 L 184 156 C 148 172, 92 184, 52 184 C 46 174, 46 160, 48 150 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 142 156 C 156 156, 166 170, 164 188 C 162 202, 150 210, 138 206 Z"
+              fill={bagGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="136" cy="184" rx="18" ry="15" transform="rotate(-12 136 184)" fill={creamGrad} stroke={C.ink} stroke-width="4.5" />
+            <path
+              d="M 96 58 C 90 40, 96 22, 114 16 C 128 11, 142 18, 145 29 C 146 33, 142 35, 136 37 C 128 39, 124 45, 124 52 C 154 56, 178 76, 184 114 C 190 120, 192 128, 188 136 C 182 148, 152 156, 112 158 C 72 158, 46 152, 42 138 C 39 128, 44 120, 52 114 C 58 76, 76 62, 96 58 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            {mood === 'turn-quarter' ? (
+              <>
+                <ellipse cx="56" cy="134" rx="8" ry="6" fill={C.blush} />
+                <ellipse cx="114" cy="136" rx="11" ry="7" fill={C.blush} />
+                <ellipse cx="64" cy="120" rx="4.8" ry="7.8" fill={C.ink} />
+                <circle cx="63" cy="117" r="1.8" fill="#FFFFFF" />
+                <ellipse cx="100" cy="122" rx="5.8" ry="8.6" fill={C.ink} />
+                <circle cx="98.5" cy="118.5" r="2" fill="#FFFFFF" />
+                <path d="M 74 128 Q 78 133 82 128 Q 86 133 90 128" fill="none" stroke={C.ink} stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+              </>
+            ) : (
+              <>
+                <ellipse cx="78" cy="136" rx="11" ry="7" fill={C.blush} />
+                <ellipse cx="66" cy="120" rx="5.2" ry="8.2" fill={C.ink} />
+                <circle cx="64.5" cy="116.5" r="1.9" fill="#FFFFFF" />
+                <path d="M 48 128 Q 53 132 58 128" fill="none" stroke={C.ink} stroke-width="3.4" stroke-linecap="round" />
+              </>
+            )}
+            <path
+              d="M 108 78 C 138 92, 164 112, 184 134 L 176 144 C 154 122, 128 102, 98 88 Z"
+              fill={leatherGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+            {mood === 'turn-quarter' && (
+              <g transform="translate(62 78) rotate(-18)">
+                <ellipse cx="0" cy="2" rx="16" ry="14" fill={leatherGrad} stroke={C.ink} stroke-width="4" />
+                <ellipse cx="0" cy="-1" rx="11.5" ry="9.5" fill={lensGrad} stroke={C.ink} stroke-width="3" />
+              </g>
+            )}
+            <g transform={mood === 'turn-quarter' ? 'translate(102 78) rotate(8)' : 'translate(84 78) rotate(6)'}>
+              <ellipse cx="0" cy="2" rx="22" ry="17" fill={leatherGrad} stroke={C.ink} stroke-width="4.4" />
+              <ellipse cx="0" cy="-1.5" rx="16.5" ry="11.5" fill={lensGrad} stroke={C.ink} stroke-width="3.2" />
+              <path d="M -8 5 L -1 -10 L 4 -10 L -3 6 Z" fill="#FFFFFF" opacity="0.88" />
+            </g>
+          </g>
+        ) : mood === 'turn-back' || mood === 'turn-back-side' ? (
+          /* =========================================================================
+             KHUSUS TURNAROUND #4 (BELAKANG TENGAH) & #5 (BELAKANG 3/4) DARI SAKI.PNG
+             ========================================================================= */
+          <g>
+            <ellipse cx="120" cy="238" rx="76" ry="8.5" fill="#DFD9D8" />
+            <path d="M 46 154 C 30 157, 21 168, 22 180 C 23 190, 34 196, 48 196 L 56 166 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 194 154 C 210 157, 219 168, 218 180 C 217 190, 206 196, 192 196 L 184 166 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path
+              d="M 54 164 C 52 184, 54 202, 62 214 L 66 224 C 70 235, 80 240, 92 240 C 102 240, 108 234, 112 227 L 128 227 C 132 234, 138 240, 148 240 C 160 240, 170 235, 174 224 L 178 214 C 186 202, 188 184, 186 164 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="89" cy="228" rx="18" ry="8" fill={C.peach} opacity="0.7" />
+            <ellipse cx="151" cy="228" rx="18" ry="8" fill={C.peach} opacity="0.7" />
+            <path
+              d="M 88 60 C 120 52, 172 64, 188 110 L 190 126 C 198 128, 204 134, 203 142 C 202 150, 192 156, 178 158 C 144 166, 96 166, 62 158 C 48 156, 38 150, 37 142 C 36 134, 42 128, 50 126 L 52 110 C 64 76, 80 62, 88 60 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 104 60 C 98 42, 102 24, 118 18 C 132 12, 146 20, 148 31 C 149 35, 145 37, 140 38 C 132 40, 128 46, 128 54 L 130 62 Z"
+              fill={creamGrad}
+            />
+            <path
+              d="M 104 58 C 98 42, 102 24, 118 18 C 132 12, 146 20, 148 31 C 149 35, 145 37, 140 38 C 132 40, 128 46, 128 53"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path d="M 50 128 C 52 108, 58 92, 68 80 L 74 92 C 66 104, 60 116, 58 130 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path d="M 190 128 C 188 108, 182 92, 172 80 L 166 92 C 174 104, 180 116, 182 130 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path
+              d="M 42 138 C 84 148, 156 148, 198 138 C 198 152, 188 164, 170 168 C 136 174, 104 174, 70 168 C 52 164, 42 152, 42 138 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <g transform={mood === 'turn-back-side' ? 'translate(18 0)' : undefined}>
+              <rect x="88" y="156" width="64" height="58" rx="16" fill={bagGrad} stroke={C.ink} stroke-width="4.5" />
+              <path
+                d="M 88 172 C 88 160, 96 156, 108 156 L 132 156 C 144 156, 152 160, 152 172 L 152 178 C 132 186, 108 186, 88 178 Z"
+                fill="#A3B886"
+                stroke={C.ink}
+                stroke-width="4.2"
+                stroke-linejoin="round"
+              />
+              <rect x="114" y="177" width="12" height="15" rx="3" fill={C.yellow} stroke={C.ink} stroke-width="3.6" />
+            </g>
+          </g>
+        ) : (
+          /* =========================================================================
+             STRUKTUR STANDAR SAKI UNTUK 19 EKSPRESI, AKTIVITAS & REAKSI LAINNYA
+             ========================================================================= */
+          <g>
+            {/* Bayangan bawah */}
+            <ellipse cx="120" cy="238" rx="76" ry="8.5" fill="#DFD9D8" />
+
+            {/* Dekorasi Aksen di Atas / Samping Sesuai Mood */}
+            {(mood === 'excited' || mood === 'reading' || mood === 'presenting' || mood === 'champion' || mood === 'deploy') && (
+              <g fill={C.yellow}>
+                <path d="M 192 32 C 194 26, 200 26, 202 32 L 198 52 C 196 56, 192 56, 190 52 Z" />
+                <path d="M 212 48 C 216 44, 222 48, 218 54 L 204 68 C 200 70, 197 67, 199 63 Z" />
+              </g>
+            )}
+
+            {mood === 'curious' && (
+              <g transform="translate(184 36)">
+                <path
+                  d="M -6 -8 C -6 -16, 8 -16, 8 -6 C 8 0, 0 2, 0 8"
+                  fill="none"
+                  stroke={C.slate}
+                  stroke-width="5"
+                  stroke-linecap="round"
+                />
+                <circle cx="0" cy="17" r="3" fill={C.slate} />
+              </g>
+            )}
+
+            {mood === 'music' && (
+              <g transform="translate(192 42)" stroke={C.slate} stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill={C.slate}>
+                <path d="M 0 18 L 4 0 L 20 4 L 16 22" fill="none" />
+                <ellipse cx="-3" cy="18" rx="4.5" ry="3.2" transform="rotate(-15 -3 18)" />
+                <ellipse cx="13" cy="22" rx="4.5" ry="3.2" transform="rotate(-15 13 22)" />
+              </g>
+            )}
+
+            {mood === 'idea' && (
+              <g transform="translate(178 36)">
+                <circle cx="0" cy="0" r="14" fill="#FFF3B0" stroke={C.yellowDark} stroke-width="2.8" />
+                <path d="M -5 13 L 5 13 L 4 19 L -4 19 Z" fill="#94A3B8" stroke={C.slate} stroke-width="2.2" />
+                <path
+                  d="M 0 -20 L 0 -25 M 14 -14 L 18 -18 M -14 -14 L -18 -18 M 20 0 L 25 0 M -20 0 L -25 0"
+                  stroke={C.yellow}
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </g>
+            )}
+
+            {/* Papan Grafik Presentasi di Kanan Atas (Khusus Presenting) */}
+            {mood === 'presenting' && (
+              <g transform="translate(156 36)">
+                <rect x="0" y="0" width="76" height="62" rx="8" fill="#FFFFFF" stroke={C.ink} stroke-width="4" />
+                <rect x="14" y="34" width="11" height="18" rx="2" fill="#FDE08D" />
+                <rect x="32" y="24" width="11" height="28" rx="2" fill={C.yellow} />
+                <rect x="50" y="12" width="11" height="40" rx="2" fill={C.yellowDark} />
+              </g>
+            )}
+
+            {/* Bagian bawah tas hijau di kiri & kanan */}
+            <path d="M 35 192 C 36 204, 44 208, 52 206 L 54 190 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M 205 192 C 204 204, 196 208, 188 206 L 186 190 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+
+            {/* Tangan Default (bila tidak sedang diangkat di depan dada) */}
+            {!['password', 'peek', 'curious', 'reading', 'books', 'coffee', 'gardening', 'champion', 'security', 'exploring'].includes(mood) && (
+              <>
+                <path
+                  d={
+                    mood === 'excited' || mood === 'deploy'
+                      ? 'M 48 156 C 28 140, 18 146, 22 164 C 26 178, 38 186, 52 184 Z'
+                      : 'M 46 154 C 30 157, 21 168, 22 180 C 23 190, 34 196, 48 196 L 56 166 Z'
+                  }
+                  fill={creamGrad}
+                  stroke={C.ink}
+                  stroke-width="4.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d={
+                    mood === 'excited' || mood === 'presenting' || mood === 'music' || mood === 'database' || mood === 'ai-agent' || mood === 'deploy'
+                      ? 'M 192 156 C 212 136, 224 142, 220 162 C 216 176, 204 184, 188 184 Z'
+                      : 'M 194 154 C 210 157, 219 168, 218 180 C 217 190, 206 196, 192 196 L 184 166 Z'
+                  }
+                  fill={creamGrad}
+                  stroke={C.ink}
+                  stroke-width="4.5"
+                  stroke-linejoin="round"
+                />
+              </>
+            )}
+
+            {/* Badan & Kaki Bulat Mochi */}
+            <path
+              d="M 54 168 C 52 186, 54 202, 62 214 L 66 224 C 70 235, 80 240, 92 240 C 102 240, 108 234, 112 227 L 128 227 C 132 234, 138 240, 148 240 C 160 240, 170 235, 174 224 L 178 214 C 186 202, 188 186, 186 168 Z"
+              fill={creamGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="89" cy="228" rx="18" ry="8" fill={C.peach} opacity="0.7" />
+            <ellipse cx="151" cy="228" rx="18" ry="8" fill={C.peach} opacity="0.7" />
+            <path
+              d="M 54 168 C 52 186, 54 202, 62 214 L 66 224 C 70 235, 80 240, 92 240 C 102 240, 108 234, 112 227 L 128 227 C 132 234, 138 240, 148 240 C 160 240, 170 235, 174 224 L 178 214 C 186 202, 188 186, 186 168"
+              fill="none"
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            {/* Tali Tas Ransel Hijau Sage */}
+            <path d="M 54 164 C 48 178, 48 194, 54 206 C 60 196, 64 184, 64 170 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+            <path d="M 186 164 C 192 178, 192 194, 186 206 C 180 196, 176 184, 176 170 Z" fill={bagGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+
+            {/* Simpul Syal Kuning di Kiri */}
+            <path
+              d="M 44 150 C 30 150, 22 158, 17 170 C 16 173, 22 178, 32 180 C 42 182, 52 178, 56 170 L 56 154 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.2"
+              stroke-linejoin="round"
+            />
+
+            {/* Syal Segitiga Kuning (Bandana) */}
+            <path
+              d="M 44 150 C 84 166, 156 166, 196 150 C 194 162, 178 176, 154 188 L 124 200 C 120 202, 116 202, 112 200 L 82 186 C 60 174, 46 162, 44 150 Z"
+              fill={scarfGrad}
+              stroke={C.ink}
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+
+            {/* Kepala Mochi & Jambul Swirl */}
+            <g transform={mood === 'curious' ? 'rotate(4 120 150)' : undefined}>
+              <path
+                d="M 88 60 C 120 52, 172 64, 188 110 L 190 126 C 198 128, 204 134, 203 142 C 202 150, 192 156, 178 158 C 144 166, 96 166, 62 158 C 48 156, 38 150, 37 142 C 36 134, 42 128, 50 126 L 52 110 C 64 76, 80 62, 88 60 Z"
+                fill={creamGrad}
+                stroke={C.ink}
+                stroke-width="4.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M 88 62 C 82 44, 86 26, 102 18 C 118 11, 134 17, 139 30 C 141 34, 138 36, 133 37 C 125 39, 120 45, 119 52 L 122 64 Z"
+                fill={creamGrad}
+              />
+              <path
+                d="M 88 58 C 82 42, 86 26, 102 18 C 118 11, 134 17, 139 30 C 141 34, 138 36, 133 37 C 125 39, 120 45, 119 51"
+                fill="none"
+                stroke={C.ink}
+                stroke-width="4.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              {/* Headphone Hijau Sage (Khusus Music) */}
+              {mood === 'music' && (
+                <g>
+                  <path d="M 48 118 C 46 66, 194 66, 192 118" fill="none" stroke={C.greenDark} stroke-width="6" />
+                  <ellipse cx="44" cy="128" rx="13" ry="21" transform="rotate(8 44 128)" fill={bagGrad} stroke={C.ink} stroke-width="4.5" />
+                  <ellipse cx="196" cy="128" rx="13" ry="21" transform="rotate(-8 196 128)" fill={bagGrad} stroke={C.ink} stroke-width="4.5" />
+                </g>
+              )}
+
+              {/* Rona Pipi Peach */}
+              <ellipse cx="76" cy="138" rx="13" ry="8" fill={C.blush} opacity={mood === 'error' ? 0.35 : 0.9} />
+              <ellipse cx="164" cy="138" rx="13" ry="8" fill={C.blush} opacity={mood === 'error' ? 0.35 : 0.9} />
+
+              {/* Alis saat Error */}
+              {mood === 'error' && (
+                <g stroke={C.ink} stroke-width="3.8" stroke-linecap="round">
+                  <path d="M 82 110 L 98 106" />
+                  <path d="M 158 110 L 142 106" />
+                </g>
+              )}
+
+              {/* Variasi Mata */}
+              {mood === 'excited' || mood === 'champion' || mood === 'deploy' ? (
+                <g fill="none" stroke={C.ink} stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 86 117 L 99 124 L 86 131" />
+                  <path d="M 154 117 L 141 124 L 154 131" />
+                </g>
+              ) : mood === 'laughing' || mood === 'reading' || mood === 'success' || mood === 'gardening' ? (
+                <g fill="none" stroke={C.ink} stroke-width="4.8" stroke-linecap="round">
+                  <path d="M 84 126 Q 93 114 102 126" />
+                  <path d="M 138 126 Q 147 114 156 126" />
+                </g>
+              ) : mood === 'idea' || mood === 'ai-agent' ? (
+                <g fill="none" stroke={C.ink} stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 84 126 Q 93 114 102 126" />
+                  <path d="M 154 117 L 141 124 L 154 131" />
+                </g>
+              ) : mood === 'music' || mood === 'coffee' || mood === 'password' ? (
+                <g fill="none" stroke={C.ink} stroke-width="4.4" stroke-linecap="round">
+                  <path d="M 84 123 Q 93 130 102 123" />
+                  <path d="M 138 123 Q 147 130 156 123" />
+                </g>
+              ) : mood === 'wink' || mood === 'exploring' ? (
+                <>
+                  <ellipse cx="93" cy="124" rx="6.5" ry="9.5" fill={C.ink} />
+                  <ellipse cx="91.2" cy="120" rx="2.1" ry="2.7" fill="#FFFFFF" />
+                  <path d="M 154 117 L 141 124 L 154 130" fill="none" stroke={C.ink} stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </>
+              ) : mood === 'idle' ? (
+                <>
+                  <ellipse cx="93" cy="124" rx="6.2" ry="9.2" fill={C.ink} />
+                  <ellipse cx="91.5" cy="120.5" rx="2" ry="2.6" fill="#FFFFFF" />
+                  <path d="M 139 125 Q 145 117 151 125" fill="none" stroke={C.ink} stroke-width="4.8" stroke-linecap="round" />
+                </>
+              ) : mood === 'surprised' ? (
+                <>
+                  <circle cx="93" cy="124" r="9.5" fill={C.ink} />
+                  <circle cx="147" cy="124" r="9.5" fill={C.ink} />
+                  <circle cx="90.5" cy="120.5" r="3" fill="#FFFFFF" />
+                  <circle cx="144.5" cy="120.5" r="3" fill="#FFFFFF" />
+                  <circle cx="95.5" cy="126.5" r="1.4" fill="#FFFFFF" />
+                  <circle cx="149.5" cy="126.5" r="1.4" fill="#FFFFFF" />
+                </>
+              ) : mood === 'loading' ? (
+                <>
+                  <ellipse cx="93" cy="121" rx="6.2" ry="9" fill={C.ink} />
+                  <ellipse cx="147" cy="121" rx="6.2" ry="9" fill={C.ink} />
+                  <circle cx="95" cy="117" r="2.3" fill="#FFFFFF" />
+                  <circle cx="149" cy="117" r="2.3" fill="#FFFFFF" />
+                </>
+              ) : (
+                <>
+                  <ellipse cx="93" cy="124" rx="6.2" ry="9.2" fill={C.ink} />
+                  <ellipse cx="147" cy="124" rx="6.2" ry="9.2" fill={C.ink} />
+                  <ellipse cx="91.5" cy="120.5" rx="2" ry="2.6" fill="#FFFFFF" />
+                  <ellipse cx="145.5" cy="120.5" rx="2" ry="2.6" fill="#FFFFFF" />
+                </>
+              )}
+
+              {/* Hidung Kecil */}
+              <ellipse cx="120" cy="127" rx="2.5" ry="1.5" fill="#F29A76" />
+
+              {/* Variasi Mulut */}
+              {['excited', 'laughing', 'presenting', 'idea', 'success', 'wink', 'champion', 'database', 'ai-agent', 'deploy', 'exploring'].includes(mood) ? (
+                <g>
+                  <path
+                    d="M 110 131 Q 116 132 120 128 Q 124 132 130 131 C 132 141, 129 151, 120 151 C 111 151, 108 141, 110 131 Z"
+                    fill={C.mouth}
+                    stroke={C.ink}
+                    stroke-width="3"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M 112 140 C 116 135, 124 135, 128 140 C 126 146, 123 149, 120 149 C 117 149, 114 146, 112 140 Z" fill={C.tongue} />
+                  <path
+                    d="M 110 131 Q 116 132 120 128 Q 124 132 130 131 C 132 141, 129 151, 120 151 C 111 151, 108 141, 110 131 Z"
+                    fill="none"
+                    stroke={C.ink}
+                    stroke-width="3"
+                    stroke-linejoin="round"
+                  />
+                </g>
+              ) : mood === 'curious' || mood === 'surprised' || mood === 'reading' ? (
+                <ellipse cx="120" cy="136" rx="5" ry="6.5" fill={C.mouth} stroke={C.ink} stroke-width="3" />
+              ) : mood === 'error' ? (
+                <path d="M 112 139 Q 120 132 128 139" fill="none" stroke={C.ink} stroke-width="3.6" stroke-linecap="round" />
+              ) : (
+                <path d="M 111 132 Q 115.5 137 120 132 Q 124.5 137 129 132" fill="none" stroke={C.ink} stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
+              )}
+
+              {/* Kacamata Goggle Aviator */}
+              <path d="M 48 124 C 48 106, 56 92, 68 82 L 76 92 C 66 102, 56 114, 50 126 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+              <path d="M 192 124 C 192 106, 184 92, 172 82 L 164 92 C 174 102, 184 114, 190 126 Z" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" stroke-linejoin="round" />
+              <rect x="111" y="70" width="18" height="14" rx="3" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" />
+
+              <g transform="translate(89 78) rotate(-12)">
+                <ellipse cx="0" cy="3" rx="24" ry="19" fill={leatherGrad} stroke={C.ink} stroke-width="4.5" />
+                <ellipse cx="0" cy="-2" rx="22" ry="16" fill="#785247" stroke={C.ink} stroke-width="3.8" />
+                <ellipse cx="0" cy="-2" rx="18" ry="12.5" fill={lensGrad} stroke={C.ink} stroke-width="3.2" />
+                <path d="M -11 6 L -2 -12 L 4 -12 L -5 8 Z" fill="#FFFFFF" opacity="0.88" />
+                <path d="M -2 8 L 7 -10 L 10 -9 L 1 9 Z" fill="#FFFFFF" opacity="0.65" />
+              </g>
+
+              <g transform="translate(151 78) rotate(12)">
+                <ellipse cx="0" cy="3" rx="24" ry="19" fill={leatherGrad} stroke={C.ink} stroke-width="4.5" />
+                <ellipse cx="0" cy="-2" rx="22" ry="16" fill="#785247" stroke={C.ink} stroke-width="3.8" />
+                <ellipse cx="0" cy="-2" rx="18" ry="12.5" fill={lensGrad} stroke={C.ink} stroke-width="3.2" />
+                <path d="M -11 6 L -2 -12 L 4 -12 L -5 8 Z" fill="#FFFFFF" opacity="0.88" />
+                <path d="M -2 8 L 7 -10 L 10 -9 L 1 9 Z" fill="#FFFFFF" opacity="0.65" />
+              </g>
+            </g>
+
+            {/* =====================================================================
+                PROPS & INTERAKSI TANGAN DEPAN SESUAI SAKI.PNG
+                ===================================================================== */}
+
+            {/* 1. Curious: Tangan Kanan di Dagu */}
+            {mood === 'curious' && (
+              <>
+                <path d="M 46 154 C 30 157, 21 168, 22 180 C 23 190, 34 196, 48 196 L 56 166 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+                <ellipse cx="142" cy="158" rx="16" ry="22" transform="rotate(18 142 158)" fill={creamGrad} stroke={C.ink} stroke-width="4.5" />
+              </>
+            )}
+
+            {/* 2. Searching: Kaca Pembesar (Magnifying Glass) */}
+            {mood === 'searching' && (
+              <g transform="translate(178 126)">
+                <rect x="-5" y="20" width="10" height="32" rx="4" transform="rotate(-12)" fill={C.slate} stroke={C.ink} stroke-width="3.8" />
+                <ellipse cx="4" cy="44" rx="14" ry="12" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <circle cx="0" cy="0" r="24" fill={C.slate} stroke={C.ink} stroke-width="4" />
+                <circle cx="0" cy="0" r="17" fill="#CFEAF6" stroke={C.ink} stroke-width="3" />
+                <path d="M -9 8 L 2 -11 L 7 -9 L -4 10 Z" fill="#FFFFFF" opacity="0.85" />
+              </g>
+            )}
+
+            {/* 3. Working / Idea: Laptop di Depan Saki */}
+            {(mood === 'working' || mood === 'idea') && (
+              <g transform="translate(120 206)">
+                <rect x="-56" y="20" width="112" height="10" rx="5" fill="#7B798A" stroke={C.ink} stroke-width="4" />
+                <path
+                  d="M -44 -28 L 44 -28 C 48 -28, 50 -25, 49 -20 L 40 24 L -40 24 L -49 -20 C -50 -25, -48 -28, -44 -28 Z"
+                  fill={`url(#${uid}-laptop)`}
+                  stroke={C.ink}
+                  stroke-width="4.2"
+                  stroke-linejoin="round"
+                />
+                <circle cx="0" cy="-2" r="7" fill="#FFFFFF" opacity="0.9" />
+              </g>
+            )}
+
+            {/* 4. Reading: Buku Terbuka Bersampul Hijau Sage */}
+            {mood === 'reading' && (
+              <g transform="translate(132 184)">
+                <path
+                  d="M -42 -18 L 0 -6 L 42 -18 L 38 28 L 0 38 L -38 28 Z"
+                  fill="#FBF5E8"
+                  stroke={C.ink}
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M -38 -12 L 0 0 L 38 -12 L 34 32 L 0 42 L -34 32 Z"
+                  fill={bagGrad}
+                  stroke={C.ink}
+                  stroke-width="4.2"
+                  stroke-linejoin="round"
+                />
+                <line x1="0" y1="0" x2="0" y2="41" stroke={C.ink} stroke-width="3.8" />
+                <ellipse cx="-34" cy="14" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <ellipse cx="34" cy="14" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+              </g>
+            )}
+
+            {/* 5. Books: Membawa 3 Tumpuk Buku */}
+            {mood === 'books' && (
+              <g transform="translate(152 178)">
+                {/* Buku Bawah (Kuning) */}
+                <rect x="-34" y="18" width="68" height="18" rx="4" fill={C.yellow} stroke={C.ink} stroke-width="3.8" />
+                <rect x="-30" y="22" width="58" height="10" rx="2" fill="#FFFDF7" stroke={C.ink} stroke-width="2.5" />
+                {/* Buku Tengah (Biru Muda) */}
+                <rect x="-32" y="0" width="66" height="18" rx="4" fill={C.blue} stroke={C.ink} stroke-width="3.8" />
+                <rect x="-28" y="4" width="56" height="10" rx="2" fill="#FFFDF7" stroke={C.ink} stroke-width="2.5" />
+                {/* Buku Atas (Navy/Biru) */}
+                <rect x="-30" y="-18" width="64" height="18" rx="4" fill="#5D8AA8" stroke={C.ink} stroke-width="3.8" />
+                <rect x="-26" y="-14" width="54" height="10" rx="2" fill="#FFFDF7" stroke={C.ink} stroke-width="2.5" />
+                {/* Tangan Saki Memegang Buku */}
+                <ellipse cx="-34" cy="12" rx="16" ry="12" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+              </g>
+            )}
+
+            {/* 6. Coffee: Memegang Mug Kopi Hangat Berasap */}
+            {mood === 'coffee' && (
+              <g transform="translate(64 176)">
+                <path d="M -22 -8 C -32 -8, -32 14, -22 14" fill="none" stroke={C.ink} stroke-width="4.2" stroke-linecap="round" />
+                <rect x="-22" y="-14" width="34" height="36" rx="6" fill="#FFFFFF" stroke={C.ink} stroke-width="4.2" />
+                <path d="M -10 -22 Q -6 -28 -10 -34 M 2 -20 Q 6 -26 2 -32" fill="none" stroke={C.ink} stroke-width="3" stroke-linecap="round" />
+                <ellipse cx="16" cy="8" rx="16" ry="13" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+              </g>
+            )}
+
+            {/* 7. Password & Peek: Kedua Tangan Menutup Mata */}
+            {(mood === 'password' || mood === 'peek') && (
+              <>
+                <ellipse
+                  cx="90"
+                  cy="126"
+                  rx="22"
+                  ry="15"
+                  transform="rotate(-14 90 126)"
+                  fill={creamGrad}
+                  stroke={C.ink}
+                  stroke-width="4.5"
+                />
+                <ellipse
+                  cx={mood === 'peek' ? 164 : 150}
+                  cy={mood === 'peek' ? 156 : 126}
+                  rx="22"
+                  ry="15"
+                  transform={`rotate(${mood === 'peek' ? 8 : 14} ${mood === 'peek' ? 164 : 150} ${mood === 'peek' ? 156 : 126})`}
+                  fill={creamGrad}
+                  stroke={C.ink}
+                  stroke-width="4.5"
+                />
+              </>
+            )}
+
+            {/* 8. Gardening: Memegang Pot Tanaman Tunas Hijau (Props #7 saki.png) */}
+            {mood === 'gardening' && (
+              <g transform="translate(120 192)">
+                <path
+                  d="M 0 -22 C -4 -38, -20 -46, -28 -38 C -30 -28, -16 -18, 0 -22 Z"
+                  fill={C.green}
+                  stroke={C.ink}
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M 0 -22 C 4 -38, 20 -46, 28 -38 C 30 -28, 16 -18, 0 -22 Z"
+                  fill="#A3B886"
+                  stroke={C.ink}
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line x1="0" y1="-26" x2="0" y2="-12" stroke={C.ink} stroke-width="4" stroke-linecap="round" />
+                <path d="M -20 -4 L 20 -4 L 15 24 L -15 24 Z" fill={C.peach} stroke={C.ink} stroke-width="4" stroke-linejoin="round" />
+                <rect x="-24" y="-12" width="48" height="10" rx="4" fill={C.cream} stroke={C.ink} stroke-width="4" />
+                <ellipse cx="-26" cy="8" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <ellipse cx="26" cy="8" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+              </g>
+            )}
+
+            {/* 9. Champion: Memegang Piala Penghargaan Juara */}
+            {mood === 'champion' && (
+              <g transform="translate(120 188)">
+                <path d="M -20 -24 C -32 -24, -32 -4, -18 -2" fill="none" stroke={C.ink} stroke-width="4" stroke-linecap="round" />
+                <path d="M 20 -24 C 32 -24, 32 -4, 18 -2" fill="none" stroke={C.ink} stroke-width="4" stroke-linecap="round" />
+                <path
+                  d="M -20 -30 L 20 -30 L 17 -6 C 15 6, 8 12, 0 12 C -8 12, -15 6, -17 -6 Z"
+                  fill={scarfGrad}
+                  stroke={C.ink}
+                  stroke-width="4.2"
+                  stroke-linejoin="round"
+                />
+                <rect x="-5" y="12" width="10" height="10" fill={C.yellowDark} stroke={C.ink} stroke-width="3.8" />
+                <rect x="-18" y="22" width="36" height="9" rx="3.5" fill={leatherGrad} stroke={C.ink} stroke-width="4" />
+                <path d="M 0 -21 L 2.8 -15 L 9.2 -14.2 L 4.4 -9.8 L 5.8 -3.5 L 0 -6.8 L -5.8 -3.5 L -4.4 -9.8 L -9.2 -14.2 L -2.8 -15 Z" fill="#FFFDF7" />
+                <ellipse cx="-26" cy="4" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <ellipse cx="26" cy="4" rx="14" ry="11" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+              </g>
+            )}
+
+            {/* 10. Database: Silinder Database Relasional di Samping Kanan Atas */}
+            {mood === 'database' && (
+              <g transform="translate(194 64)">
+                <path d="M -24 26 L -24 40 C -24 46, -13 50, 0 50 C 13 50, 24 46, 24 40 L 24 26 Z" fill="#5D8AA8" stroke={C.ink} stroke-width="3.8" stroke-linejoin="round" />
+                <path d="M -24 12 L -24 26 C -24 32, -13 36, 0 36 C 13 36, 24 32, 24 26 L 24 12 Z" fill={C.blue} stroke={C.ink} stroke-width="3.8" stroke-linejoin="round" />
+                <path d="M -24 -2 L -24 12 C -24 18, -13 22, 0 22 C 13 22, 24 18, 24 12 L 24 -2 Z" fill={C.cream} stroke={C.ink} stroke-width="3.8" stroke-linejoin="round" />
+                <ellipse cx="0" cy="-2" rx="24" ry="8" fill={C.yellow} stroke={C.ink} stroke-width="3.8" />
+                <circle cx="13" cy="13" r="2.5" fill={C.ink} />
+                <circle cx="13" cy="27" r="2.5" fill={C.yellow} />
+                <circle cx="13" cy="41" r="2.5" fill={C.cream} />
+              </g>
+            )}
+
+            {/* 11. AI-Agent: Node Otomasi AI & Multi-Agent */}
+            {mood === 'ai-agent' && (
+              <g transform="translate(192 58)">
+                <line x1="-18" y1="-16" x2="18" y2="16" stroke={C.ink} stroke-width="3.4" stroke-linecap="round" />
+                <line x1="18" y1="-16" x2="-18" y2="16" stroke={C.ink} stroke-width="3.4" stroke-linecap="round" />
+                <circle cx="-19" cy="-17" r="6" fill={C.blue} stroke={C.ink} stroke-width="3.2" />
+                <circle cx="19" cy="-17" r="6" fill={C.green} stroke={C.ink} stroke-width="3.2" />
+                <circle cx="-19" cy="17" r="6" fill={C.peach} stroke={C.ink} stroke-width="3.2" />
+                <circle cx="19" cy="17" r="6" fill={C.blue} stroke={C.ink} stroke-width="3.2" />
+                <path
+                  d="M 0 -22 C 3 -8, 8 -3, 22 0 C 8 3, 3 8, 0 22 C -3 8, -8 3, -22 0 C -8 -3, -3 -8, 0 -22 Z"
+                  fill={C.yellow}
+                  stroke={C.ink}
+                  stroke-width="3.6"
+                  stroke-linejoin="round"
+                />
+                <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
+              </g>
+            )}
+
+            {/* 12. Deploy: Roket Meluncur di Kanan Atas */}
+            {mood === 'deploy' && (
+              <g transform="translate(196 64) rotate(14)">
+                <path d="M -7 20 C -7 30, 0 36, 0 36 C 0 36, 7 30, 7 20 Z" fill={C.yellow} stroke={C.ink} stroke-width="3.2" stroke-linejoin="round" />
+                <path d="M -13 6 L -23 18 L -11 18 Z" fill={C.green} stroke={C.ink} stroke-width="3.4" stroke-linejoin="round" />
+                <path d="M 13 6 L 23 18 L 11 18 Z" fill={C.green} stroke={C.ink} stroke-width="3.4" stroke-linejoin="round" />
+                <path d="M 0 -26 C -12 -15, -14 0, -13 19 L 13 19 C 14 0, 12 -15, 0 -26 Z" fill={C.cream} stroke={C.ink} stroke-width="3.8" stroke-linejoin="round" />
+                <path d="M 0 -26 C -7 -19, -9 -12, -10 -8 L 10 -8 C 9 -12, 7 -19, 0 -26 Z" fill={C.yellow} stroke={C.ink} stroke-width="3.4" stroke-linejoin="round" />
+                <circle cx="0" cy="3" r="6.5" fill={C.blue} stroke={C.ink} stroke-width="3.2" />
+              </g>
+            )}
+
+            {/* 13. Security: Memegang Perisai Keamanan & Fallback */}
+            {mood === 'security' && (
+              <g transform="translate(154 182)">
+                <path
+                  d="M 0 -28 L 26 -18 L 26 2 C 26 18, 13 28, 0 32 C -13 28, -26 18, -26 2 L -26 -18 Z"
+                  fill={bagGrad}
+                  stroke={C.ink}
+                  stroke-width="4.2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M 0 -20 L 18 -13 L 18 2 C 18 13, 9 20, 0 24 C -9 20, -18 13, -18 2 L -18 -13 Z"
+                  fill={C.cream}
+                  stroke={C.ink}
+                  stroke-width="3.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M -8 2 L -2 8 L 10 -5" fill="none" stroke={C.ink} stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                <ellipse cx="-26" cy="4" rx="15" ry="12" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <path d="M -108 -28 C -124 -25, -133 -14, -132 -2 C -131 8, -120 14, -106 14 L -98 -16 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+              </g>
+            )}
+
+            {/* 14. Exploring: Memegang Kompas Penjelajah */}
+            {mood === 'exploring' && (
+              <g transform="translate(158 180)">
+                <circle cx="0" cy="0" r="26" fill={leatherGrad} stroke={C.ink} stroke-width="4.2" />
+                <circle cx="0" cy="0" r="19.5" fill={C.cream} stroke={C.ink} stroke-width="3.2" />
+                <polygon points="0,-15 6,0 0,-3 -6,0" fill="#FA9068" stroke={C.ink} stroke-width="2.4" stroke-linejoin="round" />
+                <polygon points="0,15 6,0 0,3 -6,0" fill={C.slate} stroke={C.ink} stroke-width="2.4" stroke-linejoin="round" />
+                <circle cx="0" cy="0" r="3.5" fill={C.yellow} stroke={C.ink} stroke-width="2.2" />
+                <ellipse cx="-26" cy="8" rx="15" ry="12" fill={creamGrad} stroke={C.ink} stroke-width="4.2" />
+                <path d="M -112 -26 C -128 -23, -137 -12, -136 0 C -135 10, -124 16, -110 16 L -102 -14 Z" fill={creamGrad} stroke={C.ink} stroke-width="4.5" stroke-linejoin="round" />
+              </g>
+            )}
+          </g>
+        )}
+      </svg>
+    </div>
+
+<style lang="scss">
+  .saki-gf-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .saki-gf-bubble {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 9999px;
+    background: var(--saki-cream, #FEF7EE);
+    padding: 5px 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--saki-ink, #231F25);
+    border: 1.5px solid var(--saki-yellow, #FECD5E);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .saki-gf-bubble-arrow {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: var(--saki-cream, #FEF7EE);
+    border-bottom: 1.5px solid var(--saki-yellow, #FECD5E);
+    border-right: 1.5px solid var(--saki-yellow, #FECD5E);
+  }
+
+  .saki-gf-svg {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    overflow: visible;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+</style>

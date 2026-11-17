@@ -8,6 +8,7 @@ interface Props {
 
 const { currentPath = Astro.url.pathname } = Astro.props;
 const isHome = currentPath === "/" || currentPath === "";
+const isAbout = currentPath.startsWith("/about");
 ---
 
 <div class="farline-dock-wrapper" id="farline-dock-wrapper">
@@ -35,6 +36,14 @@ const isHome = currentPath === "/" || currentPath === "";
 					class="dock-link"
 				>
 					<span class="dock-label">Projects</span>
+				</a>
+			</li>
+			<li>
+				<a
+					href="/about"
+					class:list={["dock-link", { "is-active": isAbout }]}
+				>
+					<span class="dock-label">About</span>
 				</a>
 			</li>
 		</ul>
@@ -144,7 +153,7 @@ const isHome = currentPath === "/" || currentPath === "";
 		gap: 8px;
 		padding: 6px 14px 6px 10px;
 		border-radius: 9999px;
-		background: rgba(18, 18, 22, 0.75);
+		background: rgba(18, 18, 22, 0.78);
 		border: 1px solid var(--farline-border);
 		box-shadow:
 			0 12px 32px -4px rgba(0, 0, 0, 0.5),
@@ -181,7 +190,7 @@ const isHome = currentPath === "/" || currentPath === "";
 			letter-spacing: -0.05em;
 
 			.brand-dot {
-				color: #3b82f6;
+				color: var(--saki-yellow, #FECD5E);
 			}
 		}
 

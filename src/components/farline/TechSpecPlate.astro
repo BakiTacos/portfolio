@@ -1,5 +1,8 @@
 ---
 import CallToAction from "../CallToAction.astro";
+import SakiGraphicFace from "../saki/SakiGraphicFace.astro";
+import SakiPropElement from "../saki/SakiPropElement.astro";
+import { PROJECT_SAKI_MAP, type SakiGraphicMood, type SakiPropName } from "../saki/sakiMoods";
 
 interface SpecItem {
 	label: string;
@@ -13,6 +16,8 @@ interface Props {
 	tag: string;
 	awardText?: string;
 	awardIcon?: string;
+	sakiMood?: SakiGraphicMood;
+	sakiProp?: SakiPropName;
 	specs?: SpecItem[];
 	demoUrl?: string;
 	githubUrl?: string;
@@ -25,6 +30,8 @@ const {
 	title,
 	subtitle,
 	tag,
+	sakiMood,
+	sakiProp,
 	specs,
 	demoUrl,
 	githubUrl,
@@ -32,26 +39,38 @@ const {
 	videoLabel = "Motion Graphic ↗",
 	backUrl = "/#work-hero"
 } = Astro.props;
+
+// Automatically resolve Saki mood & prop from URL path or title
+const pathSlug = Astro.url.pathname.split("/").filter(Boolean).pop() || "";
+const mapped = PROJECT_SAKI_MAP[pathSlug];
+const resolvedMood: SakiGraphicMood = sakiMood || mapped?.mood || "working";
+const resolvedProp: SakiPropName = sakiProp || mapped?.prop || "laptop";
 ---
 
 <header class="tech-spec-plate">
 	<!-- Top Navigation Breadcrumb -->
-	<div class="plate-top-bar">
+	<div class="plate-top-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
 		<a href={backUrl} class="back-link fl-mono">
 			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<path d="M19 12H5M12 19l-7-7 7-7"/>
 			</svg>
 			<span>Back to Works</span>
 		</a>
-		<div class="plate-tag-badge fl-mono">
+		<div class="plate-tag-badge fl-mono" style="display: inline-flex; align-items: center; gap: 7px;">
+			<SakiPropElement name={resolvedProp} size={18} />
 			<span>{tag}</span>
 		</div>
 	</div>
 
-	<!-- Main Title & Tagline -->
-	<div class="plate-title-group">
-		<h1 class="plate-main-title">{title}</h1>
-		{subtitle && <p class="plate-subtitle">{subtitle}</p>}
+	<!-- Main Title & Saki Contextual Companion -->
+	<div class="plate-hero-row" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 2rem; flex-wrap: wrap;">
+		<div class="plate-title-group" style="flex: 1; min-width: 260px;">
+			<h1 class="plate-main-title">{title}</h1>
+			{subtitle && <p class="plate-subtitle">{subtitle}</p>}
+		</div>
+		<div class="plate-saki-companion" title={`Saki • ${resolvedMood}`} style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 20px; background: rgba(254, 247, 238, 0.04); border: 1px solid var(--farline-border);">
+			<SakiGraphicFace mood={resolvedMood} size={96} transparentBg hideBubble />
+		</div>
 	</div>
 
 	<!-- Farline-Inspired Technical Specifications Grid -->
@@ -107,6 +126,8 @@ const {
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2rem;
+		gap: 12px;
+		flex-wrap: wrap;
 
 		.back-link {
 			display: inline-flex;
@@ -124,34 +145,57 @@ const {
 		}
 
 		.plate-tag-badge {
-			padding: 4px 10px;
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			padding: 4px 12px 4px 8px;
 			background: var(--farline-surface-muted);
-			border: 1px solid var(--farline-border);
+			border: 1px solid rgba(254, 205, 94, 0.25);
 			border-radius: 9999px;
 			color: var(--farline-text-secondary);
 			font-size: 0.72rem;
 		}
 	}
 
-	.plate-title-group {
+	.plate-hero-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
 		margin-bottom: 2rem;
+	}
+
+	.plate-title-group {
+		flex: 1;
 
 		.plate-main-title {
-			font-size: clamp(2rem, 4.5vw, 3.2rem);
+			font-size: clamp(1.9rem, 4.2vw, 3rem);
 			font-weight: 700;
 			color: var(--farline-text-primary);
 			line-height: 1.15;
 			letter-spacing: -0.03em;
 			margin: 0;
+			text-align: left;
 		}
 
 		.plate-subtitle {
-			font-size: 1.1rem;
+			font-size: 1.08rem;
 			color: var(--farline-text-secondary);
 			margin: 12px 0 0;
 			line-height: 1.5;
-			max-width: 800px;
+			max-width: 780px;
 		}
+	}
+
+	.plate-saki-companion {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		border-radius: 20px;
+		background: rgba(254, 247, 238, 0.04);
+		border: 1px solid var(--farline-border);
 	}
 
 	/* Specifications Grid */
@@ -197,7 +241,7 @@ const {
 			line-height: 1.4;
 
 			&.is-highlight {
-				color: #3b82f6;
+				color: var(--saki-yellow, #FECD5E);
 				font-weight: 600;
 			}
 		}
@@ -210,6 +254,12 @@ const {
 	}
 
 	@media (max-width: 640px) {
+		.plate-hero-row {
+			flex-direction: column-reverse;
+			align-items: flex-start;
+			gap: 14px;
+		}
+
 		.plate-specs-grid {
 			grid-template-columns: 1fr;
 		}

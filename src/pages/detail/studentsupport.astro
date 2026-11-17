@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgCover from "../../assets/projects/studentsupport/studsop-cover.webp";
 import imgHome from "../../assets/projects/studentsupport/home.webp";
@@ -47,7 +48,7 @@ import imgFooter from "../../assets/projects/studentsupport/footer.webp";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Early Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="books" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Pondasi Awal: Sintesis Wawancara ke Desain Solusi Digital</h3>
 								<span class="tech-pill pg">First Codebase • Vanilla Web • Field Interview</span>
@@ -77,7 +78,7 @@ import imgFooter from "../../assets/projects/studentsupport/footer.webp";
 					<!-- Module 1: Home & Service Directory -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Home Interface Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Pusat Informasi Layanan & Aksesibilitas Kampus Inklusif</h3>
 								<span class="tech-pill">Module: Information Hub</span>
@@ -105,7 +106,7 @@ import imgFooter from "../../assets/projects/studentsupport/footer.webp";
 					<!-- Module 2: Counselor Directory & Booking Pipeline -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Counselor Profile Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Direktori Konselor Terverifikasi & Alur Pengajuan Konsultasi</h3>
 								<span class="tech-pill">Module: Counselor Directory</span>
@@ -133,7 +134,7 @@ import imgFooter from "../../assets/projects/studentsupport/footer.webp";
 					<!-- Module 3: Footer & Contact Integration -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Emergency Help Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="plant" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Kanal Bantuan Krisis & Jalur Komunikasi Responsif</h3>
 								<span class="tech-pill">Module: Emergency & Contact</span>
@@ -161,35 +162,35 @@ import imgFooter from "../../assets/projects/studentsupport/footer.webp";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Pelajaran fundamental dari langkah pertama membangun aplikasi web dan merancang sistem data:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="First Website Codebase Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Pengalaman First Website (HTML, CSS, JS)</span>
 								</div>
 								<p>Memahami inti kerja peramban: bagaimana pohon DOM dibangun oleh HTML, bagaimana CSS mengatur hirarki visual dan box-model, serta bagaimana JavaScript menangani interaksi pengguna secara asinkron tanpa framework pembungkus.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/image.png" alt="First Database Design Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="books" size={24} />
 									<span class="lesson-ver">Perancangan First Database</span>
 								</div>
 								<p>Belajar memetakan entitas dunia nyata ke skema tabel database: normalisasi kolom relasi antara data mahasiswa, jadwal konselor, dan riwayat konsultasi agar tidak terjadi duplikasi rekaman data.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="Wawancara Lapangan Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">Uji Coba Berbasis Wawancara Pengguna</span>
 								</div>
 								<p>Menyadari bahwa kode terbaik adalah yang menyelesaikan kebutuhan riil manusia. Wawancara bersama staf konselor mengajarkan pentingnya empati, privasi data pengguna, dan alur pendaftaran yang tidak membebani mental mahasiswa.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/rocket.png" alt="Evolusi Engineering Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="plant" size={24} />
 									<span class="lesson-ver">Batu Loncatan Rekayasa Perangkat Lunak</span>
 								</div>
 								<p>Menghargai proses evolusi rekayasa perangkat lunak: memahami keterbatasan kode prosedural dasar yang memicu ketertarikan mendalam saya untuk mempelajari framework modern (Next.js/Laravel) dan arsitektur database relasional tingkat lanjut.</p>

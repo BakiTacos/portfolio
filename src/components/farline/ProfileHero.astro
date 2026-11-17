@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import myPortrait from "../../assets/portrait.jpg";
 import Social from "../Social.astro";
+import SakiFace from "../saki/SakiFace.astro";
 
 const emailLink = "mailto:contact@sakia.id";
 const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
@@ -12,8 +13,11 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 	<div class="profile-ambient-glow" aria-hidden="true"></div>
 
 	<div class="profile-container">
-		<!-- Avatar / Portrait (Aligned with about.astro) -->
-		<div class="profile-avatar-wrapper">
+		<!-- Side-by-Side Avatar & Saki Companion (Option A - Clean & Proportional) -->
+		<div
+			class="profile-avatar-wrapper"
+			style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 18px;"
+		>
 			<Image
 				src={myPortrait}
 				alt="Kevin Sakia Putra"
@@ -23,33 +27,53 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 				loading="eager"
 				decoding="async"
 			/>
+			<div class="saki-companion-slot" title="Click Saki to switch expression!">
+				<SakiFace size={92} initialMood="idle" showBubble={true} />
+			</div>
 		</div>
 
 		<!-- Identity & Introduction -->
 		<div class="profile-content">
 			<h1 class="profile-name">Kevin Sakia Putra</h1>
 			<p class="profile-role">
-				Information Systems Student <span class="role-separator">•</span> Software & Data Architecture
+				Information Systems Student <span class="role-separator">•</span> Software &amp; Data Architecture
 			</p>
 			<p class="profile-bio">
 				I turn real-world problems into practical, scalable solutions through technology. My focus sits at the intersection of software engineering, relational database architecture, and digital business systems.
 			</p>
 
-			<!-- Social Media Icons (Reusing Social Component Exactly) -->
-			<div class="profile-social-container">
+			<!-- Social Media Icons -->
+			<div
+				class="profile-social-container"
+				data-saki-trigger-mood="wink"
+				data-saki-trigger-say="Let's connect on socials ;)"
+			>
 				<Social />
 			</div>
 
 			<!-- Direct Actions Row (Email & Download CV) -->
 			<div class="profile-actions-row">
-				<a href={emailLink} class="social-btn email-btn" aria-label="Send Email">
+				<a
+					href={emailLink}
+					class="social-btn email-btn"
+					aria-label="Send Email"
+					data-saki-trigger-mood="excited"
+					data-saki-trigger-say="Let's collaborate! ✉"
+				>
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 						<rect width="20" height="16" x="2" y="4" rx="2"/>
 						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
 					</svg>
 					<span>Email Me</span>
 				</a>
-				<a href={cvLink} download="CV_Kevin_Sakia_Putra.pdf" class="social-btn cv-btn" aria-label="Download CV">
+				<a
+					href={cvLink}
+					download="CV_Kevin_Sakia_Putra.pdf"
+					class="social-btn cv-btn"
+					aria-label="Download CV"
+					data-saki-trigger-mood="presenting"
+					data-saki-trigger-say="View my full CV ↗"
+				>
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
 						<polyline points="7 10 12 15 17 10"/>
@@ -62,13 +86,38 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 	</div>
 </section>
 
+<script>
+	function bindProfileSakiTriggers() {
+		const triggers = document.querySelectorAll<HTMLElement>('[data-saki-trigger-mood]');
+		triggers.forEach((el) => {
+			if (el.dataset.sakiBound === 'true') return;
+			el.dataset.sakiBound = 'true';
+
+			const triggerMood = () => {
+				const mood = el.dataset.sakiTriggerMood;
+				const say = el.dataset.sakiTriggerSay;
+				if (mood) {
+					window.dispatchEvent(
+						new CustomEvent('saki:set-mood', { detail: { mood, say } })
+					);
+				}
+			};
+
+			el.addEventListener('pointerenter', triggerMood);
+		});
+	}
+
+	document.addEventListener('DOMContentLoaded', bindProfileSakiTriggers);
+	document.addEventListener('astro:page-load', bindProfileSakiTriggers);
+</script>
+
 <style lang="scss">
 	.profile-hero-section {
 		position: relative;
 		width: 100%;
-		padding: 5rem 0 4rem;
+		padding: 5rem 0 3.75rem;
 		overflow: hidden;
-		background: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+		background: radial-gradient(circle at 50% 10%, rgba(157, 198, 216, 0.06) 0%, transparent 60%);
 		z-index: 10;
 	}
 
@@ -79,7 +128,7 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 		transform: translateX(-50%);
 		width: 65vw;
 		height: 360px;
-		background: radial-gradient(ellipse at center, rgba(120, 160, 255, 0.09), transparent 70%);
+		background: radial-gradient(ellipse at center, rgba(157, 198, 216, 0.09), transparent 70%);
 		filter: blur(80px);
 		pointer-events: none;
 		z-index: 0;
@@ -95,11 +144,17 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		gap: 1.75rem;
+		gap: 1.5rem;
 	}
 
 	.profile-avatar-wrapper {
 		position: relative;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 18px;
+		padding-top: 1.25rem;
 
 		.portrait {
 			width: 88px;
@@ -108,11 +163,24 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 			overflow: hidden;
 			display: block;
 			object-fit: cover;
+			border: 2px solid rgba(254, 205, 94, 0.45);
+			box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.4);
 			transition: transform 0.3s ease;
 
 			&:hover {
 				transform: scale(1.05);
 			}
+		}
+	}
+
+	.saki-companion-slot {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+		&:hover {
+			transform: translateY(-2px);
 		}
 	}
 
@@ -140,7 +208,7 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 		margin: 0;
 
 		.role-separator {
-			color: var(--farline-text-muted);
+			color: var(--saki-yellow, #FECD5E);
 			margin: 0 6px;
 		}
 	}
@@ -216,30 +284,30 @@ const cvLink = "/assets/CV_Kevin_Sakia_Putra.pdf";
 		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
 		&.email-btn {
-			background: rgba(37, 99, 235, 0.1);
-			border-color: rgba(37, 99, 235, 0.3);
-			color: #60a5fa;
+			background: rgba(157, 198, 216, 0.12);
+			border-color: rgba(157, 198, 216, 0.35);
+			color: #9DC6D8;
 
 			&:hover {
-				background: rgba(37, 99, 235, 0.18);
-				border-color: rgba(37, 99, 235, 0.5);
-				color: #93c5fd;
+				background: rgba(157, 198, 216, 0.2);
+				border-color: rgba(157, 198, 216, 0.55);
+				color: #CBE8F6;
 				transform: translateY(-2px);
-				box-shadow: 0 6px 20px -4px rgba(37, 99, 235, 0.3);
+				box-shadow: 0 6px 20px -4px rgba(157, 198, 216, 0.3);
 			}
 		}
 
 		&.cv-btn {
-			background: rgba(247, 210, 82, 0.08);
-			border-color: rgba(247, 210, 82, 0.3);
-			color: #f7d252;
+			background: rgba(254, 205, 94, 0.1);
+			border-color: rgba(254, 205, 94, 0.35);
+			color: #FECD5E;
 
 			&:hover {
-				background: rgba(247, 210, 82, 0.16);
-				border-color: rgba(247, 210, 82, 0.5);
-				color: #fde047;
+				background: rgba(254, 205, 94, 0.18);
+				border-color: rgba(254, 205, 94, 0.55);
+				color: #FFE184;
 				transform: translateY(-2px);
-				box-shadow: 0 6px 20px -4px rgba(247, 210, 82, 0.25);
+				box-shadow: 0 6px 20px -4px rgba(254, 205, 94, 0.25);
 			}
 		}
 	}

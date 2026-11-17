@@ -3,95 +3,324 @@ import { Image } from 'astro:assets';
 import BlogPostLayout from "../layouts/BlogPostLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import CallToAction from "../components/CallToAction.astro";
-import {pageTag, pageDescription,aboutTdk} from '../data/content';
+import SakiGraphicFace from "../components/saki/SakiGraphicFace.astro";
+import SakiPropElement from "../components/saki/SakiPropElement.astro";
+import { pageTag, pageDescription, aboutTdk } from '../data/content';
 import myPortrait from "../assets/portrait.jpg";
+
+const sakiElements = [
+	{
+		name: "goggles" as const,
+		title: "Explorer Goggles",
+		desc: "Melihat masalah dunia nyata secara jernih sebelum merancang arsitektur solusi."
+	},
+	{
+		name: "code-terminal" as const,
+		title: "Code & Terminal",
+		desc: "Membangun aplikasi full-stack dengan struktur kode yang bersih dan teruji."
+	},
+	{
+		name: "database" as const,
+		title: "Relational Database",
+		desc: "Merancang skema database relasional, integritas transaksi, dan data pipeline."
+	},
+	{
+		name: "ai-spark" as const,
+		title: "AI & Multi-Agent",
+		desc: "Mengorkestrasi workflow cerdas dan tool-calling berbasis LLM."
+	},
+	{
+		name: "chart" as const,
+		title: "Analytics & BI",
+		desc: "Mengolah metrik operasional menjadi insight keputusan bisnis yang terukur."
+	},
+	{
+		name: "shield" as const,
+		title: "Fallback & Security",
+		desc: "Menjaga reliabilitas sistem dengan strategi failover dan keamanan berlapis."
+	},
+	{
+		name: "books" as const,
+		title: "Continuous Study",
+		desc: "Riset literatur, dokumentasi teknis, dan pembelajaran lintas disiplin SI."
+	},
+	{
+		name: "backpack" as const,
+		title: "Field Readiness",
+		desc: "Siap terjun langsung menguji sistem di operasional bisnis nyata."
+	},
+	{
+		name: "lightbulb" as const,
+		title: "Product Innovation",
+		desc: "Mengubah kebutuhan pengguna menjadi fitur produk yang bernilai guna."
+	},
+	{
+		name: "magnifier" as const,
+		title: "Deep Research",
+		desc: "Observasi lapangan, wawancara pengguna, dan evaluasi metrik mendalam."
+	},
+	{
+		name: "coffee" as const,
+		title: "Warm Coffee",
+		desc: "Teman setia saat melakukan debugging, refactoring, dan eksplorasi ide."
+	},
+	{
+		name: "plant" as const,
+		title: "Iterative Growth",
+		desc: "Setiap proyek tumbuh melalui beberapa iterasi dari evaluasi nyata."
+	},
+];
 ---
 <BlogPostLayout
 	title={aboutTdk.title || ''}
-	description = {aboutTdk.description || ''}
-	keywords = {aboutTdk.keywords || ''}
+	description={aboutTdk.description || ''}
+	keywords={aboutTdk.keywords || ''}
 >
-
 	<div class="post">
 		<main class="post-wrapper about">
 			<SectionHeader
 				tag={pageTag.about}
-				description={pageDescription.about}>
-				 About Me
+				description={pageDescription.about}
+			>
+				About Me
 			</SectionHeader>
+
 			<section class="border-top" style="padding-top: 2rem;">
 				<div class="content">
-					<div>
-						<Image src={myPortrait} alt="Kevin Sakia Putra" width="88" height="88" class="portrait" loading="eager" decoding="async" />
+					<div class="about-identity-banner" style="display: flex; align-items: center; gap: 24px; margin-bottom: 1rem; flex-wrap: wrap;">
+						<div class="identity-visuals" style="display: flex; align-items: center; gap: 14px; flex-shrink: 0;">
+							<Image
+								src={myPortrait}
+								alt="Kevin Sakia Putra"
+								width={88}
+								height={88}
+								class="portrait"
+								loading="eager"
+								decoding="async"
+							/>
+							<div class="saki-about-mascot" style="display: inline-flex; align-items: center; justify-content: center;">
+								<SakiGraphicFace mood="hero" size={112} transparentBg hideBubble />
+							</div>
+						</div>
+						<div class="identity-intro" style="flex: 1; min-width: 260px;">
+							<p>
+								I’m an Information Systems student who enjoys turning real-world problems into practical solutions through technology.
+							</p>
+							<p>
+								My interests sit at the intersection of software development, data, business, and AI. I build systems, analyze data, experiment with automation, and run digital business projects, not just to learn the technology, but to understand how it can actually solve problems.
+							</p>
+						</div>
 					</div>
-					<p>
-						I’m an Information Systems student who enjoys turning real-world problems into practical solutions through technology.
-					</p>
-					<p>
-						My interests sit at the intersection of software development, data, business, and AI. I build systems, analyze data, experiment with automation, and run digital business projects-not just to learn the technology, but to understand how it can actually solve problems.
-					</p>
+
 					<p>
 						I enjoy working through the process from identifying a problem, exploring possible solutions, building, testing, and improving based on what I learn. Some of my projects have evolved through multiple iterations, and I see that process as an important part of learning.
 					</p>
-
 				</div>
 			</section>
-			<section>
-				<h3 class="post-title">Beyond Work & Studies</h3>
+
+			<!-- Saki Props & Elements Section -->
+			<section class="saki-elements-section border-top" style="padding-top: 2rem; margin-top: 1.5rem;">
+				<h3 class="post-title">Everyday Elements &amp; Engineering Companion (Saki)</h3>
 				<div class="content">
 					<p>
-						Outside of coding and business projects, I enjoy exploring new technologies, watching drama films, and read comics.
+						Setiap elemen pada maskot <strong>Saki</strong> merepresentasikan keseharian dan prinsip kerja saya dalam membangun produk digital:
 					</p>
-					<p>Interested in collaborating or discussing an idea? Feel free to reach out!</p>
-					<div style="display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; align-items:center;">
-						<CallToAction
-						target="_self"
-						href="mailto:contact@sakia.id"
-						>
-							Contact Me
-						</CallToAction>
-						<a 
-							href="/assets/CV_Kevin_Sakia_Putra.pdf"
-							download="CV_Kevin_Sakia_Putra.pdf"
-							class="cv-cta-btn"
-						>
-							<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-								<polyline points="7 10 12 15 17 10"/>
-								<line x1="12" y1="15" x2="12" y2="3"/>
-							</svg>
-							<span>Download CV</span>
-						</a>
+					<div class="saki-props-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 1.25rem;">
+						{sakiElements.map((item) => (
+							<div class="saki-prop-card" style="display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 14px; background: var(--farline-surface, rgba(255, 255, 255, 0.03)); border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));">
+								<div class="prop-icon-box" style="display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 12px; background: rgba(254, 247, 238, 0.06); border: 1px solid rgba(254, 205, 94, 0.2); flex-shrink: 0;">
+									<SakiPropElement name={item.name} size={40} />
+								</div>
+								<div class="prop-text">
+									<h4 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 4px;">{item.title}</h4>
+									<p style="font-size: 0.84rem; line-height: 1.45; margin: 0;">{item.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<!-- Saki Mascot Activity Poses Strip -->
+					<div class="saki-poses-strip" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 1.5rem;">
+						{[
+							{ mood: "working" as const, label: "Coding" },
+							{ mood: "database" as const, label: "Data Arch" },
+							{ mood: "ai-agent" as const, label: "AI Agent" },
+							{ mood: "champion" as const, label: "Champion" },
+							{ mood: "gardening" as const, label: "Growth" },
+							{ mood: "security" as const, label: "Security" },
+							{ mood: "deploy" as const, label: "Deploy" },
+							{ mood: "sleeping" as const, label: "Rest zZz" },
+						].map((pose) => (
+							<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px 8px; border-radius: 14px; background: var(--farline-surface, rgba(255, 255, 255, 0.03)); border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));">
+								<SakiGraphicFace mood={pose.mood} size={86} transparentBg hideBubble />
+								<span style="font-size: 0.75rem; font-weight: 600; color: var(--farline-text-secondary);">{pose.label}</span>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
-			<p></p>
-			<p></p>
+
+			<section class="border-top" style="padding-top: 2rem;">
+				<h3 class="post-title">Beyond Work &amp; Studies</h3>
+				<div class="content">
+					<div class="beyond-work-row" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+						<div class="beyond-text" style="flex: 1; min-width: 260px;">
+							<p>
+								Outside of coding and business projects, I enjoy exploring new technologies, watching drama films, and reading comics.
+							</p>
+							<p>Interested in collaborating or discussing an idea? Feel free to reach out!</p>
+							<div style="display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; align-items:center;">
+								<CallToAction
+									target="_self"
+									href="mailto:contact@sakia.id"
+								>
+									Contact Me
+								</CallToAction>
+								<a
+									href="/assets/CV_Kevin_Sakia_Putra.pdf"
+									download="CV_Kevin_Sakia_Putra.pdf"
+									class="cv-cta-btn"
+								>
+									<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+										<polyline points="7 10 12 15 17 10"/>
+										<line x1="12" y1="15" x2="12" y2="3"/>
+									</svg>
+									<span>Download CV</span>
+								</a>
+							</div>
+						</div>
+						<div class="beyond-mascots" style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 18px; background: var(--farline-surface, rgba(255, 255, 255, 0.03)); border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));">
+							<SakiGraphicFace mood="coffee" size={105} transparentBg hideBubble />
+							<SakiGraphicFace mood="music" size={105} transparentBg hideBubble />
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 	</div>
 </BlogPostLayout>
 
-<style>
+<style lang="scss">
 	.about {
 		display: flex;
 		flex-direction: column;
-		margin:0 auto;
+		margin: 0 auto;
 	}
-	p{
-		margin:0.75rem 0;
+	p {
+		margin: 0.75rem 0;
 	}
-	figure{
-		margin:2rem 0;
+	figure {
+		margin: 2rem 0;
 	}
-	img{max-width: 100%;}
-	.portrait{
+	img {
+		max-width: 100%;
+	}
+	.portrait {
 		border-radius: 100px;
-		margin:12px 0 12px;
 		overflow: hidden;
-		text-align: left;
+		border: 2px solid var(--saki-yellow, #FECD5E);
 	}
-	a, a:link{
-		color:var(--color-blue);
+	a, a:link {
+		color: var(--color-blue);
+	}
+
+	.about-identity-banner {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.identity-visuals {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		flex-shrink: 0;
+	}
+
+	.identity-intro {
+		flex: 1;
+		min-width: 260px;
+	}
+
+	.saki-elements-section {
+		padding-top: 2rem;
+		margin-top: 1.5rem;
+	}
+
+	.saki-props-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		gap: 14px;
+		margin-top: 1.25rem;
+	}
+
+	.saki-prop-card {
+		display: flex;
+		align-items: flex-start;
+		gap: 14px;
+		padding: 16px;
+		border-radius: 14px;
+		background: var(--farline-surface, rgba(255, 255, 255, 0.03));
+		border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));
+		transition: transform 0.22s ease, border-color 0.22s ease;
+
+		&:hover {
+			transform: translateY(-2px);
+			border-color: rgba(254, 205, 94, 0.4);
+		}
+
+		.prop-icon-box {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 52px;
+			height: 52px;
+			border-radius: 12px;
+			background: rgba(254, 247, 238, 0.06);
+			border: 1px solid rgba(254, 205, 94, 0.2);
+			flex-shrink: 0;
+		}
+
+		.prop-text {
+			h4 {
+				font-size: 0.95rem;
+				font-weight: 700;
+				margin: 0 0 4px;
+				color: var(--farline-text-primary);
+			}
+			p {
+				font-size: 0.84rem;
+				line-height: 1.45;
+				margin: 0;
+				color: var(--farline-text-secondary);
+			}
+		}
+	}
+
+	.beyond-work-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
+	.beyond-text {
+		flex: 1;
+		min-width: 260px;
+	}
+
+	.beyond-mascots {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 14px;
+		border-radius: 18px;
+		background: var(--farline-surface, rgba(255, 255, 255, 0.03));
+		border: 1px solid var(--farline-border, rgba(255, 255, 255, 0.08));
 	}
 
 	.cv-cta-btn {
@@ -102,19 +331,19 @@ import myPortrait from "../assets/portrait.jpg";
 		padding: 1.125em 2em;
 		font-size: var(--text-sm);
 		font-weight: 600;
-		color: var(--color-100) !important;
-		background: rgba(var(--color-100-rgb), 0.04);
-		border: 1px solid var(--color-700);
+		color: var(--saki-yellow, #FECD5E) !important;
+		background: rgba(254, 205, 94, 0.08);
+		border: 1px solid rgba(254, 205, 94, 0.35);
 		border-radius: 36px;
 		text-decoration: none;
 		min-width: 144px;
 		transition: all 0.25s ease;
 
 		&:hover {
-			background: rgba(var(--color-100-rgb), 0.08);
-			border-color: var(--color-400);
+			background: rgba(254, 205, 94, 0.16);
+			border-color: rgba(254, 205, 94, 0.65);
 			transform: translateY(-2px);
-			color: #fff !important;
+			color: #FFE184 !important;
 		}
 	}
 </style>

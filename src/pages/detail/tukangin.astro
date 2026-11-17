@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import DetailPostLayout from "../../layouts/DetailPostLayout.astro";
 import TechSpecPlate from "../../components/farline/TechSpecPlate.astro";
+import SakiPropElement from "../../components/saki/SakiPropElement.astro";
 
 import imgCover from "../../assets/projects/tukangin/tukangin-cover.png";
 import imgHome from "../../assets/projects/tukangin/home.png";
@@ -48,7 +49,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 				<div class="content">
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/bezier.png" alt="Architecture Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="laptop" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Arsitektur Tahap Awal & Fokus Rekayasa Sistem</h3>
 								<span class="tech-pill pg">Laravel MVC • Relational Schemas • Matching Logic</span>
@@ -78,7 +79,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- Module 1: Catalog & Home Experience -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/coffee-cup.png" alt="Home Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="magnifier" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Katalog Layanan & Penemuan Cepat (Quick Discovery)</h3>
 								<span class="tech-pill">Module: Customer Portal</span>
@@ -106,7 +107,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- Module 2: Service Directory & Scope Detail -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Service Catalog Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="books" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Direktori Jasa Terstruktur & Standardisasi Lingkup Kerja</h3>
 								<span class="tech-pill">Module: Service Directory</span>
@@ -134,7 +135,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- Module 3: Partner Verification & Directory Filter -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/compass.png" alt="Technician Directory Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="goggles" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Direktori Mitra Teknisi & Verifikasi Portofolio</h3>
 								<span class="tech-pill">Module: Partner Verification</span>
@@ -162,7 +163,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- Module 4: Order Lifecycle & Account Control -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/rocket.png" alt="Profile Management Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="backpack" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Manajemen Akun & Siklus Transaksi Pesanan</h3>
 								<span class="tech-pill">Module: Booking Lifecycle</span>
@@ -190,7 +191,7 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- Engineering Deep-Dive: Optimization & Matching -->
 					<div class="iteration-card border-bottom">
 						<div class="iteration-header">
-							<img src="/assets/effects/3dicons/hourglass.png" alt="Engineering Deep-Dive Icon" width="32" height="32" class="icon-3d-direct" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="chart" size={28} /></span>
 							<div class="iteration-title-group">
 								<h3 class="post-title">Evaluasi Teknis, Bottleneck & Solusi Optimasi</h3>
 								<span class="tech-pill">Performance & Algorithm Audit</span>
@@ -220,35 +221,35 @@ import imgProfile from "../../assets/projects/tukangin/profile.png";
 					<!-- What I Learned -->
 					<div class="lessons-section">
 						<div class="lessons-header">
-							<img src="/assets/effects/3dicons/lamp.png" alt="Learnings Icon" width="38" height="38" class="icon-3d-title" loading="lazy" />
+							<span class="saki-prop-badge"><SakiPropElement name="lightbulb" size={30} /></span>
 							<h3 class="post-title">What I Learned</h3>
 						</div>
 						<p>Pelajaran fundamental dari pengembangan dan evaluasi platform Tukang.in:</p>
 						<div class="lessons-grid">
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/bezier.png" alt="Framework Laravel Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="laptop" size={24} />
 									<span class="lesson-ver">Pengembangan Website Tahap Awal (Laravel)</span>
 								</div>
 								<p>Memahami ekosistem Laravel secara mendalam: pola MVC, arsitektur routing, manajemen state form, dan kemudahan scaffolding monolitik untuk memvalidasi ide produk secara cepat ke pengguna nyata.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/hourglass.png" alt="Optimasi Performa Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="chart" size={24} />
 									<span class="lesson-ver">Kebutuhan Optimasi Performa Website</span>
 								</div>
 								<p>Menyadari bahwa kecepatan muat halaman berbanding lurus dengan konversi pengguna. Mempelajari pentingnya kompresi aset gambar, caching layer, serta pencegahan query ORM yang boros sumber daya server.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/image.png" alt="Database Tahap Awal Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="books" size={24} />
 									<span class="lesson-ver">Desain Database Tahap Awal</span>
 								</div>
 								<p>Pelajaran penting dalam merancang skema relasional sejak hari pertama: normalisasi kunci asing, penerapan indexing yang tepat, dan mitigasi redundansi data agar struktur siap diskalakan tanpa refactor masif.</p>
 							</div>
 							<div class="lesson-card">
 								<div class="lesson-top">
-									<img src="/assets/effects/3dicons/compass.png" alt="Rekomendasi Matching Icon" width="26" height="26" class="icon-3d-mini" loading="lazy" />
+									<SakiPropElement name="magnifier" size={24} />
 									<span class="lesson-ver">Matching Rekomendasi (Lokasi & Jam)</span>
 								</div>
 								<p>Mengonseptualisasikan logika pencocokan riil di dunia nyata: menyelaraskan parameter geografis, estimasi jarak tempuh, dan jendela waktu ketersediaan teknisi demi menciptakan pengalaman pemesanan yang reliabel.</p>
