@@ -1,277 +1,1410 @@
 ---
-import CallToAction from "../CallToAction.astro";
-import SakiGraphicFace from "../saki/SakiGraphicFace.astro";
+import { Image } from "astro:assets";
+import SakiLaptopHero from "../saki/SakiLaptopHero.astro";
+import SakiPeekingMascot from "../saki/SakiPeekingMascot.astro";
 import SakiPropElement from "../saki/SakiPropElement.astro";
 import { PROJECT_SAKI_MAP, type SakiGraphicMood, type SakiPropName } from "../saki/sakiMoods";
 
+// Import all project gallery slides for the interactive Browser Mockup Carousel
+import bkCover from "../../assets/projects/bookkeeping/cover.png";
+import bkStart from "../../assets/projects/bookkeeping/start.png";
+import bkV1 from "../../assets/projects/bookkeeping/v1.png";
+import bkV2 from "../../assets/projects/bookkeeping/v2.png";
+import bkV3 from "../../assets/projects/bookkeeping/v3.png";
+
+import buCover from "../../assets/projects/bridgeu/bridgeu-cover.png";
+import buCollab from "../../assets/projects/bridgeu/collaborate.png";
+import buTracker from "../../assets/projects/bridgeu/portfolio-tracker.png";
+import buProfile from "../../assets/projects/bridgeu/profile.png";
+import buCert from "../../assets/projects/bridgeu/e_certificate.jpg";
+
+import dtCover from "../../assets/projects/dapurtwin/cover-dapurtwin.png";
+import dtOverview from "../../assets/projects/dapurtwin/overview.png";
+import dtResep from "../../assets/projects/dapurtwin/menu_resep.png";
+import dtPesanan from "../../assets/projects/dapurtwin/proses_pesanan.png";
+import dtBahan from "../../assets/projects/dapurtwin/kondisi_bahan.png";
+import dtLaporan from "../../assets/projects/dapurtwin/laporan.png";
+
+import tkCover from "../../assets/projects/tukangin/tukangin-cover.png";
+import tkHome from "../../assets/projects/tukangin/home.png";
+import tkLayanan from "../../assets/projects/tukangin/layanan.png";
+import tkTeknisi from "../../assets/projects/tukangin/teknisi.png";
+import tkProfile from "../../assets/projects/tukangin/profile.png";
+
+import spCover from "../../assets/projects/suparta/suparta-cover.webp";
+import spHome from "../../assets/projects/suparta/home.webp";
+import spProject from "../../assets/projects/suparta/project.webp";
+import spStory from "../../assets/projects/suparta/story.webp";
+
+import ssCover from "../../assets/projects/studentsupport/studsop-cover.webp";
+import ssHome from "../../assets/projects/studentsupport/home.webp";
+import ssSection from "../../assets/projects/studentsupport/home-section.webp";
+import ssFooter from "../../assets/projects/studentsupport/footer.webp";
+
+import flStart from "../../assets/projects/penerbangan/start.webp";
+import flPredict from "../../assets/projects/penerbangan/predict.webp";
+
+import isCover from "../../assets/projects/isfest/cover.webp";
+import isHome from "../../assets/projects/isfest/home.webp";
+import isArena from "../../assets/projects/isfest/arena.webp";
+import isLogin from "../../assets/projects/isfest/login.webp";
+
+import n8nCover from "../../assets/projects/n8n-orchestra/orchestra.webp";
+import n8nCanvas from "../../assets/projects/n8n-orchestra/n8n-image.webp";
+import n8nBi from "../../assets/projects/n8n-orchestra/workflow-bi.webp";
+import n8nSocial from "../../assets/projects/n8n-orchestra/workflow-social-media.webp";
+import n8nMkt from "../../assets/projects/n8n-orchestra/workflow-marketing.webp";
+import n8nContent from "../../assets/projects/n8n-orchestra/workflow-content-idea.webp";
+import n8nLib from "../../assets/projects/n8n-orchestra/workflow-library.webp";
+
 interface SpecItem {
-	label: string;
-	value: string;
-	highlight?: boolean;
+  label: string;
+  value: string;
+  highlight?: boolean;
 }
 
 interface Props {
-	title: string;
-	subtitle?: string;
-	tag: string;
-	awardText?: string;
-	awardIcon?: string;
-	sakiMood?: SakiGraphicMood;
-	sakiProp?: SakiPropName;
-	specs?: SpecItem[];
-	demoUrl?: string;
-	githubUrl?: string;
-	videoUrl?: string;
-	videoLabel?: string;
-	backUrl?: string;
+  title: string;
+  subtitle?: string;
+  tag: string;
+  awardText?: string;
+  awardIcon?: string;
+  sakiMood?: SakiGraphicMood;
+  sakiProp?: SakiPropName;
+  specs?: SpecItem[];
+  demoUrl?: string;
+  githubUrl?: string;
+  videoUrl?: string;
+  videoLabel?: string;
+  backUrl?: string;
 }
 
+interface SlideItem {
+  img: ImageMetadata;
+  caption: string;
+}
+
+interface ProjectMetaConfig {
+  subtitle: string;
+  overviewText: string;
+  role: string;
+  techStack: string[];
+  duration: string;
+  team: string;
+  slides: SlideItem[];
+}
+
+const PROJECT_DETAIL_CONFIG: Record<string, ProjectMetaConfig> = {
+  bookkeeping: {
+    subtitle: "Transactions, Inventory & Multi-Level Accounts",
+    overviewText:
+      "A web-based bookkeeping and financial management system engineered across four architectural iterations to record transactions, manage inventory, and generate multi-level financial reports accurately.",
+    role: "Full-Stack & Data Architect",
+    techStack: ["Next.js", "PostgreSQL", "Firebase", "Excel"],
+    duration: "4-Stage Evolution (Excel → V3)",
+    team: "Solo Engineering Project",
+    slides: [
+      { img: bkCover, caption: "Bookkeeping & Financial System — Multi-Level Accounts Overview" },
+      { img: bkV3, caption: "V3 Architecture — PostgreSQL Relational Schema & Drill-Down Reports" },
+      { img: bkV2, caption: "V2 Iteration — Connected Financial Workflow & Query Analysis" },
+      { img: bkV1, caption: "V1 Foundation — Initial Next.js & Firebase Bookkeeping UI" },
+      { img: bkStart, caption: "Starting Point — Microsoft Excel Transaction Ledger" },
+    ],
+  },
+  bridgeu: {
+    subtitle: "Academic Collaboration & Automated Verified Portfolios",
+    overviewText:
+      "An award-winning university and industry collaboration platform enabling students to discover verified company case studies via weighted recommendations and automatically compile authenticated portfolios.",
+    role: "Backend, DB & Algorithm Lead",
+    techStack: ["Next.js", "Supabase", "PostgreSQL"],
+    duration: "UBM Inspire 1.0 Competition",
+    team: "Team Project (Juara 2 🏆)",
+    slides: [
+      { img: buCover, caption: "BridgeU — University & Industry Collaboration Platform" },
+      { img: buCollab, caption: "Verified Companies & Weighted Opportunity Recommendation Engine" },
+      { img: buTracker, caption: "Automated Track Record & Verified Portfolio Generation" },
+      { img: buProfile, caption: "Student Profile & Gamified Achievement Badges" },
+      { img: buCert, caption: "2nd Place Winner (Juara 2) — UBM Inspire 1.0 Certificate" },
+    ],
+  },
+  dapurtwin: {
+    subtitle: "Smart Recipe BOM, Dynamic HPP & Real-Time Kitchen Display System",
+    overviewText:
+      "A full-stack F&B operational and POS SaaS bridging table QR ordering with atomic kitchen inventory deduction, unit-normalized Recipe BOM, real-time KDS, and automated HPP margin tracking.",
+    role: "System & BOM Engine Architect",
+    techStack: ["Next.js", "Supabase", "PostgreSQL", "AI OCR"],
+    duration: "Fullstack F&B POS & KDS SaaS",
+    team: "Tim Lotus Biru (3 Members)",
+    slides: [
+      { img: dtCover, caption: "DapurTwin — Fullstack F&B Operational & POS SaaS" },
+      { img: dtOverview, caption: "Operational Command Center & Ingredient Readiness Radar" },
+      { img: dtResep, caption: "Smart Recipe BOM & Dynamic HPP Gross Margin Calculator" },
+      { img: dtPesanan, caption: "Kitchen Display System (KDS) & Live Recipe Stock Check" },
+      { img: dtBahan, caption: "Freshness & Shelf-Life FIFO Inventory Condition Tracker" },
+      { img: dtLaporan, caption: "Interactive Financial Analytics & Catering Business Simulation" },
+    ],
+  },
+  tukangin: {
+    subtitle: "Early-Stage Laravel Monolith, Relational Database & Heuristic Matching",
+    overviewText:
+      "An on-demand home service and technician marketplace built on Laravel MVC and MySQL, exploring relational schema design, N+1 query optimization, and location-plus-schedule matching heuristics.",
+    role: "Full-Stack Laravel Developer",
+    techStack: ["Laravel", "PHP", "MySQL", "Blade"],
+    duration: "Monolith MVC & Query Audit",
+    team: "Team Engineering Project",
+    slides: [
+      { img: tkCover, caption: "Tukang.in — On-Demand Home Service & Technician Marketplace" },
+      { img: tkHome, caption: "Customer Portal & Quick Service Category Discovery" },
+      { img: tkLayanan, caption: "Structured Service Directory & Standardized Work Scope" },
+      { img: tkTeknisi, caption: "Verified Technician Partner Directory & Filtering" },
+      { img: tkProfile, caption: "Customer Booking Lifecycle & Account Management" },
+    ],
+  },
+  suparta: {
+    subtitle: "Official Brand Platform, Bilingual Architecture & High-Ticket Sales Conversion",
+    overviewText:
+      "A luxury brand platform and bilingual sales enablement system for SUPARTA automated mahjong tables, combining heritage storytelling, transparent hardware specs, and direct showroom conversion flows.",
+    role: "Brand & Web Platform Developer",
+    techStack: ["Next.js", "i18n Routing", "Tailwind"],
+    duration: "Bilingual Brand & Sales System",
+    team: "Brand Production Project",
+    slides: [
+      { img: spCover, caption: "SUPARTA — Luxury Automated Table & Smart Furniture Platform" },
+      { img: spHome, caption: "Brand Building: Merging Cultural Heritage & Ultra-Silent Engineering" },
+      { img: spProject, caption: "The Heritage Series Product Catalog & Transparent Hardware Specs" },
+      { img: spStory, caption: "Sales Enablement: Digital Manual Library & Official Warranty Hub" },
+    ],
+  },
+  studentsupport: {
+    subtitle: "Fundamental Web Development, Early Database Modeling & Counseling Validation",
+    overviewText:
+      "My first web and database engineering project built from the ground up using semantic HTML5, CSS3, and JavaScript, validated through direct interviews with UMN Student Support counselors.",
+    role: "Web Developer & User Researcher",
+    techStack: ["HTML5", "CSS3", "JavaScript", "Relational DB"],
+    duration: "First Codebase & Field Research",
+    team: "University Foundation Project",
+    slides: [
+      { img: ssCover, caption: "Student Support UMN — Campus Mental Health & Accessibility Hub" },
+      { img: ssHome, caption: "Inclusive Service Directory & Campus Accessibility Routes" },
+      { img: ssSection, caption: "Verified Counselor Directory & Confidential Booking Flow" },
+      { img: ssFooter, caption: "Emergency Crisis Channels & Student Request Status Tracker" },
+    ],
+  },
+  penerbangan: {
+    subtitle: "Big Data Processing, Advanced Feature Engineering & Streamlit Deployment",
+    overviewText:
+      "An end-to-end machine learning pipeline following the 6-stage CRISP-DM methodology on a 1.3 GB commercial flight dataset to predict departure delays using XGBoost and Streamlit.",
+    role: "Data Analyst & ML Engineer",
+    techStack: ["Python", "XGBoost", "Pandas", "Streamlit"],
+    duration: "CRISP-DM Pipeline (1.3 GB Data)",
+    team: "Data Analytics Project",
+    slides: [
+      { img: flStart, caption: "Streamlit Pre-Flight Parameter Configuration & Feature Pipeline" },
+      { img: flPredict, caption: "XGBoost Delay Probability Inference & Operational Risk Breakdown" },
+    ],
+  },
+  isfest: {
+    subtitle: "Event Operations Platform, Graceful Fallback Mechanisms & Backblaze B2 Security",
+    overviewText:
+      "Production backend and interface engineering for ISFEST UMN 2026, implementing graceful API failover mechanisms, private Backblaze B2 object storage with pre-signed URLs, and cross-division workflows.",
+    role: "Backend Engineer & UI/UX Guard",
+    techStack: ["Backend API", "Backblaze B2", "S3 Protocol"],
+    duration: "University Festival Production",
+    team: "HIMSI UMN (ISFEST 2026)",
+    slides: [
+      { img: isCover, caption: "ISFEST UMN 2026 — The Grand Wizarding Conquest Platform" },
+      { img: isHome, caption: "Event Landing Page & Graceful Degradation Registration Flow" },
+      { img: isArena, caption: "Competition Arena & Private Backblaze B2 Document Isolation" },
+      { img: isLogin, caption: "Participant Authentication & Cross-Division Verification Status" },
+    ],
+  },
+  "n8n-orchestra": {
+    subtitle: "Unified LangChain Agent in n8n Consolidating Fragmented Bots into Tool Calling",
+    overviewText:
+      "A unified multi-agent business assistant in n8n and LangChain that consolidates 5 specialized business workflows (Supabase BI, Social Analytics, Marketing Events, Content Strategy, and Script Library) into one Telegram interface.",
+    role: "AI Automation & Workflow Architect",
+    techStack: ["n8n", "LangChain", "Supabase", "Telegram"],
+    duration: "Main Orchestrator + 5 Sub-Agents",
+    team: "Internal Business AI System",
+    slides: [
+      { img: n8nCover, caption: "Telegram AI Orchestrator — Unified Multi-Agent Architecture" },
+      { img: n8nCanvas, caption: "Full n8n Orchestrator Canvas with Window Memory & HTML Parser" },
+      { img: n8nBi, caption: "Tool 1: BI_Supabase Operational & Financial Database Query" },
+      { img: n8nSocial, caption: "Tool 2: Multi-Platform Social Media Video Performance Analytics" },
+      { img: n8nMkt, caption: "Tool 3: Marketing Events Campaign Timeline Manager" },
+      { img: n8nContent, caption: "Tool 4: Content Strategy & Short-Form Video Hook Writer" },
+      { img: n8nLib, caption: "Tool 5: Script Library Validator with Two-Phase Confirmation" },
+    ],
+  },
+};
+
 const {
-	title,
-	subtitle,
-	tag,
-	sakiMood,
-	sakiProp,
-	specs,
-	demoUrl,
-	githubUrl,
-	videoUrl,
-	videoLabel = "Motion Graphic ↗",
-	backUrl = "/#work-hero"
+  title,
+  subtitle: propSubtitle,
+  tag,
+  sakiProp,
+  demoUrl,
+  githubUrl,
+  videoUrl,
+  videoLabel = "Watch Video",
 } = Astro.props;
 
-// Automatically resolve Saki mood & prop from URL path or title
-const pathSlug = Astro.url.pathname.split("/").filter(Boolean).pop() || "";
-const mapped = PROJECT_SAKI_MAP[pathSlug];
-const resolvedMood: SakiGraphicMood = sakiMood || mapped?.mood || "working";
-const resolvedProp: SakiPropName = sakiProp || mapped?.prop || "laptop";
+const pathSlug = Astro.url.pathname.split("/").filter(Boolean).pop() || "bookkeeping";
+const mapped = PROJECT_SAKI_MAP[pathSlug] || PROJECT_SAKI_MAP.bookkeeping;
+const meta = PROJECT_DETAIL_CONFIG[pathSlug] || PROJECT_DETAIL_CONFIG.bookkeeping;
+
+const resolvedProp: SakiPropName = sakiProp || mapped.prop;
+const resolvedSubtitle = propSubtitle || meta.subtitle;
 ---
 
-<header class="tech-spec-plate">
-	<!-- Top Navigation Breadcrumb -->
-	<div class="plate-top-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
-		<a href={backUrl} class="back-link fl-mono">
-			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<path d="M19 12H5M12 19l-7-7 7-7"/>
-			</svg>
-			<span>Back to Works</span>
-		</a>
-		<div class="plate-tag-badge fl-mono" style="display: inline-flex; align-items: center; gap: 7px;">
-			<SakiPropElement name={resolvedProp} size={18} />
-			<span>{tag}</span>
-		</div>
-	</div>
+<header class="saki-detail-hero-plate" data-project-slug={pathSlug}>
+  <!-- =========================================================================
+      1. TOP HEADER: BACK TO PROJECTS, FOLDER TAG, TITLE, SAKI LAPTOP & BUTTONS
+      ========================================================================= -->
+  <div class="detail-top-grid">
+    <!-- Kolom Kiri + Tengah (8 Kolom, sejajar dengan Browser Mockup Container) -->
+    <div class="detail-top-left">
+      <div class="detail-title-stack">
+        <div>
+          <a href="/#projects-section" class="btn-back-projects">
+            <span>←</span>
+            <span>Back to Projects</span>
+          </a>
+        </div>
 
-	<!-- Main Title & Saki Contextual Companion -->
-	<div class="plate-hero-row" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 2rem; flex-wrap: wrap;">
-		<div class="plate-title-group" style="flex: 1; min-width: 260px;">
-			<h1 class="plate-main-title">{title}</h1>
-			{subtitle && <p class="plate-subtitle">{subtitle}</p>}
-		</div>
-		<div class="plate-saki-companion" title={`Saki • ${resolvedMood}`} style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 20px; background: rgba(254, 247, 238, 0.04); border: 1px solid var(--farline-border);">
-			<SakiGraphicFace mood={resolvedMood} size={96} transparentBg hideBubble />
-		</div>
-	</div>
+        <!-- Folder Icon + SakiPropElement + Category Tag + Garis Kuning -->
+        <div class="detail-kicker-row">
+          <svg class="folder-kicker-icon" viewBox="0 0 20 20" fill="#F5C242">
+            <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+          </svg>
+          <span class="detail-prop-mini">
+            <SakiPropElement name={resolvedProp} size={18} />
+          </span>
+          <span class="detail-kicker-text">{tag}</span>
+          <span class="detail-kicker-bar"></span>
+        </div>
 
-	<!-- Farline-Inspired Technical Specifications Grid -->
-	{specs && specs.length > 0 && (
-		<div class="plate-specs-grid">
-			{specs.map((item, idx) => (
-				<div class="spec-cell">
-					<div class="spec-cell-header fl-mono">
-						<span class="spec-index">0{idx + 1}</span>
-						<span class="spec-label">{item.label}</span>
-					</div>
-					<div class:list={["spec-cell-value", { "is-highlight": item.highlight }]}>
-						{item.value}
-					</div>
-				</div>
-			))}
-		</div>
-	)}
+        <!-- Judul Utama & Subjudul -->
+        <h1 class="detail-main-title">{title}</h1>
+        <p class="detail-main-subtitle">{resolvedSubtitle}</p>
+      </div>
 
-	<!-- Quick Action Links -->
-	{(demoUrl || githubUrl || videoUrl) && (
-		<div class="plate-actions-bar">
-			{demoUrl && (
-				<CallToAction href={demoUrl} target="_blank">
-					Live Demo ↗
-				</CallToAction>
-			)}
-			{githubUrl && (
-				<CallToAction href={githubUrl} target="_blank">
-					GitHub Repo ↗
-				</CallToAction>
-			)}
-			{videoUrl && (
-				<CallToAction href={videoUrl} target="_blank">
-					{videoLabel}
-				</CallToAction>
-			)}
-		</div>
-	)}
+      <!-- Maskot Saki dengan Laptop Bersandar di Tepi Atas Mockup Container -->
+      <div class="detail-saki-laptop-slot">
+        <SakiLaptopHero width="100%" height="100%" />
+      </div>
+    </div>
+
+    <!-- Kolom Kanan: Tombol Live Demo, View Source, atau Video (4 Kolom) -->
+    <div class="detail-top-right">
+      {demoUrl && (
+        <div class="demo-btn-wrapper">
+          <svg class="demo-rays-svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M 10 14 C 9 11, 11 8, 14 9 C 16 10, 16 13, 15 16 L 13 21 C 12 23, 10 23, 9 21 Z" fill="#FDD365" />
+            <path d="M 20 18 C 20 16, 23 15, 25 16 C 27 17, 26 20, 24 22 L 19 25 C 17 26, 16 24, 17 22 Z" fill="#FDD365" />
+          </svg>
+          <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="btn-detail-action btn-action-yellow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6m0 0v6m0-6L10 14" />
+            </svg>
+            <span>Live Demo</span>
+            <span>↗</span>
+          </a>
+        </div>
+      )}
+
+      {githubUrl && (
+        <div class="source-btn-wrapper">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="btn-detail-action btn-action-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            <span>View Source</span>
+            <span>↗</span>
+          </a>
+        </div>
+      )}
+
+      {videoUrl && (
+        <div class="source-btn-wrapper">
+          <a href={videoUrl} target="_blank" rel="noopener noreferrer" class="btn-detail-action btn-action-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
+            </svg>
+            <span>{videoLabel.replace("↗", "").trim()}</span>
+            <span>↗</span>
+          </a>
+        </div>
+      )}
+
+      {!demoUrl && !githubUrl && !videoUrl && (
+        <div class="demo-btn-wrapper">
+          <a href="#case-study-tabs" class="btn-detail-action btn-action-yellow">
+            <span>Read Case Study</span>
+            <span>↓</span>
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- =========================================================================
+      2. 2-COLUMN BENTO SHOWCASE: BROWSER MOCKUP CAROUSEL (KIRI) & OVERVIEW (KANAN)
+      ========================================================================= -->
+  <div class="bento-showcase-grid">
+    <!-- KOLOM KIRI: CONTAINER MOCKUP DENGAN SLIDER INTERAKTIF (8 Kolom) -->
+    <div class="bento-mockup-container" id="detail-mockup-carousel">
+      {meta.slides.length > 1 && (
+        <>
+          <button type="button" class="mockup-nav-btn mockup-prev" id="mockup-prev-btn" aria-label="Previous screenshot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button type="button" class="mockup-nav-btn mockup-next" id="mockup-next-btn" aria-label="Next screenshot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )}
+
+      <!-- Frame Jendela Browser Putih -->
+      <div class="browser-window-frame">
+        <div class="browser-top-bar">
+          <div class="traffic-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="browser-caption-bar" id="mockup-active-caption">
+            {meta.slides[0].caption}
+          </div>
+          <div class="browser-slide-counter" id="mockup-slide-counter">
+            1 / {meta.slides.length}
+          </div>
+        </div>
+
+        <div class="browser-viewport">
+          {meta.slides.map((slide, idx) => (
+            <div
+              class={`mockup-slide-item ${idx === 0 ? "is-active" : ""}`}
+              data-slide-idx={idx}
+              data-slide-caption={slide.caption}
+            >
+              <Image
+                src={slide.img}
+                alt={slide.caption}
+                width={1100}
+                height={680}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
+                class="mockup-slide-img"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Indikator Titik Carousel di Bawah Layar -->
+      <div class="mockup-dots-row" id="mockup-dots-row">
+        {meta.slides.map((slide, idx) => (
+          <button
+            type="button"
+            class={`mockup-dot ${idx === 0 ? "is-active" : ""}`}
+            data-target-slide={idx}
+            aria-label={`View screenshot ${idx + 1}: ${slide.caption}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- KOLOM KANAN: KARTU PROJECT OVERVIEW & METADATA (4 Kolom) -->
+    <aside class="bento-overview-card">
+      <div class="overview-card-top">
+        <div class="overview-card-header">
+          <span class="info-circle-badge">i</span>
+          <h2 class="overview-card-title">Project Overview</h2>
+        </div>
+        <p class="overview-card-desc">{meta.overviewText}</p>
+      </div>
+
+      <div class="overview-divider"></div>
+
+      <!-- 4 Baris Metadata Proyek (My Role, Tech Stack, Architecture/Scope, Team) -->
+      <div class="overview-meta-list">
+        <!-- Row 1: My Role -->
+        <div class="meta-row">
+          <div class="meta-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+              <circle cx="12" cy="8" r="4" />
+              <path stroke-linecap="round" d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
+            </svg>
+            <span>My Role</span>
+          </div>
+          <span class="meta-pill pill-role">{meta.role}</span>
+        </div>
+
+        <!-- Row 2: Tech Stack -->
+        <div class="meta-row">
+          <div class="meta-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Tech Stack</span>
+          </div>
+          <div class="meta-tech-list">
+            {meta.techStack.map((t) => (
+              <span class="tech-chip-pill">
+                <span class="tech-dot"></span>
+                <span>{t}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Row 3: Scope / Architecture -->
+        <div class="meta-row">
+          <div class="meta-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+              <rect x="3" y="4" width="18" height="17" rx="2" />
+              <path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            <span>Scope</span>
+          </div>
+          <span class="meta-pill pill-neutral">{meta.duration}</span>
+        </div>
+
+        <!-- Row 4: Team -->
+        <div class="meta-row">
+          <div class="meta-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+              <circle cx="9" cy="8" r="3.5" />
+              <path stroke-linecap="round" d="M3 19c0-3 2.7-5 6-5s6 2 6 5" />
+              <circle cx="17" cy="9" r="2.5" />
+              <path stroke-linecap="round" d="M17 14c2.5 0 4.5 1.5 4.5 4" />
+            </svg>
+            <span>Team</span>
+          </div>
+          <span class="meta-pill pill-neutral">{meta.team}</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- =========================================================================
+      3. TABS NAVIGATION BAR (Overview, Process, Features, Gallery, Takeaways)
+      ========================================================================= -->
+  <div class="detail-tabs-bar" id="case-study-tabs">
+    <div class="tabs-buttons-row" role="tablist" aria-label="Case Study Sections">
+      <button type="button" class="detail-tab-btn is-active" data-detail-tab="overview" role="tab" aria-selected="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+        <span>Overview</span>
+      </button>
+
+      <button type="button" class="detail-tab-btn" data-detail-tab="process" role="tab" aria-selected="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="18" cy="18" r="3" />
+          <path stroke-linecap="round" d="M9 6h6a3 3 0 013 3v0a3 3 0 01-3 3H9a3 3 0 00-3 3v0a3 3 0 003 3h6" />
+        </svg>
+        <span>Process &amp; Architecture</span>
+      </button>
+
+      <button type="button" class="detail-tab-btn" data-detail-tab="features" role="tab" aria-selected="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.9 3.8L18 8.7l-3 2.9.7 4.1-3.7-1.9-3.7 1.9.7-4.1-3-2.9 4.1-1.9L12 3z" />
+        </svg>
+        <span>Modules &amp; Features</span>
+      </button>
+
+      <button type="button" class="detail-tab-btn" data-detail-tab="gallery" role="tab" aria-selected="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <circle cx="8.5" cy="9.5" r="1.5" />
+          <path d="M21 15l-5-5L5 20" />
+        </svg>
+        <span>Gallery ({meta.slides.length})</span>
+      </button>
+
+      <button type="button" class="detail-tab-btn" data-detail-tab="takeaways" role="tab" aria-selected="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="4" width="16" height="16" rx="2" />
+          <path stroke-linecap="round" d="M9 9h6M9 13h6M9 17h4" />
+        </svg>
+        <span>Takeaways</span>
+      </button>
+    </div>
+    <div class="tabs-active-highlight"></div>
+  </div>
+
+  <!-- =========================================================================
+      4. LOWER INTRO ROW: PROJECT OVERVIEW HEADING (KIRI) & SAKI PEEKING (KANAN)
+      ========================================================================= -->
+  <div class="detail-lower-intro-grid" id="detail-overview-banner">
+    <div class="lower-intro-left">
+      <div class="bullseye-heading-row">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1B24" stroke-width="2.1">
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="5" />
+          <circle cx="12" cy="12" r="1.5" fill="#1E1B24" />
+          <path stroke-linecap="round" d="M16 8l4-4m0 0h-3m3 0v3" />
+        </svg>
+        <h3 class="lower-intro-title">Project Overview &amp; Case Study</h3>
+      </div>
+      <p class="lower-intro-sub">
+        {mapped.caption} — Explore the architectural decisions, modules, and engineering takeaways below.
+      </p>
+    </div>
+
+    <div class="lower-intro-right">
+      <div class="saki-peeking-banner-card">
+        <div class="peeking-mascot-slot">
+          <SakiPeekingMascot width={165} height={114} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Gallery Drawer (Muncul saat Tab Gallery dipilih) -->
+  <div class="detail-gallery-panel is-hidden" id="detail-gallery-panel">
+    <div class="gallery-grid">
+      {meta.slides.map((slide, idx) => (
+        <button
+          type="button"
+          class="gallery-thumb-card"
+          data-jump-slide={idx}
+        >
+          <div class="gallery-thumb-img-box">
+            <Image
+              src={slide.img}
+              alt={slide.caption}
+              width={520}
+              height={320}
+              loading="lazy"
+              decoding="async"
+              class="gallery-thumb-img"
+            />
+          </div>
+          <div class="gallery-thumb-caption">
+            <span class="gallery-thumb-num">0{idx + 1}</span>
+            <span>{slide.caption}</span>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
 </header>
 
+<script>
+  function initSakiDetailPlate() {
+    const slides = document.querySelectorAll<HTMLElement>(".mockup-slide-item");
+    const dots = document.querySelectorAll<HTMLButtonElement>(".mockup-dot");
+    const captionEl = document.getElementById("mockup-active-caption");
+    const counterEl = document.getElementById("mockup-slide-counter");
+    const prevBtn = document.getElementById("mockup-prev-btn");
+    const nextBtn = document.getElementById("mockup-next-btn");
+    const thumbCards = document.querySelectorAll<HTMLButtonElement>("[data-jump-slide]");
+
+    let currentIdx = 0;
+    const total = slides.length;
+
+    function showSlide(index: number) {
+      if (total === 0) return;
+      currentIdx = (index + total) % total;
+      slides.forEach((s, i) => {
+        s.classList.toggle("is-active", i === currentIdx);
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle("is-active", i === currentIdx);
+      });
+      const activeSlide = slides[currentIdx];
+      if (captionEl && activeSlide) {
+        captionEl.textContent = activeSlide.dataset.slideCaption || "";
+      }
+      if (counterEl) {
+        counterEl.textContent = `${currentIdx + 1} / ${total}`;
+      }
+    }
+
+    prevBtn?.addEventListener("click", () => showSlide(currentIdx - 1));
+    nextBtn?.addEventListener("click", () => showSlide(currentIdx + 1));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const target = Number(dot.dataset.targetSlide || 0);
+        showSlide(target);
+      });
+    });
+
+    thumbCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const target = Number(card.dataset.jumpSlide || 0);
+        showSlide(target);
+        document.getElementById("detail-mockup-carousel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+
+    // Interactive Tabs Filtering
+    const tabBtns = document.querySelectorAll<HTMLButtonElement>("[data-detail-tab]");
+    const overviewSec = document.querySelector<HTMLElement>(".overview-section");
+    const iterationCards = document.querySelectorAll<HTMLElement>(".iteration-card");
+    const lessonsSections = document.querySelectorAll<HTMLElement>(".lessons-section");
+    const galleryPanel = document.getElementById("detail-gallery-panel");
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tab = btn.dataset.detailTab || "overview";
+        tabBtns.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        // Reset visibility
+        if (galleryPanel) {
+          galleryPanel.classList.toggle("is-hidden", tab !== "gallery");
+        }
+
+        if (tab === "overview") {
+          if (overviewSec) overviewSec.style.display = "";
+          iterationCards.forEach((c) => (c.style.display = ""));
+          lessonsSections.forEach((l) => (l.style.display = ""));
+        } else if (tab === "process") {
+          if (overviewSec) overviewSec.style.display = "none";
+          iterationCards.forEach((c, idx) => {
+            const isProcessCard =
+              iterationCards.length <= 2 ||
+              idx === 0 ||
+              idx === iterationCards.length - 1;
+            c.style.display = isProcessCard ? "" : "none";
+          });
+          lessonsSections.forEach((l) => (l.style.display = "none"));
+        } else if (tab === "features") {
+          if (overviewSec) overviewSec.style.display = "none";
+          iterationCards.forEach((c, idx) => {
+            const isFeatureCard =
+              iterationCards.length <= 2 ||
+              (idx > 0 && idx < iterationCards.length);
+            c.style.display = isFeatureCard ? "" : "none";
+          });
+          lessonsSections.forEach((l) => (l.style.display = "none"));
+        } else if (tab === "gallery") {
+          if (overviewSec) overviewSec.style.display = "none";
+          iterationCards.forEach((c) => (c.style.display = "none"));
+          lessonsSections.forEach((l) => (l.style.display = "none"));
+        } else if (tab === "takeaways") {
+          if (overviewSec) overviewSec.style.display = "none";
+          iterationCards.forEach((c) => (c.style.display = "none"));
+          lessonsSections.forEach((l) => (l.style.display = ""));
+        }
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initSakiDetailPlate);
+  document.addEventListener("astro:page-load", initSakiDetailPlate);
+</script>
+
 <style lang="scss">
-	.tech-spec-plate {
-		position: relative;
-		width: 100%;
-		padding: 2.5rem 0 3rem;
-		border-bottom: 1px solid var(--farline-hairline);
-		margin-bottom: 2.5rem;
-	}
+  .saki-detail-hero-plate {
+    position: relative;
+    width: 100%;
+    padding-top: 8px;
+    margin-bottom: 24px;
+  }
 
-	.plate-top-bar {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 2rem;
-		gap: 12px;
-		flex-wrap: wrap;
+  /* --- 1. TOP HEADER GRID --- */
+  .detail-top-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 16px;
 
-		.back-link {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			color: var(--farline-text-muted);
-			text-decoration: none;
-			font-size: 0.75rem;
-			transition: color 0.2s ease, transform 0.2s ease;
+    @media (min-width: 1024px) {
+      grid-template-columns: 8fr 4fr;
+      gap: 24px;
+    }
+  }
 
-			&:hover {
-				color: var(--farline-text-primary);
-				transform: translateX(-3px);
-			}
-		}
+  .detail-top-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
 
-		.plate-tag-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 7px;
-			padding: 4px 12px 4px 8px;
-			background: var(--farline-surface-muted);
-			border: 1px solid rgba(254, 205, 94, 0.25);
-			border-radius: 9999px;
-			color: var(--farline-text-secondary);
-			font-size: 0.72rem;
-		}
-	}
+    @media (min-width: 640px) {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
 
-	.plate-hero-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 24px;
-		margin-bottom: 2rem;
-	}
+  .detail-title-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 6px;
+    z-index: 10;
+    max-width: 520px;
+  }
 
-	.plate-title-group {
-		flex: 1;
+  .btn-back-projects {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 9999px;
+    background-color: #F2EDE4;
+    border: 1px solid #E5DEC9;
+    color: #1E1B24 !important;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
 
-		.plate-main-title {
-			font-size: clamp(1.9rem, 4.2vw, 3rem);
-			font-weight: 700;
-			color: var(--farline-text-primary);
-			line-height: 1.15;
-			letter-spacing: -0.03em;
-			margin: 0;
-			text-align: left;
-		}
+    &:hover {
+      background-color: #FCE7A8;
+      border-color: #E5B842;
+      transform: translateX(-2px);
+    }
+  }
 
-		.plate-subtitle {
-			font-size: 1.08rem;
-			color: var(--farline-text-secondary);
-			margin: 12px 0 0;
-			line-height: 1.5;
-			max-width: 780px;
-		}
-	}
+  .detail-kicker-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 6px;
+    flex-wrap: wrap;
+  }
 
-	.plate-saki-companion {
-		flex-shrink: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 8px;
-		border-radius: 20px;
-		background: rgba(254, 247, 238, 0.04);
-		border: 1px solid var(--farline-border);
-	}
+  .folder-kicker-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
 
-	/* Specifications Grid */
-	.plate-specs-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		gap: 1px;
-		background: var(--farline-hairline);
-		border: 1px solid var(--farline-hairline);
-		border-radius: 12px;
-		overflow: hidden;
-		margin-bottom: 2rem;
-	}
+  .detail-prop-mini {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	.spec-cell {
-		background: var(--farline-surface);
-		padding: 16px 18px;
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-		transition: background-color 0.2s ease;
+  .detail-kicker-text {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #1E1B24;
+    text-transform: uppercase;
+  }
 
-		&:hover {
-			background: var(--farline-surface-muted);
-		}
+  .detail-kicker-bar {
+    width: 40px;
+    height: 3px;
+    border-radius: 9999px;
+    background-color: #F5C242;
+  }
 
-		.spec-cell-header {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			color: var(--farline-text-muted);
-			font-size: 0.68rem;
+  .detail-main-title {
+    font-size: clamp(26px, 3.4vw, 40px) !important;
+    font-weight: 900 !important;
+    color: #1E1B24 !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.03em !important;
+    text-align: left !important;
+    margin: 0 !important;
+  }
 
-			.spec-index {
-				opacity: 0.6;
-			}
-		}
+  .detail-main-subtitle {
+    font-size: 14.5px !important;
+    color: #4A4A52 !important;
+    margin: 0 !important;
+    line-height: 1.45 !important;
+  }
 
-		.spec-cell-value {
-			font-size: 0.92rem;
-			font-weight: 500;
-			color: var(--farline-text-primary);
-			line-height: 1.4;
+  .detail-saki-laptop-slot {
+    width: 245px;
+    flex-shrink: 0;
+    margin-bottom: -24px;
+    z-index: 20;
+    align-self: center;
+    pointer-events: none;
 
-			&.is-highlight {
-				color: var(--saki-yellow, #FECD5E);
-				font-weight: 600;
-			}
-		}
-	}
+    @media (min-width: 640px) {
+      width: 285px;
+      align-self: flex-end;
+      margin-right: 4px;
+    }
+  }
 
-	.plate-actions-bar {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 12px;
-	}
+  .detail-top-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
 
-	@media (max-width: 640px) {
-		.plate-hero-row {
-			flex-direction: column-reverse;
-			align-items: flex-start;
-			gap: 14px;
-		}
+  .demo-btn-wrapper,
+  .source-btn-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 235px;
+  }
 
-		.plate-specs-grid {
-			grid-template-columns: 1fr;
-		}
+  .demo-rays-svg {
+    position: absolute;
+    top: -14px;
+    right: -16px;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+  }
 
-		.plate-actions-bar {
-			flex-direction: column;
-			width: 100%;
+  .btn-detail-action {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 22px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
 
-			:global(.btn) {
-				width: 100%;
-				text-align: center;
-			}
-		}
-	}
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-action-yellow {
+    background-color: #FDD365;
+    color: #1E1B24 !important;
+    border: 1.8px solid #E5B842;
+    box-shadow: 0 4px 12px rgba(253, 211, 101, 0.35);
+
+    &:hover {
+      background-color: #F5C64C;
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-action-outline {
+    background-color: #FFFFFF;
+    color: #1E1B24 !important;
+    border: 1.8px solid #1E1B24;
+
+    &:hover {
+      background-color: #FAF6F0;
+      transform: translateY(-2px);
+    }
+  }
+
+  /* --- 2. 2-COLUMN BENTO SHOWCASE --- */
+  .bento-showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: stretch;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 8fr 4fr;
+    }
+  }
+
+  .bento-mockup-container {
+    position: relative;
+    border-radius: 26px;
+    background-color: #E6E0DA;
+    padding: 24px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
+
+    @media (min-width: 640px) {
+      padding: 28px 42px 18px;
+    }
+  }
+
+  .mockup-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1E1B24;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #FDD365;
+      transform: translateY(-50%) scale(1.08);
+    }
+  }
+
+  .mockup-prev {
+    left: 10px;
+  }
+
+  .mockup-next {
+    right: 10px;
+  }
+
+  .browser-window-frame {
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .browser-top-bar {
+    height: 32px;
+    background-color: #F7F6F3;
+    border-bottom: 1px solid #ECEAE4;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .traffic-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+
+    span {
+      width: 9px;
+      height: 9px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+    .dot-red {
+      background-color: #FF5F56;
+    }
+    .dot-yellow {
+      background-color: #FFBD2E;
+    }
+    .dot-green {
+      background-color: #27C93F;
+    }
+  }
+
+  .browser-caption-bar {
+    font-size: 11px;
+    font-weight: 700;
+    color: #5A5864;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .browser-slide-counter {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #787584;
+    background-color: #ECE9E2;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  .browser-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #F5F4F0;
+    overflow: hidden;
+  }
+
+  .mockup-slide-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+      height: 100%;
+    }
+  }
+
+  .mockup-slide-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .mockup-dots-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 14px;
+  }
+
+  .mockup-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background-color: #CCC5BE;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.is-active {
+      background-color: #F5C242;
+      transform: scale(1.2);
+      width: 22px;
+    }
+  }
+
+  /* KOLOM KANAN: PROJECT OVERVIEW CARD */
+  .bento-overview-card {
+    border-radius: 26px;
+    background-color: #FAF6F0;
+    border: 1.5px solid #E6DEC8;
+    padding: 24px 26px;
+    box-shadow: 0 4px 16px rgba(30, 27, 36, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .overview-card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .overview-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .info-circle-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background-color: #4A4852;
+    color: #FFFFFF;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .overview-card-title {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #1E1B24 !important;
+    margin: 0 !important;
+  }
+
+  .overview-card-desc {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    color: #4A4A52 !important;
+    margin: 0 !important;
+  }
+
+  .overview-divider {
+    border-top: 1.5px solid #EAE2D3;
+    margin: 18px 0;
+  }
+
+  .overview-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .meta-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1E1B24;
+    flex-shrink: 0;
+  }
+
+  .meta-pill {
+    padding: 5px 13px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1E1B24;
+    text-align: right;
+  }
+
+  .pill-role {
+    background-color: #FDF0C4;
+    border: 1px solid #F2CE68;
+  }
+
+  .pill-neutral {
+    background-color: #F1ECE2;
+    border: 1px solid #E2DAD0;
+    font-weight: 700;
+  }
+
+  .meta-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .tech-chip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 9999px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2DCD0;
+    font-size: 11px;
+    font-weight: 800;
+    color: #1E1B24;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .tech-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #F0B030;
+  }
+
+  /* --- 3. TABS BAR --- */
+  .detail-tabs-bar {
+    margin-top: 28px;
+    border-bottom: 1.5px solid #EAE2D3;
+    padding-bottom: 12px;
+    position: relative;
+  }
+
+  .tabs-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    @media (min-width: 640px) {
+      gap: 14px;
+    }
+  }
+
+  .detail-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 9999px;
+    background: transparent;
+    border: none;
+    color: #1E1B24;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #F2EDE4;
+    }
+
+    &.is-active {
+      background-color: #FCE49C;
+      color: #1E1B24;
+      font-weight: 800;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .tabs-active-highlight {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 55%;
+    height: 2.5px;
+    background: linear-gradient(90deg, #F5C242 0%, rgba(245, 194, 66, 0.5) 60%, transparent 100%);
+  }
+
+  /* --- 4. LOWER INTRO ROW --- */
+  .detail-lower-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 24px;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 7fr 5fr;
+      gap: 28px;
+    }
+  }
+
+  .lower-intro-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bullseye-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lower-intro-title {
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: #1E1B24 !important;
+    margin: 0 !important;
+  }
+
+  .lower-intro-sub {
+    font-size: 14px !important;
+    color: #4A4A52 !important;
+    margin: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .saki-peeking-banner-card {
+    width: 100%;
+    height: 112px;
+    border-radius: 26px;
+    background-color: #FCECC2;
+    border: 1.5px solid #F5DC9C;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 12px;
+  }
+
+  .peeking-mascot-slot {
+    margin-bottom: -14px;
+  }
+
+  /* --- 5. GALLERY PANEL --- */
+  .detail-gallery-panel {
+    margin-top: 24px;
+
+    &.is-hidden {
+      display: none !important;
+    }
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-thumb-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: #FAF6F0;
+    border: 1.5px solid #E6DEC8;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.22s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: #F2CE68;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    }
+  }
+
+  .gallery-thumb-img-box {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #EAE5DC;
+  }
+
+  .gallery-thumb-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .gallery-thumb-caption {
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1E1B24;
+    line-height: 1.4;
+  }
+
+  .gallery-thumb-num {
+    background-color: #FCE49C;
+    color: #1E1B24;
+    font-size: 10.5px;
+    font-weight: 900;
+    padding: 2px 7px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
 </style>

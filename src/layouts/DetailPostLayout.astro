@@ -1,185 +1,470 @@
 ---
-// Learn about using Astro layouts:
-// https://docs.astro.build/en/core-concepts/layouts/
+import MainHead from "../components/MainHead.astro";
+import SakiLogoIcon from "../components/saki/SakiLogoIcon.astro";
 
-// Component Imports
-import MainHead from '../components/MainHead.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import FloatingDock from '../components/farline/FloatingDock.astro';
 interface Props {
-	title?: string | undefined;
-	keywords?: string | undefined;
-	description?: string | undefined;
-
+  title?: string | undefined;
+  keywords?: string | undefined;
+  description?: string | undefined;
 }
 
-const { title, description,keywords} = Astro.props;
+const { title, description, keywords } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<MainHead title={title} description={description}  keywords={keywords}/>
-	</head>
-	<body class="_body">
-		<div class="">
-			<Nav transition:persist/>
-			<div class="section detail">
-				<div class="container">
-					<slot />
-				</div>
-			</div>
-			<Footer />
-			<FloatingDock />
-		</div>
+  <head>
+    <MainHead title={title} description={description} keywords={keywords} />
+  </head>
+  <body class="saki-detail-body">
+    <div class="saki-detail-root">
+      <!-- Dekorasi Awan Kiri Atas + Awan Putih Kecil -->
+      <div class="detail-cloud-left" aria-hidden="true">
+        <svg viewBox="0 0 180 280" fill="none" class="decor-svg">
+          <path d="M 0 10 C 65 10, 110 55, 95 115 C 125 140, 115 200, 65 230 C 35 248, 15 265, 0 275 Z" fill="#DCEFF9" />
+          <path
+            d="M 18 112 H 68 C 76 112, 82 105, 80 97 C 79 90, 73 86, 66 87 C 63 76, 53 69, 42 69 C 29 69, 19 78, 18 89 C 10 90, 4 96, 5 104 C 6 109, 11 112, 18 112 Z"
+            fill="#FFFFFF"
+            opacity="0.85"
+          />
+        </svg>
+      </div>
 
-		<style is:global lang="scss">
-			:root {
-				--bg-svg-blend-mode: overlay;
-				--bg-blend-mode: darken;
-			}
+      <!-- Dekorasi Awan Kanan Atas + Awan Putih Kecil -->
+      <div class="detail-cloud-right" aria-hidden="true">
+        <svg viewBox="0 0 200 300" fill="none" class="decor-svg">
+          <path d="M 200 0 C 135 5, 95 55, 110 115 C 75 140, 85 205, 140 235 C 170 250, 185 270, 200 285 Z" fill="#DCEFF9" />
+          <path
+            d="M 118 118 H 172 C 180 118, 186 111, 184 103 C 183 96, 177 92, 170 93 C 167 82, 157 75, 145 75 C 132 75, 122 84, 121 95 C 113 96, 107 102, 108 110 C 109 115, 114 118, 118 118 Z"
+            fill="#FFFFFF"
+            opacity="0.85"
+          />
+        </svg>
+      </div>
 
-			:root.theme-dark {
-				--bg-svg-blend-mode: darken;
-				--bg-blend-mode: lighten;
-			}
-			img {
-				max-width: 100%;
-			}
-			.detail {
-				display: flex;
-				flex-direction: column;
-				max-width: 1020px;
-				margin:0 auto;
-				padding-bottom:36px;
-			}
-			.picture{
-				display: block;
-				margin-top:1rem;
-				margin-bottom:1rem;
-			}
-			.container{
-				padding:0 1rem;
-			}
-			section {
-				position: relative;
-				width: 100%;
-				font-size: 16px;
-			}
-			h1.font-type{
-				padding-top:0.5rem;
-			}
-			p{
-				line-height: 1.6;
-				margin-bottom:0.875em;
-				text-align: left;
-			}
-			strong, b {
-				font-weight: 700 !important;
-				color: var(--color-0);
-			}
-			ul{
-				padding-left: 2em;
-				margin:2em 0;
-			}
-			ul li{
-				margin:0.5em 0 .75em;
-			}
+      <!-- Semak & Bukit Hijau di Pojok Kiri & Kanan Bawah -->
+      <div class="detail-hills-left" aria-hidden="true">
+        <svg viewBox="0 0 220 180" fill="none" class="decor-svg">
+          <path d="M 0 180 L 0 55 C 24 52, 42 68, 40 88 C 64 85, 80 104, 75 125 C 96 125, 112 142, 110 162 L 155 180 Z" fill="#8CAE72" />
+          <ellipse cx="44" cy="148" rx="5.5" ry="10" transform="rotate(-28 44 148)" fill="#CDE397" />
+          <ellipse cx="60" cy="153" rx="5" ry="8.5" transform="rotate(24 60 153)" fill="#CDE397" />
+        </svg>
+      </div>
 
-			.post-header{
-				width:100%;
-				margin:24px auto 24px;
-				padding-bottom:2rem;
-				border-bottom: 1px solid var(--border);
-			}
-			h1{
-				font-size: 2.25rem;
-				font-weight: bold;
-				color:var(--color-0);
-				text-align: center;
-			}
-			h2{
-				font-size: 2rem;
-				font-weight: bold;
-				color:var(--color-0);
+      <div class="detail-hills-right" aria-hidden="true">
+        <svg viewBox="0 0 220 180" fill="none" class="decor-svg">
+          <path d="M 220 180 L 220 55 C 196 52, 178 68, 180 88 C 156 85, 140 104, 145 125 C 124 125, 108 142, 110 162 L 65 180 Z" fill="#8CAE72" />
+          <ellipse cx="176" cy="148" rx="5.5" ry="10" transform="rotate(28 176 148)" fill="#CDE397" />
+          <ellipse cx="160" cy="153" rx="5" ry="8.5" transform="rotate(-24 160 153)" fill="#CDE397" />
+        </svg>
+      </div>
 
-			}
-			h3{
-				font-size: 1.5rem;
-				font-weight: bold;
-				color:var(--color-0);
+      <!-- STICKY GLOBAL NAVBAR (KONSISTEN DENGAN HOME) -->
+      <header class="saki-detail-navbar">
+        <div class="detail-nav-container">
+          <a href="/#hero-section" class="detail-nav-brand" aria-label="Home">
+            <SakiLogoIcon size={44} />
+          </a>
 
-			}
-			a:link{
-				color:var(--color-blue);
-			}
-			a:hover{
-				text-decoration: underline;
-			}
-			.content {
-				margin-top:20px;
-				color: var(--color-200);
-				font-size: 1rem;
-			}
-			.desc{
-					margin: 4rem 0 2rem;
-			}
-			.post-title {
-				grid-column-start: 1;
-				font-size: 1.375rem;
-				color: var(--color-100);
-			}
-			.post-desc {
-				margin-top:1rem;
-				grid-column-start: 1;
-				font-size: 1rem;
-				color: var(--color-100);
-			}
-			.btn{
-					margin:1rem auto;
-			}
-			.btn a{
-				font-size:1rem;
-				max-width:300px;
-				padding:1.125em 3em;
-			}
-			.preview{
-				margin-top:4rem;
-			}
-			@media(max-width: 576px) {
-				.post{
-					h1{
-						font-size:1.75rem;
-						margin-top:2rem;
-					}
-					h2{
-						font-size:1.5rem;
-					}
-					h3{
-						font-size:1.25rem;
-					}
-					.post-title{
-						font-size:1.25rem;
-					}
-					p,ul,li{
-						font-size:0.875rem;
-					}
-				}
-			}
+          <nav class="detail-nav-menu" aria-label="Main Navigation">
+            <a href="/#hero-section" class="detail-nav-item">Home</a>
+            <a href="/#about-section" class="detail-nav-item">About</a>
+            <a href="/#projects-section" class="detail-nav-item is-active">Projects</a>
+          </nav>
+        </div>
+      </header>
 
-		</style>
+      <!-- MAIN DETAIL CONTAINER -->
+      <div class="saki-detail-main">
+        <div class="saki-detail-container">
+          <slot />
+        </div>
+      </div>
 
-		<script>
-			// 获取所有的 img 标签
-			var images = document.getElementsByTagName('img');
-			// 遍历所有的 img 标签
-			for (var i = 0; i < images.length; i++) {
-			// 为每个 img 标签添加 draggable="false" 属性
-			images[i].setAttribute('draggable', 'false');
-			images[i].setAttribute('ref', 'nofollow');
-		}
-		</script>
+      <!-- COPYRIGHT FOOTER -->
+      <footer class="saki-detail-footer">
+        <p class="detail-copyright">&copy; 2026 Kevin Sakia Putra. All rights reserved.</p>
+      </footer>
+    </div>
 
+    <style is:global lang="scss">
+      .saki-detail-body {
+        background-color: #FCF8F2 !important;
+        color: #1E1B24 !important;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      }
 
-	</body>
+      .saki-detail-root {
+        /* Override legacy dark-mode CSS custom properties inside detail pages */
+        --color-0: #1E1B24;
+        --color-50: #1E1B24;
+        --color-100: #1E1B24;
+        --color-100-rgb: 30, 27, 36;
+        --color-200: #3F3D48;
+        --color-300: #5A5864;
+        --color-400: #6E6B78;
+        --color-700: #E5DEC9;
+        --color-999: #FCF8F2;
+        --color-999-rgb: 252, 248, 242;
+        --border: #E5DEC9;
+        --farline-text-primary: #1E1B24;
+        --farline-text-secondary: #4A4A52;
+        --farline-text-muted: #6E6B78;
+        --farline-surface: #FAF6F0;
+        --farline-surface-muted: #F2EDE4;
+        --farline-border: #E5DEC9;
+        --farline-hairline: #E5DEC9;
+
+        min-height: 100vh;
+        background-color: #FCF8F2;
+        color: #1E1B24;
+        position: relative;
+        overflow-x: clip;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Background Decorations */
+      .detail-cloud-left {
+        position: fixed;
+        top: 48px;
+        left: 0;
+        width: 150px;
+        height: 240px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .detail-cloud-right {
+        position: fixed;
+        top: 52px;
+        right: 0;
+        width: 165px;
+        height: 255px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .detail-hills-left {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 180px;
+        height: 145px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .detail-hills-right {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 180px;
+        height: 145px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .decor-svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Top Sticky Navbar (100% Pure Transparent, No Blur, Clean Looks) */
+      .saki-detail-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        width: 100%;
+        padding: 14px 24px;
+        background: transparent !important;
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+        pointer-events: none;
+
+        .detail-nav-container {
+          pointer-events: auto;
+        }
+
+        @media (min-width: 640px) {
+          padding: 16px 48px;
+        }
+        @media (min-width: 1024px) {
+          padding: 18px 80px;
+        }
+      }
+
+      .detail-nav-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .detail-nav-brand {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.06);
+        }
+      }
+
+      .detail-nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        @media (min-width: 640px) {
+          gap: 20px;
+        }
+      }
+
+      .detail-nav-item {
+        border-radius: 9999px;
+        padding: 8px 18px;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #1E1B24 !important;
+        text-decoration: none !important;
+        transition: all 0.25s ease;
+
+        @media (min-width: 640px) {
+          padding: 8px 24px;
+          font-size: 15px;
+        }
+
+        &:hover {
+          color: #b45309 !important;
+        }
+
+        &.is-active {
+          background-color: #FCE7A8;
+          color: #1E1B24 !important;
+          font-weight: 800;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+      }
+
+      /* Main Content Area */
+      .saki-detail-main {
+        position: relative;
+        z-index: 10;
+        flex: 1;
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 76px 24px 56px;
+
+        @media (min-width: 640px) {
+          padding: 84px 48px 64px;
+        }
+        @media (min-width: 1024px) {
+          padding: 88px 80px 72px;
+        }
+      }
+
+      /* Hide duplicate hero-cover figure since it is already inside the Browser Mockup Carousel above */
+      .saki-detail-root .overview-section .hero-cover {
+        display: none !important;
+      }
+
+      .saki-detail-root .overview-section {
+        margin-top: 8px !important;
+        margin-bottom: 24px !important;
+      }
+
+      .saki-detail-root .lead-text {
+        font-size: 15.5px !important;
+        line-height: 1.72 !important;
+        color: #3A3842 !important;
+        background-color: #FAF6F0;
+        border: 1.5px solid #E6DEC8;
+        border-radius: 22px;
+        padding: 20px 24px;
+        margin-bottom: 14px !important;
+        box-shadow: 0 2px 10px rgba(30, 27, 36, 0.03);
+      }
+
+      /* Claymorphic Engineering Iteration Cards */
+      .saki-detail-root .iteration-card {
+        background-color: #FAF6F0;
+        border: 1.5px solid #E6DEC8 !important;
+        border-radius: 26px;
+        padding: 26px 28px !important;
+        margin-bottom: 22px;
+        box-shadow: 0 6px 20px rgba(30, 27, 36, 0.04);
+      }
+
+      .saki-detail-root .iteration-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px !important;
+      }
+
+      .saki-detail-root .saki-prop-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background-color: #FFFDF8 !important;
+        border: 1.5px solid #F0CB63 !important;
+        box-shadow: 0 2px 6px rgba(240, 176, 48, 0.16);
+      }
+
+      .saki-detail-root .post-title {
+        font-size: 19px !important;
+        font-weight: 900 !important;
+        color: #1E1B24 !important;
+        margin: 0 !important;
+      }
+
+      .saki-detail-root .tech-pill {
+        font-size: 11.5px !important;
+        font-weight: 800 !important;
+        color: #3E2E0C !important;
+        background-color: #FCE49C !important;
+        border: 1px solid #F0CB63 !important;
+        padding: 3px 12px !important;
+        border-radius: 9999px !important;
+
+        &.pg {
+          background-color: #D9EFFC !important;
+          border-color: #B3DCF8 !important;
+          color: #1A3B54 !important;
+        }
+      }
+
+      .saki-detail-root .screenshot-figure {
+        margin: 18px auto 22px !important;
+        max-width: 820px !important;
+        border-radius: 18px !important;
+        overflow: hidden;
+        border: 2px solid #E5DEC9 !important;
+        box-shadow: 0 10px 28px rgba(30, 27, 36, 0.08) !important;
+        background-color: #FFFFFF !important;
+      }
+
+      .saki-detail-root .iteration-body p,
+      .saki-detail-root .iteration-list li {
+        font-size: 14.5px !important;
+        line-height: 1.68 !important;
+        color: #3F3D48 !important;
+      }
+
+      .saki-detail-root strong,
+      .saki-detail-root b {
+        color: #1E1B24 !important;
+        font-weight: 800 !important;
+      }
+
+      .saki-detail-root .takeaway-box {
+        margin-top: 18px !important;
+        padding: 16px 20px !important;
+        border-radius: 16px !important;
+        background-color: #FDF5D7 !important;
+        border: 1.5px solid #F2CE68 !important;
+        border-left: 5px solid #F0B030 !important;
+        color: #2A2112 !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+
+      .saki-detail-root .quote-text {
+        padding: 16px 20px !important;
+        border-radius: 16px !important;
+        background-color: #E6F3FA !important;
+        border: 1.5px solid #B3DCF8 !important;
+        border-left: 5px solid #5D8AA8 !important;
+        color: #1E2E3E !important;
+      }
+
+      /* What I Learned / Lessons Section */
+      .saki-detail-root .lessons-section {
+        margin-top: 28px !important;
+        padding: 28px !important;
+        border-radius: 26px;
+        background-color: #FAF6F0;
+        border: 1.5px solid #E6DEC8 !important;
+        box-shadow: 0 6px 20px rgba(30, 27, 36, 0.04);
+      }
+
+      .saki-detail-root .lessons-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .saki-detail-root .lessons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .saki-detail-root .lesson-card {
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #E6DEC8 !important;
+        border-radius: 18px !important;
+        padding: 18px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          border-color: #F2CE68 !important;
+        }
+
+        p {
+          font-size: 13.5px !important;
+          line-height: 1.58 !important;
+          color: #4A4A52 !important;
+          margin: 8px 0 0 !important;
+        }
+      }
+
+      .saki-detail-root .lesson-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .saki-detail-root .lesson-ver {
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        color: #1E1B24 !important;
+        background-color: #FCE49C !important;
+        padding: 2px 10px !important;
+        border-radius: 9999px !important;
+      }
+
+      /* Footer */
+      .saki-detail-footer {
+        position: relative;
+        z-index: 20;
+        width: 100%;
+        text-align: center;
+        padding: 20px 24px 32px;
+      }
+
+      .detail-copyright {
+        font-size: 12px;
+        font-weight: 700;
+        color: #4A4A52;
+        margin: 0;
+      }
+    </style>
+  </body>
 </html>

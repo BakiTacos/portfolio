@@ -2,25 +2,111 @@
 import Analytics from '../components/functions/Analytics.astro';
 import '../styles/layout.scss';
 import '../styles/global.scss';
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	keywords?: string | undefined;
+	image?: string | undefined;
 }
-const { title, description,keywords } = Astro.props;
+
+const {
+	title = "Kevin Sakia Putra — Software & Data Architecture Portfolio",
+	description = "Personal portfolio of Kevin Sakia Putra showcasing software engineering, relational database architecture, business systems, and AI multi-agent orchestration.",
+	keywords = "Kevin Sakia Putra, portfolio, software engineering, database architecture, PostgreSQL, Next.js, Supabase, AI, Information Systems",
+	image = "/og.jpg",
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.href : "https://portfolio.sakia.id/";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImageURL = new URL(image, siteUrl);
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": `${siteUrl}#person`,
+			"name": "Kevin Sakia Putra",
+			"jobTitle": "Software & Data Architecture Engineer",
+			"description": description,
+			"url": siteUrl,
+			"image": `${siteUrl}assets/portrait.jpg`,
+			"sameAs": [
+				"https://github.com/BakiTacos",
+				"https://www.linkedin.com/in/kevin-sakia-putra-2661a42a7",
+				"https://www.instagram.com/kevin.sakia"
+			],
+			"knowsAbout": [
+				"Software Engineering",
+				"Relational Database Architecture",
+				"PostgreSQL",
+				"Next.js",
+				"TypeScript",
+				"Supabase",
+				"Financial Engine",
+				"Multi-Agent AI",
+				"Information Systems"
+			]
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${siteUrl}#website`,
+			"url": siteUrl,
+			"name": "Kevin Sakia Putra — Portfolio",
+			"description": description,
+			"publisher": { "@id": `${siteUrl}#person` },
+			"inLanguage": "en"
+		}
+	]
+};
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
-<meta name="keywords" content={keywords} />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title={title} href={new URL("rss.xml", Astro.site)} />
-
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <meta name="generator" content={Astro.generator} />
+<meta name="google-site-verification" content="google716928994a2e2b94" />
+
+<!-- Canonical & Sitemaps -->
+<link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={title} href={new URL("rss.xml", Astro.site || siteUrl)} />
+
+<!-- AI Agent & LLM Discovery (llms.txt standard) -->
+<link rel="help" type="text/markdown" href="/llms.txt" title="LLM Agent Summary" />
+<link rel="alternate" type="text/markdown" href="/llms-full.txt" title="LLM Complete Technical Reference" />
+
+<!-- Primary Meta Tags -->
 <title>{title}</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Kevin Sakia Putra" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:site_name" content="Kevin Sakia Putra Portfolio" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImageURL} />
+
+<!-- Favicons & Icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Schema.org JSON-LD Structured Data for Search & AI Engines -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 <script is:inline>
 	const getThemePreference = () => {
 		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

@@ -1,28 +1,2000 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ProfileHero from '../components/farline/ProfileHero.astro';
-import HangingHero from '../components/farline/HangingHero.astro';
-import { homeTdk } from '../data/content';
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SakiLogoIcon from "../components/saki/SakiLogoIcon.astro";
+import SakiProfileHeroMascot from "../components/saki/SakiProfileHeroMascot.astro";
+import SakiPeekingMascot from "../components/saki/SakiPeekingMascot.astro";
+import SakiPropElement from "../components/saki/SakiPropElement.astro";
+import type { SakiPropName } from "../components/saki/sakiMoods";
+import { homeTdk } from "../data/content";
+import myPortrait from "../assets/portrait.jpg";
+
+import imgBookkeeping from "../assets/projects/bookkeeping/cover.png";
+import imgBridgeU from "../assets/projects/bridgeu/bridgeu-cover.png";
+import imgDapurTwin from "../assets/projects/dapurtwin/cover-dapurtwin.png";
+import imgTukangin from "../assets/projects/tukangin/tukangin-cover.png";
+import imgSuparta from "../assets/projects/suparta/suparta-cover.webp";
+import imgStudentSupport from "../assets/projects/studentsupport/studsop-cover.webp";
+import imgPenerbangan from "../assets/projects/penerbangan/start.webp";
+import imgIsfest from "../assets/projects/isfest/cover.webp";
+import imgN8nOrchestra from "../assets/projects/n8n-orchestra/orchestra.webp";
+
+const sakiEngineeringPillars: { prop: SakiPropName; label: string }[] = [
+  { prop: "goggles", label: "Problem Framing" },
+  { prop: "code-terminal", label: "Full-Stack Systems" },
+  { prop: "database", label: "Relational Data" },
+  { prop: "ai-spark", label: "AI & Automation" },
+];
+
+const allProjects: {
+  num: string;
+  theme: "yellow" | "blue" | "green" | "purple" | "amber" | "teal" | "rose" | "indigo" | "cyan";
+  category: string;
+  title: string;
+  subtitle: string;
+  image: ImageMetadata;
+  detailUrl: string;
+  hasMascotPeek: boolean;
+  sakiProp: SakiPropName;
+  primaryTag: string;
+  tags: string[];
+}[] = [
+  {
+    num: "01",
+    theme: "yellow",
+    category: "DATA & ARCHITECTURE",
+    title: "Bookkeeping & Financial Management System",
+    subtitle: "Transactions, Inventory & Multi-Level Accounts",
+    image: imgBookkeeping,
+    detailUrl: "/detail/bookkeeping",
+    hasMascotPeek: true,
+    sakiProp: "database",
+    primaryTag: "4-Stage Architecture",
+    tags: ["Next.js", "PostgreSQL", "Finance Engine"],
+  },
+  {
+    num: "02",
+    theme: "blue",
+    category: "EDUCATION & COLLABORATION",
+    title: "BridgeU: University & Industry Platform",
+    subtitle: "Academic Collaboration & Automated Verified Portfolios",
+    image: imgBridgeU,
+    detailUrl: "/detail/bridgeu",
+    hasMascotPeek: false,
+    sakiProp: "trophy",
+    primaryTag: "Juara 2 — UBM Inspire 1.0",
+    tags: ["Next.js", "Supabase", "Weighted Recs"],
+  },
+  {
+    num: "03",
+    theme: "green",
+    category: "F&B SAAS & OPERATIONS",
+    title: "DapurTwin: F&B Operational & POS SaaS",
+    subtitle: "Smart Recipe BOM, Dynamic HPP & Real-Time KDS",
+    image: imgDapurTwin,
+    detailUrl: "/detail/dapurtwin",
+    hasMascotPeek: false,
+    sakiProp: "coffee",
+    primaryTag: "Smart Recipe BOM Engine",
+    tags: ["Next.js", "Supabase", "POS & KDS"],
+  },
+  {
+    num: "04",
+    theme: "purple",
+    category: "MARKETPLACE & HEURISTICS",
+    title: "Tukang.in: Technician Marketplace",
+    subtitle: "Early Laravel Monolith, Location & Time Recommendation",
+    image: imgTukangin,
+    detailUrl: "/detail/tukangin",
+    hasMascotPeek: false,
+    sakiProp: "code-terminal",
+    primaryTag: "Heuristic Matching",
+    tags: ["Laravel", "MySQL", "Query Optimization"],
+  },
+  {
+    num: "05",
+    theme: "amber",
+    category: "BRAND & COMMERCE",
+    title: "SUPARTA: Brand & Sales Platform",
+    subtitle: "Brand Building, Multi-Language & High-Ticket Sales",
+    image: imgSuparta,
+    detailUrl: "/detail/suparta",
+    hasMascotPeek: false,
+    sakiProp: "lightbulb",
+    primaryTag: "Brand & Sales Enablement",
+    tags: ["Next.js i18n", "Brand Strategy", "Sales Flow"],
+  },
+  {
+    num: "06",
+    theme: "teal",
+    category: "FIRST CODEBASE & RESEARCH",
+    title: "Student Support UMN: First Website",
+    subtitle: "Early Database, User Interviews & Web Fundamentals",
+    image: imgStudentSupport,
+    detailUrl: "/detail/studentsupport",
+    hasMascotPeek: false,
+    sakiProp: "open-book",
+    primaryTag: "Field Research & First DB",
+    tags: ["HTML5 / CSS3", "JavaScript", "User Interviews"],
+  },
+  {
+    num: "07",
+    theme: "rose",
+    category: "DATA ANALYTICS & ML",
+    title: "Flight Delay Analytics (XGBoost)",
+    subtitle: "Big Data Processing, CRISP-DM & Predictive Modeling",
+    image: imgPenerbangan,
+    detailUrl: "/detail/penerbangan",
+    hasMascotPeek: false,
+    sakiProp: "magnifier",
+    primaryTag: "CRISP-DM Pipeline",
+    tags: ["XGBoost", "Python", "Streamlit"],
+  },
+  {
+    num: "08",
+    theme: "indigo",
+    category: "BACKEND & CLOUD STORAGE",
+    title: "ISFEST UMN 2026: Backend & Fallback",
+    subtitle: "Failover Resilience, Backblaze B2 & Org Operations",
+    image: imgIsfest,
+    detailUrl: "/detail/isfest",
+    hasMascotPeek: false,
+    sakiProp: "shield",
+    primaryTag: "Graceful Fallback & B2",
+    tags: ["Backend API", "Backblaze B2", "Data Security"],
+  },
+  {
+    num: "09",
+    theme: "cyan",
+    category: "AI AGENT & AUTOMATION",
+    title: "Telegram AI Orchestrator (n8n)",
+    subtitle: "Unified Multi-Agent Assistant & Context-Aware Tool Calling",
+    image: imgN8nOrchestra,
+    detailUrl: "/detail/n8n-orchestra",
+    hasMascotPeek: false,
+    sakiProp: "ai-spark",
+    primaryTag: "Multi-Agent Orchestrator",
+    tags: ["n8n", "LangChain", "Supabase"],
+  },
+];
 ---
 
 <BaseLayout
-	title={homeTdk.title || 'Kevin Sakia Putra - Portfolio'}
-	description={homeTdk.description || 'Personal portfolio showcasing projects in software development, data, business, and AI.'}
-	keywords={homeTdk.keywords || 'portfolio, software development, data, business, AI, information systems'}
+  title={homeTdk.title || "Kevin Sakia Putra — Portfolio"}
+  description={homeTdk.description || "Personal portfolio showcasing projects in software development, data, business, and AI."}
+  keywords={homeTdk.keywords || "portfolio, software engineering, bookkeeping, system design, data architecture"}
 >
-	<main class="farline-main-wrapper">
-		<!-- Section 1 (Profile & Social Media Icons) -->
-		<ProfileHero />
+  <div class="saki-portfolio-root">
+    <!-- =========================================================================
+        STICKY GLOBAL NAVBAR (IKON SAKI TANPA TEKS NAMA • HOME, ABOUT, PROJECTS)
+        ========================================================================= -->
+    <header class="saki-navbar" id="saki-navbar">
+      <div class="nav-container">
+        <a href="#hero-section" class="nav-brand" data-scroll-to="hero-section" aria-label="Home">
+          <SakiLogoIcon size={44} class="nav-logo-icon" />
+        </a>
 
-		<!-- Section 2 (3D Hanging Hero Showcase) Kept! -->
-		<HangingHero />
-	</main>
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="#hero-section" class="nav-item is-active" data-nav="Home" data-scroll-to="hero-section">Home</a>
+          <a href="#about-section" class="nav-item" data-nav="About" data-scroll-to="about-section">About</a>
+          <a href="#projects-section" class="nav-item" data-nav="Projects" data-scroll-to="projects-section">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+        SECTION 1: HERO & ABOUT INTEGRATED (DENGAN FOTO PROFIL, BIO, SAKI PROPS & SOCIALS)
+        ========================================================================= -->
+    <div id="hero-section" class="hero-section">
+      <!-- Dekorasi Awan Kiri Atas -->
+      <div class="cloud-decor-left" aria-hidden="true">
+        <svg viewBox="0 0 240 450" fill="none" class="decor-svg">
+          <path
+            d="M 0 0 C 85 0, 140 45, 138 110 C 185 125, 200 185, 165 235 C 195 270, 180 340, 125 365 C 85 385, 35 415, 0 435 Z"
+            fill="#DCEFF9"
+          />
+          <path
+            d="M 54 115 H 122 C 134 115, 142 106, 140 95 C 138 86, 130 81, 121 82 C 117 68, 104 58, 89 58 C 72 58, 59 70, 57 85 C 46 86, 38 94, 39 104 C 40 111, 46 115, 54 115 Z"
+            fill="#FFFFFF"
+            opacity="0.82"
+          />
+        </svg>
+      </div>
+
+      <!-- Dekorasi Awan Kanan Atas -->
+      <div class="cloud-decor-right" aria-hidden="true">
+        <svg viewBox="0 0 280 420" fill="none" class="decor-svg">
+          <path
+            d="M 280 10 C 230 10, 205 42, 212 78 C 145 78, 100 118, 108 172 C 114 215, 162 238, 212 235 C 175 268, 185 335, 280 375 Z"
+            fill="#DCEFF9"
+          />
+        </svg>
+      </div>
+
+      <!-- Dekorasi Bukit Hijau & Tunas Daun di Bawah -->
+      <div class="hills-decor-bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 170" preserveAspectRatio="none" fill="none" class="decor-svg">
+          <path d="M 0 170 L 0 95 Q 190 92 380 135 Q 480 158 550 170 Z" fill="#C2DA9B" />
+          <path
+            d="M 0 170 L 0 42 C 26 38, 46 55, 44 76 C 68 72, 86 90, 80 112 C 102 110, 118 124, 116 142 C 185 138, 255 152, 305 170 Z"
+            fill="#8CAE72"
+          />
+          <ellipse cx="64" cy="144" rx="6" ry="11" transform="rotate(-28 64 144)" fill="#CDE397" />
+          <ellipse cx="82" cy="150" rx="5.5" ry="9.5" transform="rotate(24 82 150)" fill="#CDE397" />
+          <circle cx="95" cy="130" r="4.5" fill="#CDE397" opacity="0.85" />
+
+          <path d="M 810 170 Q 940 90 1140 82 Q 1300 76 1440 110 L 1440 170 Z" fill="#DCEFF9" />
+          <path d="M 940 170 Q 1040 120 1180 126 L 1440 170 Z" fill="#C2DA9B" />
+          <path d="M 1115 170 C 1150 92, 1245 78, 1320 96 C 1365 62, 1415 54, 1440 62 L 1440 170 Z" fill="#8CAE72" />
+          <circle cx="1272" cy="128" r="6" fill="#CDE397" />
+          <ellipse cx="1344" cy="148" rx="7" ry="13" transform="rotate(-32 1344 148)" fill="#CDE397" />
+          <ellipse cx="1366" cy="154" rx="6" ry="11" transform="rotate(26 1366 154)" fill="#CDE397" />
+          <ellipse cx="1378" cy="134" rx="4.5" ry="7.5" transform="rotate(15 1378 134)" fill="#CDE397" />
+        </svg>
+      </div>
+
+      <!-- MAIN HERO & ABOUT CONTENT -->
+      <main class="hero-main-container">
+        <div class="hero-grid">
+          <!-- Kolom Kiri: Maskot Saki Besar Melambai -->
+          <div class="hero-col-mascot">
+            <div class="hero-mascot-wrapper">
+              <SakiProfileHeroMascot class="saki-hero-svg" />
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Identitas, Foto Profil, Bio About, Saki Props & Socials -->
+          <div class="hero-col-content" id="about-section">
+            <!-- Baris Identitas: Foto Profil + Kicker + Nama & Peran -->
+            <div class="identity-head-row">
+              <div class="portrait-ring">
+                <Image
+                  src={myPortrait}
+                  alt="Kevin Sakia Putra"
+                  width={80}
+                  height={80}
+                  class="portrait-photo"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="identity-titles">
+                <div class="kicker-group">
+                  <span class="kicker-text">HELLO, I'M</span>
+                  <span class="kicker-bar"></span>
+                </div>
+                <h1 class="hero-title">Kevin Sakia Putra</h1>
+                <p class="hero-role-tagline">
+                  Information Systems Student <span class="role-dot">•</span> Software &amp; Data Architecture
+                </p>
+              </div>
+            </div>
+
+            <!-- Narasi Terintegrasi Home & About -->
+            <div class="about-bio-box">
+              <p class="bio-paragraph">
+                I’m an Information Systems student who enjoys turning real-world problems into practical, scalable solutions through technology. My focus sits at the intersection of <strong>software development, relational database architecture, business systems, and AI</strong>.
+              </p>
+              <p class="bio-paragraph">
+                I enjoy working through the process from identifying a problem and exploring solutions to building, testing, and improving based on what I learn across multiple iterations.
+              </p>
+            </div>
+
+            <!-- Strip Elemen Maskot Saki (SakiPropElement) -->
+            <div class="saki-pillars-strip" aria-label="Focus Areas">
+              {sakiEngineeringPillars.map((pillar) => (
+                <div class="saki-pillar-chip">
+                  <span class="pillar-icon-box">
+                    <SakiPropElement name={pillar.prop} size={22} />
+                  </span>
+                  <span class="pillar-label">{pillar.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- Baris Tombol CTA & Social Media Links -->
+            <div class="cta-and-socials-row">
+              <div class="cta-row">
+                <a href="#projects-section" class="btn-cta btn-yellow" data-scroll-to="projects-section">
+                  <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+                  </svg>
+                  <span>View Projects</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+
+                <a href="/assets/CV_Kevin_Sakia_Putra.pdf" download="CV_Kevin_Sakia_Putra.pdf" class="btn-cta btn-outline">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  <span>Download CV</span>
+                </a>
+              </div>
+
+              <!-- Social Media Icon Buttons (Ukuran SVG Presisi 18px) -->
+              <div class="social-links-bar" aria-label="Social Media Links">
+                <a
+                  href="https://github.com/BakiTacos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-icon-btn"
+                  aria-label="GitHub"
+                  title="GitHub (@BakiTacos)"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/kevin-sakia-putra-2661a42a7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-icon-btn"
+                  aria-label="LinkedIn"
+                  title="LinkedIn (Kevin Sakia Putra)"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/kevin.sakia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-icon-btn"
+                  aria-label="Instagram"
+                  title="Instagram (@kevin.sakia)"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                  </svg>
+                  <span>Instagram</span>
+                </a>
+
+                <a
+                  href="mailto:contact@sakia.id"
+                  class="social-icon-btn"
+                  aria-label="Email"
+                  title="contact@sakia.id"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <span>Email</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- BOTTOM SCROLL INDICATOR -->
+      <div class="hero-bottom-scroll">
+        <a href="#projects-section" class="scroll-explore-btn" data-scroll-to="projects-section">
+          <div class="mouse-pill">
+            <span class="mouse-wheel"></span>
+          </div>
+          <span class="scroll-text">SCROLL TO EXPLORE</span>
+          <svg class="scroll-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+        SMOOTH TRANSITION CONNECTOR BRIDGE (ANTARA SECTION 1 DAN SECTION 2)
+        ========================================================================= -->
+    <div class="transition-connector" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" class="transition-svg">
+        <path
+          d="M 0 0 C 380 70, 720 90, 1080 30 C 1240 10, 1360 20, 1440 30 L 1440 0 L 0 0 Z"
+          fill="#8CAE72"
+          opacity="0.35"
+        />
+        <path
+          d="M 0 0 C 300 55, 680 75, 1020 38 C 1220 20, 1350 32, 1440 48 L 1440 120 L 0 120 Z"
+          fill="#FCF8F2"
+        />
+        <path
+          d="M 220 50 H 270 C 278 50, 284 44, 282 37 C 281 31, 275 27, 268 28 C 265 19, 256 12, 245 12 C 233 12, 223 20, 222 30 C 214 31, 208 36, 209 43 C 210 48, 214 50, 220 50 Z"
+          fill="#FFFFFF"
+          opacity="0.85"
+        />
+        <path
+          d="M 1180 42 H 1235 C 1244 42, 1250 35, 1248 27 C 1246 20, 1239 16, 1232 17 C 1228 7, 1218 0, 1206 0 C 1193 0, 1182 9, 1180 20 C 1172 21, 1165 27, 1166 35 C 1167 40, 1172 42, 1180 42 Z"
+          fill="#FFFFFF"
+          opacity="0.8"
+        />
+      </svg>
+    </div>
+
+    <!-- =========================================================================
+        SECTION 2: DAFTAR 9 PROJECT FOLDERS (DENGAN SAKI PROP ELEMENTS & SLIDER)
+        ========================================================================= -->
+    <section id="projects-section" class="projects-section">
+      <!-- Dekorasi Awan Atas & Bukit Bawah untuk Section 2 -->
+      <div class="proj-decor-cloud-left" aria-hidden="true">
+        <svg viewBox="0 0 320 180" fill="none" class="decor-svg">
+          <path d="M 0 0 H 280 C 265 65, 195 110, 110 115 C 55 118, 20 145, 0 175 Z" fill="#DCEFF9" opacity="0.7" />
+        </svg>
+      </div>
+      <div class="proj-decor-cloud-right" aria-hidden="true">
+        <svg viewBox="0 0 420 220" fill="none" class="decor-svg">
+          <path d="M 420 0 H 80 C 110 60, 195 85, 285 85 C 350 85, 390 120, 420 175 Z" fill="#DCEFF9" opacity="0.75" />
+          <path
+            d="M 255 128 H 318 C 328 128, 335 120, 333 111 C 331 103, 324 98, 316 99 C 312 87, 301 79, 287 79 C 272 79, 260 89, 258 102 C 248 103, 241 110, 242 119 C 243 125, 248 128, 255 128 Z"
+            fill="#FFFFFF"
+            opacity="0.9"
+          />
+        </svg>
+      </div>
+
+      <!-- Bukit Hijau Bawah Section 2 -->
+      <div class="proj-hills-bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none" class="decor-svg">
+          <path d="M 0 160 L 0 85 Q 160 85 330 140 L 390 160 Z" fill="#C2DA9B" />
+          <path d="M 0 160 L 0 35 C 28 32, 46 50, 44 72 C 68 68, 85 88, 80 110 C 102 108, 118 125, 116 145 L 220 160 Z" fill="#8CAE72" />
+          <ellipse cx="48" cy="144" rx="5.5" ry="10" transform="rotate(-28 48 144)" fill="#CDE397" />
+          <ellipse cx="64" cy="149" rx="5" ry="8.5" transform="rotate(24 64 149)" fill="#CDE397" />
+
+          <path d="M 1030 160 Q 1160 105 1330 105 L 1440 160 Z" fill="#C2DA9B" />
+          <path d="M 1250 160 C 1275 110, 1320 95, 1365 108 C 1390 78, 1420 72, 1440 80 L 1440 160 Z" fill="#8CAE72" />
+          <ellipse cx="1372" cy="145" rx="5.5" ry="10" transform="rotate(-28 1372 145)" fill="#CDE397" />
+          <ellipse cx="1390" cy="150" rx="5.5" ry="8.5" transform="rotate(24 1390 150)" fill="#CDE397" />
+        </svg>
+      </div>
+
+      <!-- MAIN CONTENT SECTION 2: KIRI INTRO + SAKI, KANAN 3D FOLDER CARDS -->
+      <div class="projects-main-container" id="projects-main-content">
+        <div class="projects-grid">
+          <!-- Sisi Kiri: PORTFOLIO + Projects + Maskot Saki Melambai (Tanpa Deskripsi) -->
+          <div class="projects-col-intro">
+            <div class="kicker-group">
+              <span class="kicker-text">PORTFOLIO</span>
+              <span class="kicker-bar"></span>
+            </div>
+
+            <h2 class="projects-title">Projects</h2>
+
+            <div class="proj-mascot-wrapper">
+              <SakiProfileHeroMascot class="saki-proj-svg" />
+            </div>
+          </div>
+
+          <!-- Sisi Kanan: 3D Claymorphic Folder Cards Carousel (9 Projects) -->
+          <div class="projects-col-carousel">
+            <div class="folders-carousel" id="folders-carousel">
+              {
+                allProjects.map((p) => (
+                  <div class={`folder-card folder-${p.theme}`}>
+                    <div class="folder-body-wrapper">
+                      <!-- Tab Kiri Atas Folder -->
+                      <a href={p.detailUrl} class={`folder-tab tab-${p.theme}`} aria-label={`Project ${p.num}: ${p.title}`}>
+                        <svg class="folder-icon" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                        </svg>
+                        <span class="tab-number">{p.num}</span>
+                      </a>
+
+                      <!-- Badan Utama Folder -->
+                      <div class={`folder-main-body body-${p.theme}`}>
+                        {p.hasMascotPeek && (
+                          <div class="saki-peek-anchor">
+                            <SakiPeekingMascot width={155} height={108} />
+                          </div>
+                        )}
+
+                        <!-- Baris Badge Kategori di Kanan Atas Badan Folder -->
+                        <div class="folder-badge-row">
+                          <span class={`folder-category-badge badge-${p.theme}`}>{p.category}</span>
+                        </div>
+
+                        <!-- Frame Layar Preview Dalam Folder (Hanya muncul pill saat hover langsung di gambar) -->
+                        <a href={p.detailUrl} class="folder-screen-frame" aria-label={`View project: ${p.title}`}>
+                          <Image
+                            src={p.image}
+                            alt={`${p.title} Interface`}
+                            width={760}
+                            height={480}
+                            class="screen-cover-img"
+                            loading={p.num === "01" ? "eager" : "lazy"}
+                            decoding="async"
+                          />
+
+                          <div class="screen-hover-pill-wrapper">
+                            <span class="btn-case-study">
+                              <span>VIEW PROJECT</span>
+                              <span>↗</span>
+                            </span>
+                          </div>
+                        </a>
+
+                        <!-- Judul & Subjudul Folder -->
+                        <div class="folder-info">
+                          <a href={p.detailUrl} class="folder-title-link">
+                            <h3 class="folder-title">{p.title}</h3>
+                          </a>
+                          <p class="folder-subtitle">{p.subtitle}</p>
+                        </div>
+
+                        <!-- Badges Tag di Bagian Bawah Folder (Menggunakan SakiPropElement SVG, BUKAN Emoji) -->
+                        <div class="folder-tags-row">
+                          <span class="tag-pill tag-pill-primary">
+                            <span class="tag-saki-prop">
+                              <SakiPropElement name={p.sakiProp} size={17} />
+                            </span>
+                            <span>{p.primaryTag}</span>
+                          </span>
+                          {p.tags.map((t) => (
+                            <span class="tag-pill">
+                              <span>{t}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Controller EXPLORE ↔ di Bawah Objek Folder (Desain Bersih Sebelumnya) -->
+            <div class="carousel-bottom-bar">
+              <button type="button" class="btn-explore" id="btn-explore-carousel" aria-label="Slide to explore projects" title="Explore Projects">
+                <span>EXPLORE</span>
+                <span class="explore-arrow">↔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT FOOTER -->
+      <footer class="saki-copyright-footer">
+        <p class="copyright-text">&copy; 2026 Kevin Sakia Putra. All rights reserved.</p>
+      </footer>
+    </section>
+  </div>
 </BaseLayout>
 
+<script>
+  function setupSmoothScroll() {
+    const navItems = document.querySelectorAll<HTMLAnchorElement>(".nav-item");
+    const scrollLinks = document.querySelectorAll<HTMLAnchorElement>("[data-scroll-to]");
+
+    function setActive(name: string) {
+      navItems.forEach((item) => {
+        if (item.getAttribute("data-nav") === name) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
+      });
+    }
+
+    scrollLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("data-scroll-to");
+        if (!targetId) return;
+
+        const navName = link.getAttribute("data-nav");
+        if (navName) {
+          setActive(navName);
+        }
+
+        // Temporarily pause scroll spy during programmatic smooth scroll
+        (window as any).__isClickScrolling = true;
+        setTimeout(() => {
+          (window as any).__isClickScrolling = false;
+        }, 900);
+
+        if (targetId === "hero-section") {
+          setActive("Home");
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+          try {
+            history.replaceState(null, "", "#hero-section");
+          } catch (_) {}
+          return;
+        }
+
+        let scrollTarget = document.getElementById(targetId);
+        if (targetId === "projects-section") {
+          const mainContent = document.getElementById("projects-main-content");
+          if (mainContent) scrollTarget = mainContent;
+        }
+
+        if (scrollTarget) {
+          const navBar = document.getElementById("saki-navbar");
+          const navOffset = navBar ? navBar.getBoundingClientRect().height : 76;
+          const targetPos = scrollTarget.getBoundingClientRect().top + window.pageYOffset - navOffset - 16;
+          window.scrollTo({
+            top: Math.max(0, targetPos),
+            behavior: "smooth",
+          });
+          try {
+            history.replaceState(null, "", `#${targetId}`);
+          } catch (_) {}
+
+          if (targetId === "about-section") {
+            const bioBox = scrollTarget.querySelector(".about-bio-box") || scrollTarget;
+            bioBox.classList.remove("about-highlight");
+            void (bioBox as HTMLElement).offsetWidth; // trigger reflow
+            bioBox.classList.add("about-highlight");
+          }
+        }
+      });
+    });
+
+    // Explicit listener for "SCROLL TO EXPLORE" indicator in hero
+    const exploreScrollBtn = document.querySelector<HTMLAnchorElement>(".scroll-explore-btn");
+    if (exploreScrollBtn) {
+      exploreScrollBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const mainContent = document.getElementById("projects-main-content") || document.getElementById("projects-section");
+        if (mainContent) {
+          const navBar = document.getElementById("saki-navbar");
+          const navOffset = navBar ? navBar.getBoundingClientRect().height : 76;
+          const targetPos = mainContent.getBoundingClientRect().top + window.pageYOffset - navOffset - 16;
+          window.scrollTo({
+            top: Math.max(0, targetPos),
+            behavior: "smooth",
+          });
+          try {
+            history.replaceState(null, "", "#projects-section");
+          } catch (_) {}
+        }
+      });
+    }
+  }
+
+  function setupCarousel() {
+    const btnExplore = document.getElementById("btn-explore-carousel");
+    const carousel = document.getElementById("folders-carousel");
+    if (!carousel) return;
+
+    const stepWidth = 420;
+
+    if (btnExplore) {
+      btnExplore.addEventListener("click", () => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= maxScroll - 30) {
+          carousel.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carousel.scrollBy({ left: stepWidth, behavior: "smooth" });
+        }
+      });
+    }
+
+    // Mouse drag-to-scroll
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let isDragging = false;
+    const DRAG_THRESHOLD = 10;
+
+    carousel.addEventListener("mousedown", (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      isDragging = false;
+      startX = e.pageX;
+      scrollStart = carousel.scrollLeft;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      const deltaX = e.pageX - startX;
+
+      if (!isDragging && Math.abs(deltaX) > DRAG_THRESHOLD) {
+        isDragging = true;
+        carousel.classList.add("is-dragging");
+      }
+
+      if (isDragging) {
+        e.preventDefault();
+        carousel.scrollLeft = scrollStart - deltaX;
+      }
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isDown) return;
+      isDown = false;
+
+      if (isDragging) {
+        carousel.classList.remove("is-dragging");
+        const preventClickOnce = (clickEvent: MouseEvent) => {
+          clickEvent.preventDefault();
+          clickEvent.stopPropagation();
+          window.removeEventListener("click", preventClickOnce, true);
+        };
+        window.addEventListener("click", preventClickOnce, true);
+        setTimeout(() => {
+          window.removeEventListener("click", preventClickOnce, true);
+          isDragging = false;
+        }, 120);
+      } else {
+        isDragging = false;
+      }
+    });
+  }
+
+  function setupActiveNavObserver() {
+    const aboutSec = document.getElementById("about-section");
+    const projSec = document.getElementById("projects-section");
+    const projContent = document.getElementById("projects-main-content");
+    const navItems = document.querySelectorAll<HTMLAnchorElement>(".nav-item");
+
+    function setActive(name: string) {
+      navItems.forEach((item) => {
+        if (item.getAttribute("data-nav") === name) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
+      });
+    }
+
+    function onScrollSpy() {
+      if ((window as any).__isClickScrolling) return;
+
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (projSec) {
+        const projRect = projSec.getBoundingClientRect();
+        if (projRect.top <= 200) {
+          setActive("Projects");
+          if (projContent) projContent.classList.add("is-visible");
+          return;
+        }
+      }
+
+      // Check if on mobile and scrolled into about-section
+      if (aboutSec && window.innerWidth < 1024) {
+        const aboutRect = aboutSec.getBoundingClientRect();
+        if (aboutRect.top <= 140 && aboutRect.bottom >= 100) {
+          setActive("About");
+          return;
+        }
+      }
+
+      if (scrollY <= 180) {
+        setActive("Home");
+      }
+    }
+
+    window.addEventListener("scroll", onScrollSpy, { passive: true });
+    onScrollSpy(); // initial check
+  }
+
+  function init() {
+    setupSmoothScroll();
+    setupCarousel();
+    setupActiveNavObserver();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  document.addEventListener("astro:page-load", init);
+</script>
+
 <style lang="scss">
-	.farline-main-wrapper {
-		width: 100%;
-		padding-bottom: 96px; /* Safe space for the floating bottom dock */
-		position: relative;
-	}
+  .saki-portfolio-root {
+    min-height: 100vh;
+    background-color: #FCF8F2;
+    color: #1E1B24;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+  }
+
+  /* --- STICKY / FIXED NAVBAR (100% PURE TRANSPARENT, NO BLUR, CLEAN LOOKS) --- */
+  .saki-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 14px 24px;
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    pointer-events: none; // Allows clicking elements underneath except the brand & nav items
+
+    .nav-container {
+      pointer-events: auto;
+    }
+
+    @media (min-width: 640px) {
+      padding: 16px 48px;
+    }
+    @media (min-width: 1024px) {
+      padding: 18px 80px;
+    }
+  }
+
+  .nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media (min-width: 640px) {
+      gap: 20px;
+    }
+  }
+
+  .nav-item {
+    cursor: pointer;
+    border-radius: 9999px;
+    padding: 8px 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1E1B24;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    user-select: none;
+
+    @media (min-width: 640px) {
+      padding: 8px 24px;
+      font-size: 15px;
+    }
+
+    &:hover {
+      color: #b45309;
+      background-color: rgba(254, 205, 94, 0.2);
+    }
+
+    &.is-active {
+      background-color: #FCE7A8;
+      color: #1E1B24;
+      font-weight: 800;
+      box-shadow: 0 1px 3px rgba(35, 31, 37, 0.08);
+    }
+  }
+
+  #hero-section,
+  #about-section,
+  #projects-section,
+  #projects-main-content {
+    scroll-margin-top: 86px;
+  }
+
+  @keyframes aboutPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(254, 205, 94, 0.6);
+      transform: scale(1);
+    }
+    40% {
+      box-shadow: 0 0 0 10px rgba(254, 205, 94, 0);
+      transform: scale(1.012);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(254, 205, 94, 0);
+      transform: scale(1);
+    }
+  }
+
+  .about-highlight {
+    animation: aboutPulse 0.8s ease-out;
+  }
+
+  /* --- SECTION 1: HERO & ABOUT INTEGRATED --- */
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+
+    @media (min-width: 640px) {
+      padding-top: 84px;
+    }
+  }
+
+  .cloud-decor-left {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 170px;
+    height: 360px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      width: 230px;
+      height: 430px;
+    }
+  }
+
+  .cloud-decor-right {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    width: 185px;
+    height: 350px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      width: 270px;
+      height: 410px;
+    }
+  }
+
+  .hills-decor-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      height: 150px;
+    }
+  }
+
+  .decor-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hero-main-container {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 24px 36px;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: 640px) {
+      padding: 32px 48px 44px;
+    }
+    @media (min-width: 1024px) {
+      padding: 36px 80px 48px;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 4.8fr 7.2fr;
+      gap: 44px;
+    }
+  }
+
+  .hero-col-mascot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      justify-content: flex-end;
+      width: auto;
+      margin: 0;
+    }
+  }
+
+  .hero-mascot-wrapper {
+    margin: 0 auto;
+    width: 250px;
+    max-width: 82vw;
+    aspect-ratio: 12 / 13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+
+    @media (min-width: 640px) {
+      width: 330px;
+    }
+    @media (min-width: 1024px) {
+      width: 445px;
+      margin: 0;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .saki-hero-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .hero-col-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  /* Baris Foto Profil + Judul */
+  .identity-head-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .portrait-ring {
+    position: relative;
+    width: 78px;
+    height: 78px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    padding: 3px;
+    background: linear-gradient(135deg, #FECD5E 0%, #F0B030 100%);
+    box-shadow: 0 8px 20px rgba(240, 176, 48, 0.28);
+  }
+
+  .portrait-photo {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 9999px;
+    object-fit: cover;
+    display: block;
+    border: 2px solid #FFFDF9;
+  }
+
+  .identity-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .kicker-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kicker-text {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #1E1B24;
+  }
+
+  .kicker-bar {
+    width: 44px;
+    height: 4px;
+    border-radius: 9999px;
+    background-color: #FDD365;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    color: #1E1B24;
+    margin: 0;
+  }
+
+  .hero-role-tagline {
+    font-size: 14px;
+    font-weight: 700;
+    color: #5A5766;
+    margin: 2px 0 0;
+
+    .role-dot {
+      color: #F0B030;
+      margin: 0 5px;
+    }
+  }
+
+  /* Narasi Bio Home + About */
+  .about-bio-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 610px;
+  }
+
+  .bio-paragraph {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #3F3D48;
+    margin: 0;
+
+    strong {
+      color: #1E1B24;
+      font-weight: 700;
+    }
+  }
+
+  /* Strip Elemen Maskot Saki */
+  .saki-pillars-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .saki-pillar-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 14px;
+    background-color: #FAF5EB;
+    border: 1.5px solid #EBE2D0;
+    box-shadow: 0 2px 6px rgba(30, 27, 36, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: #F2CE68;
+      background-color: #FFFDF7;
+    }
+  }
+
+  .pillar-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background-color: #FFFDF9;
+    border: 1px solid rgba(240, 176, 48, 0.3);
+    flex-shrink: 0;
+  }
+
+  .pillar-label {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #1E1B24;
+  }
+
+  /* Baris CTA & Social Media */
+  .cta-and-socials-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-yellow {
+    background-color: #FDD365;
+    color: #1E1B24;
+    border: 1.8px solid #E5B842;
+    box-shadow: 0 4px 14px rgba(253, 211, 101, 0.4);
+
+    &:hover {
+      background-color: #F5C64C;
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-outline {
+    background-color: #FFFFFF;
+    color: #1E1B24;
+    border: 1.8px solid #1E1B24;
+
+    &:hover {
+      background-color: #FDF9F2;
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .btn-arrow {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .social-links-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .social-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: 9999px;
+    background-color: #FFFFFF;
+    border: 1.5px solid #E2DCD0;
+    color: #1E1B24;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+
+    svg {
+      width: 16px !important;
+      height: 16px !important;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    &:hover {
+      border-color: #1E1B24;
+      background-color: #FEF7EE;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    }
+  }
+
+  /* --- HERO BOTTOM SCROLL INDICATOR --- */
+  .hero-bottom-scroll {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  .scroll-explore-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #1E1B24;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    transition: transform 0.22s ease, color 0.22s ease;
+    animation: gentleBounce 2.6s infinite ease-in-out;
+
+    &:hover {
+      transform: translateY(-3px) scale(1.06);
+      color: #92400e;
+
+      .mouse-pill {
+        border-color: #F0B030;
+        background-color: rgba(254, 205, 94, 0.35);
+      }
+      .mouse-wheel {
+        background-color: #F0B030;
+      }
+    }
+  }
+
+  @keyframes gentleBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  .mouse-pill {
+    width: 18px;
+    height: 28px;
+    border-radius: 9999px;
+    border: 1.8px solid #1E1B24;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    background-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .mouse-wheel {
+    width: 2px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #1E1B24;
+  }
+
+  .scroll-text {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #1E1B24;
+  }
+
+  .scroll-arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* --- TRANSITION CONNECTOR BRIDGE --- */
+  .transition-connector {
+    position: relative;
+    width: 100%;
+    margin-top: -36px;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+
+    @media (min-width: 640px) {
+      margin-top: -48px;
+    }
+  }
+
+  .transition-svg {
+    width: 100%;
+    height: 70px;
+    display: block;
+
+    @media (min-width: 640px) {
+      height: 95px;
+    }
+  }
+
+  /* --- SECTION 2: PROJECTS --- */
+  .projects-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-top: 24px;
+    padding-bottom: 64px;
+  }
+
+  .proj-decor-cloud-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 160px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .proj-decor-cloud-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .proj-hills-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      height: 150px;
+    }
+  }
+
+  .carousel-bottom-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 16px 12px 0;
+    position: relative;
+    z-index: 20;
+
+    @media (max-width: 640px) {
+      justify-content: center;
+      padding: 14px 8px 0;
+    }
+  }
+
+  .btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 6px 14px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #1E1B24;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      color: #92400e;
+      background-color: rgba(254, 205, 94, 0.22);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  .explore-arrow {
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .projects-main-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1280px;
+    width: 100%;
+    margin: auto auto;
+    padding: 16px 24px;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.85;
+    transform: translateY(12px);
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 640px) {
+      padding: 24px 48px;
+    }
+    @media (min-width: 1024px) {
+      padding: 28px 80px;
+    }
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: flex-end;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 36px;
+    }
+  }
+
+  .projects-col-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .projects-title {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #1E1B24;
+    margin: 0;
+
+    @media (min-width: 640px) {
+      font-size: 46px;
+    }
+  }
+
+  .proj-mascot-wrapper {
+    display: none; // Hidden on mobile
+
+    @media (min-width: 1024px) {
+      display: flex;
+      width: 220px;
+      max-width: 100%;
+      aspect-ratio: 12 / 13;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10px;
+      margin-left: -8px;
+    }
+  }
+
+  .projects-col-carousel {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .folders-carousel {
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-top: 85px;
+    padding-bottom: 24px;
+    padding-left: 8px;
+    padding-right: 32px;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-x;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:active,
+    &.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+  }
+
+  /* --- 3D FOLDER CARDS --- */
+  .folder-card {
+    position: relative;
+    flex-shrink: 0;
+    width: 340px;
+    scroll-snap-align: start;
+
+    @media (min-width: 640px) {
+      width: 395px;
+    }
+  }
+
+  .folder-body-wrapper {
+    position: relative;
+  }
+
+  .folder-tab {
+    width: 120px;
+    height: 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: -4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+  }
+
+  .tab-yellow {
+    background-color: #FCE59E;
+    border-color: #F2CE68;
+    color: #2A2112;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.85);
+  }
+  .tab-blue {
+    background-color: #D9EFFC;
+    border-color: #B3DCF8;
+    color: #1E2E3E;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-green {
+    background-color: #E1F3DA;
+    border-color: #C2E5B6;
+    color: #233320;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-purple {
+    background-color: #F1EDFD;
+    border-color: #DDD6FE;
+    color: #4C1D95;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-amber {
+    background-color: #FFEED9;
+    border-color: #FED7AA;
+    color: #7C2D12;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-teal {
+    background-color: #DDFBF7;
+    border-color: #99F6E4;
+    color: #115E59;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-rose {
+    background-color: #FFE4E8;
+    border-color: #FECDD3;
+    color: #9F1239;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-indigo {
+    background-color: #E5E7FD;
+    border-color: #C7D2FE;
+    color: #312E81;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+  .tab-cyan {
+    background-color: #DDF9FD;
+    border-color: #A5F3FC;
+    color: #164E63;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+
+  .folder-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tab-number {
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .folder-main-body {
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    border-top-right-radius: 28px;
+    border-top-left-radius: 0;
+    border: 2px solid;
+    padding: 20px;
+    position: relative;
+  }
+
+  .body-yellow {
+    background: linear-gradient(180deg, #FCE6A2 0%, #FCE292 100%);
+    border-color: #F0CB63;
+    box-shadow: 0 14px 30px rgba(180, 145, 60, 0.18), inset 0 2px 6px rgba(255, 255, 255, 0.85);
+  }
+  .body-blue {
+    background: linear-gradient(180deg, #D9EFFC 0%, #CBE8FA 100%);
+    border-color: #B3DCF8;
+    box-shadow: 0 14px 30px rgba(100, 165, 215, 0.16), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-green {
+    background: linear-gradient(180deg, #E1F3DA 0%, #D4ECCB 100%);
+    border-color: #C2E5B6;
+    box-shadow: 0 14px 30px rgba(110, 165, 95, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-purple {
+    background: linear-gradient(180deg, #F5F1FD 0%, #EDE5FC 100%);
+    border-color: #DDD6FE;
+    box-shadow: 0 14px 30px rgba(139, 92, 246, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-amber {
+    background: linear-gradient(180deg, #FFF2E2 0%, #FEE4CB 100%);
+    border-color: #FED7AA;
+    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-teal {
+    background: linear-gradient(180deg, #E6FCF9 0%, #D4F8F3 100%);
+    border-color: #99F6E4;
+    box-shadow: 0 14px 30px rgba(20, 184, 166, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-rose {
+    background: linear-gradient(180deg, #FFEAEF 0%, #FEDCE4 100%);
+    border-color: #FECDD3;
+    box-shadow: 0 14px 30px rgba(244, 63, 94, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-indigo {
+    background: linear-gradient(180deg, #ECEEFE 0%, #DFE3FD 100%);
+    border-color: #C7D2FE;
+    box-shadow: 0 14px 30px rgba(99, 102, 241, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+  .body-cyan {
+    background: linear-gradient(180deg, #E5FAFE 0%, #D4F6FC 100%);
+    border-color: #A5F3FC;
+    box-shadow: 0 14px 30px rgba(6, 182, 212, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  }
+
+  /* Maskot Saki Peeking nempel presisi di atas rim */
+  .saki-peek-anchor {
+    position: absolute;
+    top: -98px;
+    left: 88px;
+    z-index: 20;
+    pointer-events: none;
+
+    @media (min-width: 640px) {
+      left: 102px;
+    }
+  }
+
+  .folder-badge-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+    margin-top: -4px;
+  }
+
+  .folder-category-badge {
+    font-size: 9.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 4px 14px;
+    border-radius: 9999px;
+  }
+
+  .badge-yellow {
+    background-color: rgba(245, 204, 96, 0.8);
+    color: #3E2E0C;
+  }
+  .badge-blue {
+    background-color: #B2DBF8;
+    color: #1A3B54;
+  }
+  .badge-green {
+    background-color: #BEE2B0;
+    color: #223B1D;
+  }
+  .badge-purple {
+    background-color: rgba(139, 92, 246, 0.16);
+    color: #5B21B6;
+  }
+  .badge-amber {
+    background-color: rgba(249, 115, 22, 0.16);
+    color: #9A3412;
+  }
+  .badge-teal {
+    background-color: rgba(20, 184, 166, 0.18);
+    color: #0F766E;
+  }
+  .badge-rose {
+    background-color: rgba(244, 63, 94, 0.16);
+    color: #BE123C;
+  }
+  .badge-indigo {
+    background-color: rgba(99, 102, 241, 0.16);
+    color: #4338CA;
+  }
+  .badge-cyan {
+    background-color: rgba(6, 182, 212, 0.18);
+    color: #0E7490;
+  }
+
+  /* Frame Layar Preview Dalam Folder */
+  .folder-screen-frame {
+    position: relative;
+    width: 100%;
+    height: 198px;
+    border-radius: 20px;
+    background-color: #E8E6E1;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .screen-cover-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  /* PILL BOX VIEW PROJECT: Hidden by default, HANYA muncul saat hover langsung di screen frame (dan tidak sedang drag) */
+  .screen-hover-pill-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    background: rgba(20, 18, 24, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .folders-carousel:not(.is-dragging) .folder-screen-frame:hover .screen-hover-pill-wrapper {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: none;
+    }
+
+    .folders-carousel:not(.is-dragging) .folder-screen-frame:hover .screen-cover-img {
+      transform: scale(1.03);
+    }
+  }
+
+  .btn-case-study {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 20px;
+    border-radius: 9999px;
+    background-color: #FFFFFF;
+    color: #1E1B24;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    transform: translateY(4px);
+    pointer-events: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .folders-carousel:not(.is-dragging) .folder-screen-frame:hover .btn-case-study {
+    transform: translateY(0);
+  }
+
+  .folder-info {
+    padding-top: 15px;
+  }
+
+  .folder-title-link {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover .folder-title {
+      color: #92400e;
+    }
+  }
+
+  .folder-title {
+    font-size: 16.5px;
+    font-weight: 900;
+    color: #1E1B24;
+    line-height: 1.25;
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  .folder-subtitle {
+    font-size: 12px;
+    color: #4A4A52;
+    margin: 4px 0 0 0;
+    line-height: 1.4;
+  }
+
+  .folder-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    padding-top: 13px;
+  }
+
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.92);
+    color: #1E1B24;
+    font-size: 10.5px;
+    font-weight: 800;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .tag-pill-primary {
+    padding-left: 7px;
+    background-color: #FFFDF8;
+    border: 1px solid rgba(30, 27, 36, 0.1);
+  }
+
+  .tag-saki-prop {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* --- COPYRIGHT FOOTER --- */
+  .saki-copyright-footer {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    text-align: center;
+    padding-top: 24px;
+  }
+
+  .copyright-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #4A4A52;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
 </style>

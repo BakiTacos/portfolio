@@ -1,0 +1,35 @@
+# Kevin Sakia Putra — Portfolio
+
+> Personal portfolio and engineering case studies of Kevin Sakia Putra, an Information Systems student specializing in software engineering, relational database architecture, business systems, and AI multi-agent orchestration.
+
+## Profile Summary
+
+- **Name**: Kevin Sakia Putra
+- **Role**: Software & Data Architecture Engineer
+- **Focus**: Intersection of full-stack web applications, relational database design, financial & business operations engines, and AI agents.
+- **Website**: https://portfolio.sakia.id
+- **GitHub**: https://github.com/BakiTacos
+- **LinkedIn**: https://www.linkedin.com/in/kevin-sakia-putra-2661a42a7
+- **Instagram**: https://www.instagram.com/kevin.sakia
+
+## Core Specializations
+
+1. **Relational Database & Financial Engines**: Designing transaction-safe relational schemas, multi-tier ledgers, and automated inventory sync (PostgreSQL, Supabase, MySQL).
+2. **Full-Stack Web Systems**: Production-grade web architecture built with Next.js (App Router), TypeScript, Tailwind CSS, and Astro.
+3. **Operational & Business SaaS**: Translating real-world operational bottlenecks into modular software (e.g., Recipe BOM, Dynamic HPP calculation, Real-Time KDS).
+4. **AI & Multi-Agent Workflows**: Orchestrating agentic workflows, deterministic tool calling, and LLM-powered business automation using n8n and LangChain.
+
+## Featured Engineering Projects
+
+- [Bookkeeping & Financial System](/detail/bookkeeping): 4-stage financial architecture handling multi-level accounts, ledger validation, and real-time transaction balance reconciliation. Built with Next.js & PostgreSQL.
+- [BridgeU: University & Industry Collaboration](/detail/bridgeu): Academic collaboration and verified portfolio platform featuring weighted recommendation algorithms. Juara 2 UBM Inspire 1.0. Built with Next.js & Supabase.
+- [DapurTwin: F&B Operations & POS SaaS](/detail/dapurtwin): Operational POS and kitchen display system (KDS) featuring smart recipe Bill of Materials (BOM) and dynamic Cost of Goods Sold (HPP). Built with Next.js & Supabase.
+- [Tukang.in: Technician Marketplace](/detail/tukangin): Monolithic service marketplace utilizing heuristic proximity-matching algorithms to connect customers with verified technicians. Built with Laravel & MySQL.
+- [SUPARTA: Brand & Commerce Platform](/detail/suparta): High-ticket commerce with multi-language internationalization (i18n) and customer conversion flows. Built with Next.js.
+- [Student Support UMN](/detail/studentsupport): First-generation web portal engineered from grassroots user interviews and relational data schemas.
+- [Penerbangan.id: Flight Tracker](/detail/penerbangan): Real-time flight schedule queries, transit calculations, and live pricing monitors.
+- [ISFEST: Event & Ticketing Portal](/detail/isfest): High-concurrency ticketing, seat allocation, and attendee check-in management.
+- [n8n Multi-Agent Orchestra](/detail/n8n-orchestra): Autonomous multi-agent pipelines linking LLM reasoning with external APIs, CRMs, and database webhooks.
+
+## Full Context Documentation
+For detailed architecture deep dives, see [/llms-full.txt](/llms-full.txt).

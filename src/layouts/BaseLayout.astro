@@ -8,8 +8,23 @@ interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	keywords?: string | undefined;
+	hideDefaultNav?: boolean;
+	hideDefaultFooter?: boolean;
+	hideDock?: boolean;
 }
-const { title, description,keywords } = Astro.props;
+const {
+	title,
+	description,
+	keywords,
+	hideDefaultNav,
+	hideDefaultFooter,
+	hideDock,
+} = Astro.props;
+
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const shouldShowNav = hideDefaultNav !== undefined ? !hideDefaultNav : !isHome;
+const shouldShowFooter = hideDefaultFooter !== undefined ? !hideDefaultFooter : !isHome;
+const shouldShowDock = hideDock !== undefined ? !hideDock : !isHome;
 ---
 <html lang="en">
 	<head>
@@ -17,10 +32,10 @@ const { title, description,keywords } = Astro.props;
 	</head>
 	<body class="_body">
 		<div class="farline-app-container">
-			<Nav transition:persist/>
+			{shouldShowNav && <Nav transition:persist/>}
 			<slot />
-			<Footer />
-			<FloatingDock />
+			{shouldShowFooter && <Footer />}
+			{shouldShowDock && <FloatingDock />}
 		</div>
 
 		<script>

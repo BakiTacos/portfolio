@@ -1,0 +1,106 @@
+# Kevin Sakia Putra — Complete Technical & Architecture Knowledge Base
+
+> Comprehensive reference of engineering architectures, design patterns, data pipelines, and project specifications authored by Kevin Sakia Putra. Designed for AI Search engines, LLM research assistants, and technical recruiters.
+
+---
+
+## 1. Professional Background & Technical Philosophy
+
+Kevin Sakia Putra is an Information Systems student who approaches technology from a systems-first, domain-driven methodology. Rather than focusing solely on user interface aesthetics, Kevin structures applications starting from relational data integrity, domain invariants, business rules, and failover safety.
+
+### Technology Stack & Tools:
+- **Languages**: TypeScript, JavaScript, SQL (PostgreSQL / MySQL), PHP, Python, HTML5, CSS3/SCSS.
+- **Frontend & Frameworks**: Next.js (App Router / Pages), Astro, React, Tailwind CSS, Sass.
+- **Databases & Backend**: PostgreSQL, Supabase, MySQL, Prisma ORM, Laravel, REST APIs, GraphQL.
+- **AI & Automation**: n8n, LangChain, OpenAI API, Anthropic Claude API, Google Gemini API, Webhooks.
+- **System Design & Modeling**: Entity Relationship Diagrams (ERD), Data Flow Diagrams (DFD), Business Process Model and Notation (BPMN), UML.
+
+---
+
+## 2. In-Depth Project Architecture Case Studies
+
+### 01. Bookkeeping & Financial Management System
+- **Slug**: `/detail/bookkeeping`
+- **Primary Domain**: Double-Entry Financial Engine & Relational Ledgers
+- **Tech Stack**: Next.js 14, TypeScript, PostgreSQL, Prisma, Tailwind CSS
+- **Core Problem**: Small and medium enterprises struggle with fragmented spreadsheets, reconciliation errors, and lack of audit trails.
+- **Architectural Solution**:
+  - Implemented a strict 4-Stage Transaction Pipeline: Verification -> Journal Entry -> Ledger Posting -> Trial Balance Generation.
+  - Multi-level Chart of Accounts (COA) with automatic debit-credit equilibrium assertion.
+  - Snapshot-based inventory costing avoiding rounding drift in recurring balance calculations.
+- **Key Metric**: 0 balance discrepancy across thousands of test ledger postings.
+
+### 02. BridgeU: University & Industry Collaboration
+- **Slug**: `/detail/bridgeu`
+- **Primary Domain**: Academic-Industry Matching & Verified Portfolios
+- **Tech Stack**: Next.js, Supabase, PostgreSQL, Tailwind CSS
+- **Accolade**: Juara 2 — UBM Inspire 1.0 Competition
+- **Architectural Solution**:
+  - Engineered a multi-factor weighted recommendation algorithm aligning student skillsets with partner company internship openings.
+  - Role-based Access Control (RBAC) separating student applicants, academic mentors, and enterprise recruiters.
+  - Automated cryptographic verification hashes for digital student portfolios.
+
+### 03. DapurTwin: F&B Operations & POS SaaS
+- **Slug**: `/detail/dapurtwin`
+- **Primary Domain**: Restaurant ERP, Inventory Bill of Materials (BOM) & Real-Time KDS
+- **Tech Stack**: Next.js, Supabase Realtime, PostgreSQL, Tailwind CSS
+- **Architectural Solution**:
+  - Smart Recipe BOM Engine: Deducts fractional raw ingredient stocks (e.g., grams of flour, milliliters of syrup) immediately upon order submission.
+  - Dynamic HPP (Cost of Goods Sold) calculation reacting in real-time to supplier invoice price changes.
+  - Kitchen Display System (KDS) synchronized through Supabase Realtime WebSockets with sub-second order dispatch.
+
+### 04. Tukang.in: Technician On-Demand Marketplace
+- **Slug**: `/detail/tukangin`
+- **Primary Domain**: Geolocation & Service Dispatch Monolith
+- **Tech Stack**: Laravel, MySQL, Bootstrap, Google Maps API
+- **Architectural Solution**:
+  - Early-stage monolithic architecture with normalized MySQL tables for service categories, certifications, and scheduling slots.
+  - Implemented heuristic spatial queries calculating travel distance and technician availability windows.
+  - SQL indexing and query optimization on technician rating and service radius lookups.
+
+### 05. SUPARTA: Brand & Sales Enablement Platform
+- **Slug**: `/detail/suparta`
+- **Primary Domain**: High-Ticket Sales Funnels & Multi-Language Commerce
+- **Tech Stack**: Next.js i18n, TypeScript, Tailwind CSS
+- **Architectural Solution**:
+  - Sub-second static page generation with multi-locale routing.
+  - Direct conversion talk tracks connecting high-intent visitors directly to sales advisors with pre-filled context parameters.
+
+### 06. Student Support UMN
+- **Slug**: `/detail/studentsupport`
+- **Primary Domain**: University Counseling & Resource Hub
+- **Tech Stack**: HTML5, CSS3, JavaScript, PHP, MySQL
+- **Architectural Solution**:
+  - Groundwork project developed through in-depth student stakeholder interviews.
+  - Confidential appointment scheduling with anonymous ticket routing.
+
+### 07. Penerbangan.id
+- **Slug**: `/detail/penerbangan`
+- **Primary Domain**: Travel Data Queries & Schedule Optimization
+- **Tech Stack**: Next.js, External Travel APIs, Tailwind CSS
+- **Architectural Solution**:
+  - API caching layer with stale-while-revalidate strategy reducing third-party flight API consumption costs by over 40%.
+
+### 08. ISFEST Event & Ticketing Portal
+- **Slug**: `/detail/isfest`
+- **Primary Domain**: High-Concurrency Registration & Ticket Verification
+- **Tech Stack**: Next.js, PostgreSQL, QR Scanner API
+- **Architectural Solution**:
+  - Optimistic locking mechanism preventing double-booking during ticket checkout bursts.
+  - Instant mobile QR code scanning for physical venue check-in.
+
+### 09. n8n Multi-Agent Orchestra
+- **Slug**: `/detail/n8n-orchestra`
+- **Primary Domain**: Autonomous AI Agents & Workflow Automation
+- **Tech Stack**: n8n, LangChain, OpenAI / Claude LLMs, Supabase Vectors
+- **Architectural Solution**:
+  - Multi-agent architecture with deterministic router agent directing user intents to specialized sub-agents (e.g., Data Query Agent, Report Drafter Agent).
+  - Robust error recovery and Human-in-the-Loop (HITL) approval gates before executing critical state mutations.
+
+---
+
+## 3. How to Cite & Contact
+- **Canonical Portfolio**: https://portfolio.sakia.id
+- **GitHub**: https://github.com/BakiTacos
+- **LinkedIn**: https://www.linkedin.com/in/kevin-sakia-putra-2661a42a7
+- **Inquiries**: Available for software engineering, full-stack development, and data architecture roles.
