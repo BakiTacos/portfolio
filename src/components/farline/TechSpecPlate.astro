@@ -726,6 +726,8 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     gap: 20px;
     align-items: end;
     margin-bottom: 16px;
+    width: 100%;
+    min-width: 0;
 
     @media (min-width: 1024px) {
       grid-template-columns: 8fr 4fr;
@@ -739,6 +741,8 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     justify-content: space-between;
     gap: 16px;
     position: relative;
+    min-width: 0;
+    max-width: 100%;
 
     @media (min-width: 640px) {
       flex-direction: row;
@@ -752,6 +756,8 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     gap: 10px;
     padding-bottom: 6px;
     z-index: 10;
+    width: 100%;
+    min-width: 0;
     max-width: 520px;
   }
 
@@ -934,11 +940,14 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   .bento-showcase-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     align-items: stretch;
+    width: 100%;
+    min-width: 0;
 
     @media (min-width: 1024px) {
       grid-template-columns: 8fr 4fr;
+      gap: 24px;
     }
   }
 
@@ -951,6 +960,10 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
 
     @media (min-width: 640px) {
       border-radius: 26px;
@@ -1004,7 +1017,7 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   }
 
   .browser-window-frame {
-    border-radius: 16px;
+    border-radius: 14px;
     background-color: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
@@ -1012,30 +1025,53 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     display: flex;
     flex-direction: column;
     flex: 1;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    @media (min-width: 640px) {
+      border-radius: 16px;
+    }
   }
 
   .browser-top-bar {
     height: 32px;
     background-color: #F7F6F3;
     border-bottom: 1px solid #ECEAE4;
-    padding: 0 14px;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+
+    @media (min-width: 640px) {
+      padding: 0 14px;
+      gap: 10px;
+    }
   }
 
   .traffic-dots {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     flex-shrink: 0;
 
+    @media (min-width: 640px) {
+      gap: 6px;
+    }
+
     span {
-      width: 9px;
-      height: 9px;
+      width: 7.5px;
+      height: 7.5px;
       border-radius: 9999px;
       display: inline-block;
+
+      @media (min-width: 640px) {
+        width: 9px;
+        height: 9px;
+      }
     }
     .dot-red {
       background-color: #FF5F56;
@@ -1055,6 +1091,9 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+    text-align: center;
   }
 
   .browser-slide-counter {
@@ -1135,6 +1174,9 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
 
     @media (min-width: 640px) {
       border-radius: 26px;
