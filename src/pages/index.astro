@@ -176,7 +176,6 @@ const allProjects: {
 
         <nav class="nav-menu" aria-label="Main Navigation">
           <a href="#hero-section" class="nav-item is-active" data-nav="Home" data-scroll-to="hero-section">Home</a>
-          <a href="#about-section" class="nav-item" data-nav="About" data-scroll-to="about-section">About</a>
           <a href="#projects-section" class="nav-item" data-nav="Projects" data-scroll-to="projects-section">Projects</a>
         </nav>
       </div>
@@ -507,7 +506,7 @@ const allProjects: {
                             width={760}
                             height={480}
                             class="screen-cover-img"
-                            loading={p.num === "01" ? "eager" : "lazy"}
+                            loading="eager"
                             decoding="async"
                           />
 
@@ -732,7 +731,6 @@ const allProjects: {
   }
 
   function setupActiveNavObserver() {
-    const aboutSec = document.getElementById("about-section");
     const projSec = document.getElementById("projects-section");
     const projContent = document.getElementById("projects-main-content");
     const navItems = document.querySelectorAll<HTMLAnchorElement>(".nav-item");
@@ -750,39 +748,51 @@ const allProjects: {
     function onScrollSpy() {
       if ((window as any).__isClickScrolling) return;
 
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
       if (projSec) {
         const projRect = projSec.getBoundingClientRect();
-        if (projRect.top <= 200) {
+        if (projRect.top <= 220) {
           setActive("Projects");
           if (projContent) projContent.classList.add("is-visible");
           return;
         }
       }
 
-      // Check if on mobile and scrolled into about-section
-      if (aboutSec && window.innerWidth < 1024) {
-        const aboutRect = aboutSec.getBoundingClientRect();
-        if (aboutRect.top <= 140 && aboutRect.bottom >= 100) {
-          setActive("About");
-          return;
-        }
-      }
-
-      if (scrollY <= 180) {
-        setActive("Home");
-      }
+      setActive("Home");
     }
 
     window.addEventListener("scroll", onScrollSpy, { passive: true });
     onScrollSpy(); // initial check
   }
 
+  function handleInitialHash() {
+    const hash = window.location.hash;
+    if (!hash || hash === "#hero-section") return;
+
+    const targetId = hash.replace(/^#/, "");
+    let scrollTarget = document.getElementById(targetId);
+    if (targetId === "projects-section") {
+      const mainContent = document.getElementById("projects-main-content");
+      if (mainContent) scrollTarget = mainContent;
+    }
+
+    if (scrollTarget) {
+      setTimeout(() => {
+        const navBar = document.getElementById("saki-navbar");
+        const navOffset = navBar ? navBar.getBoundingClientRect().height : 76;
+        const targetPos = scrollTarget!.getBoundingClientRect().top + window.pageYOffset - navOffset - 16;
+        window.scrollTo({
+          top: Math.max(0, targetPos),
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  }
+
   function init() {
     setupSmoothScroll();
     setupCarousel();
     setupActiveNavObserver();
+    handleInitialHash();
   }
 
   if (document.readyState === "loading") {

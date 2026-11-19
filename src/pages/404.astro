@@ -1,61 +1,375 @@
 ---
-import BlogPostLayout from "../layouts/BlogPostLayout.astro";
-import CallToAction from "../components/CallToAction.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SakiLogoIcon from "../components/saki/SakiLogoIcon.astro";
 import SakiGraphicFace from "../components/saki/SakiGraphicFace.astro";
 import { notFoundTdk } from "../data/content";
 ---
-<BlogPostLayout
-	title={notFoundTdk.title || '404 Not Found'}
-	description={notFoundTdk.description || ''}
-	keywords={notFoundTdk.keywords || ''}
->
-	<div class="post">
-		<main class="post-wrapper 404">
-			<section>
-				<div class="content not-found-box">
-					<div class="saki-404-stage">
-						<SakiGraphicFace
-							mood="searching"
-							size={210}
-							transparentBg
-							hideBubble={false}
-							customSay="Hmm... halaman ini tidak ditemukan!"
-						/>
-					</div>
-					<p class="text">
-						<strong>404 Not Found</strong><br/>
-						The page you are looking for does not exist or has been moved.
-					</p>
-					<div class="btn">
-						<CallToAction href="/" target="_self">
-							Back to Home
-						</CallToAction>
-					</div>
-				</div>
-			</section>
-		</main>
-	</div>
-</BlogPostLayout>
 
-<style>
-	body {
-		min-height: 100vh;
-	}
-	.not-found-box {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding-top: 3rem;
-	}
-	.saki-404-stage {
-		margin-bottom: 1rem;
-	}
-	p {
-		text-align: center;
-	}
-	.btn {
-		margin: 2rem auto 4em;
-		text-align: center;
-	}
+<BaseLayout
+  title={notFoundTdk.title || "404 Not Found — Kevin Sakia Putra"}
+  description={notFoundTdk.description || "The page you are looking for does not exist or has been moved."}
+  keywords={notFoundTdk.keywords || "404, not found"}
+  hideDefaultNav={true}
+  hideDefaultFooter={true}
+  hideDock={true}
+>
+  <div class="saki-404-root">
+    <!-- Pure Transparent Sticky Navbar -->
+    <header class="saki-404-navbar">
+      <div class="nav-container">
+        <a href="/#hero-section" class="nav-brand" aria-label="Home">
+          <SakiLogoIcon size={44} />
+        </a>
+
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="/#hero-section" class="nav-item">Home</a>
+          <a href="/#projects-section" class="nav-item">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Dekorasi Awan Kiri & Kanan -->
+    <div class="cloud-decor-left" aria-hidden="true">
+      <svg viewBox="0 0 200 320" fill="none" class="decor-svg">
+        <path
+          d="M 0 10 C 70 10, 115 50, 105 115 C 140 140, 130 210, 75 245 C 40 268, 18 290, 0 305 Z"
+          fill="#DCEFF9"
+        />
+        <path
+          d="M 28 110 H 82 C 92 110, 98 102, 96 93 C 94 86, 88 81, 80 82 C 76 70, 66 62, 53 62 C 39 62, 28 72, 27 84 C 18 85, 11 92, 12 100 C 13 106, 19 110, 28 110 Z"
+          fill="#FFFFFF"
+          opacity="0.85"
+        />
+      </svg>
+    </div>
+
+    <div class="cloud-decor-right" aria-hidden="true">
+      <svg viewBox="0 0 220 320" fill="none" class="decor-svg">
+        <path
+          d="M 220 10 C 150 10, 105 55, 120 120 C 80 145, 90 215, 150 250 C 180 268, 200 288, 220 305 Z"
+          fill="#DCEFF9"
+        />
+      </svg>
+    </div>
+
+    <!-- Dekorasi Bukit Hijau di Bawah -->
+    <div class="hills-decor-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" fill="none" class="decor-svg">
+        <path d="M 0 150 L 0 85 Q 190 82 380 122 Q 480 142 550 150 Z" fill="#C2DA9B" />
+        <path
+          d="M 0 150 L 0 42 C 26 38, 46 55, 44 76 C 68 72, 86 90, 80 112 C 102 110, 118 124, 116 142 L 260 150 Z"
+          fill="#8CAE72"
+        />
+        <path d="M 940 150 Q 1040 105 1220 112 L 1440 150 Z" fill="#C2DA9B" />
+        <path d="M 1140 150 C 1180 95, 1260 80, 1330 98 C 1370 65, 1415 58, 1440 65 L 1440 150 Z" fill="#8CAE72" />
+      </svg>
+    </div>
+
+    <!-- Main 404 Content -->
+    <main class="saki-404-main">
+      <div class="saki-404-card">
+        <div class="saki-404-mascot">
+          <SakiGraphicFace
+            mood="searching"
+            size={210}
+            transparentBg={true}
+            hideBubble={false}
+            customSay="Hmm... halaman ini tidak ditemukan!"
+          />
+        </div>
+
+        <div class="error-badge">
+          <span class="error-dot"></span>
+          <span>ERROR 404 • PAGE NOT FOUND</span>
+        </div>
+
+        <h1 class="error-title">Lost in the clouds?</h1>
+
+        <p class="error-desc">
+          The page you’re looking for doesn’t exist, was moved, or the URL might have a typo.
+        </p>
+
+        <div class="error-actions">
+          <a href="/" class="btn-cta btn-yellow">
+            <span>←</span>
+            <span>Back to Home</span>
+          </a>
+          <a href="/#projects-section" class="btn-cta btn-outline">
+            <span>View Projects</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="saki-404-footer">
+      <p class="copyright-text">&copy; 2026 Kevin Sakia Putra. All rights reserved.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  .saki-404-root {
+    min-height: 100vh;
+    background-color: #FCF8F2;
+    color: #1E1B24;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    overflow-x: clip;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .saki-404-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 14px 24px;
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    pointer-events: none;
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+    @media (min-width: 640px) {
+      padding: 16px 48px;
+    }
+    @media (min-width: 1024px) {
+      padding: 18px 80px;
+    }
+  }
+
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media (min-width: 640px) {
+      gap: 20px;
+    }
+  }
+
+  .nav-item {
+    border-radius: 9999px;
+    padding: 8px 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1E1B24;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    @media (min-width: 640px) {
+      padding: 8px 24px;
+      font-size: 15px;
+    }
+
+    &:hover {
+      color: #b45309;
+      background-color: rgba(254, 205, 94, 0.2);
+    }
+  }
+
+  .cloud-decor-left {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 150px;
+    height: 260px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      width: 210px;
+      height: 330px;
+    }
+  }
+
+  .cloud-decor-right {
+    position: fixed;
+    top: 44px;
+    right: 0;
+    width: 160px;
+    height: 260px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      width: 220px;
+      height: 330px;
+    }
+  }
+
+  .hills-decor-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    pointer-events: none;
+    z-index: 0;
+
+    @media (min-width: 640px) {
+      height: 140px;
+    }
+  }
+
+  .decor-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .saki-404-main {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 24px 48px;
+  }
+
+  .saki-404-card {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .saki-404-mascot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .error-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background-color: rgba(254, 205, 94, 0.28);
+    border: 1.5px solid rgba(240, 176, 48, 0.45);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #5C4A32;
+  }
+
+  .error-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background-color: #F0B030;
+  }
+
+  .error-title {
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #1E1B24;
+    margin: 4px 0 0;
+  }
+
+  .error-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4A4A52;
+    max-width: 440px;
+    margin: 0;
+  }
+
+  .error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  .btn-yellow {
+    background-color: #FDD365;
+    color: #1E1B24;
+    border: 1.8px solid #E5B842;
+    box-shadow: 0 4px 14px rgba(253, 211, 101, 0.4);
+
+    &:hover {
+      background-color: #F5C64C;
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-outline {
+    background-color: #FFFFFF;
+    color: #1E1B24;
+    border: 1.8px solid #1E1B24;
+
+    &:hover {
+      background-color: #FEF7EE;
+      transform: translateY(-2px);
+    }
+  }
+
+  .saki-404-footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 18px 24px 28px;
+  }
+
+  .copyright-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #4A4A52;
+    margin: 0;
+  }
 </style>

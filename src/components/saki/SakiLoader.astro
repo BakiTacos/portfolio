@@ -1,0 +1,179 @@
+---
+import SakiProfileHeroMascot from "./SakiProfileHeroMascot.astro";
+// Saki Mascot Loading Animation Overlay
+// Uses the official SakiProfileHeroMascot SVG for 100% visual consistency.
+---
+
+<div id="saki-page-loader" class="saki-loader-overlay" aria-hidden="true">
+  <div class="saki-loader-stage">
+    <div class="saki-loader-mascot">
+      <div class="saki-loader-bounce">
+        <SakiProfileHeroMascot class="saki-loader-hero-svg" width="140" height="140" />
+      </div>
+    </div>
+
+    <div class="saki-loader-dots" aria-label="Loading">
+      <span class="loader-dot"></span>
+      <span class="loader-dot"></span>
+      <span class="loader-dot"></span>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const loader = document.getElementById("saki-page-loader");
+    if (!loader) return;
+
+    function hideLoader() {
+      loader.classList.add("is-hidden");
+    }
+
+    if (document.readyState === "complete") {
+      setTimeout(hideLoader, 240);
+    } else {
+      window.addEventListener("load", () => setTimeout(hideLoader, 240), { once: true });
+      document.addEventListener("DOMContentLoaded", () => setTimeout(hideLoader, 380), { once: true });
+    }
+
+    // Hard safety fallback so loader can never block user
+    setTimeout(hideLoader, 1100);
+
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted) hideLoader();
+    });
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest("a");
+      if (!link) return;
+
+      const href = link.getAttribute("href");
+      if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        link.hasAttribute("download") ||
+        link.getAttribute("target") === "_blank" ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+      ) {
+        return;
+      }
+
+      try {
+        const url = new URL(href, window.location.origin);
+        if (url.origin === window.location.origin && url.pathname !== window.location.pathname) {
+          loader.classList.remove("is-hidden");
+        }
+      } catch (_) {}
+    });
+  })();
+</script>
+
+<style>
+  .saki-loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background-color: #FCF8F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    pointer-events: all;
+  }
+
+  .saki-loader-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .saki-loader-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .saki-loader-mascot {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .saki-loader-bounce {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center bottom;
+    animation: sakiMochiBounce 0.95s infinite cubic-bezier(0.35, 0.85, 0.45, 1);
+  }
+
+  .saki-loader-hero-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .saki-loader-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .loader-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background-color: #FECD5E;
+    border: 1.5px solid #231F25;
+    animation: sakiDotHop 0.9s infinite ease-in-out;
+  }
+
+  .loader-dot:nth-child(2) {
+    background-color: #8CAE72;
+    animation-delay: 0.15s;
+  }
+
+  .loader-dot:nth-child(3) {
+    background-color: #A6D2E6;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes sakiMochiBounce {
+    0%, 100% {
+      transform: translateY(0) scaleX(1.03) scaleY(0.97);
+    }
+    45% {
+      transform: translateY(-14px) scaleX(0.97) scaleY(1.03);
+    }
+  }
+
+  @keyframes sakiDotHop {
+    0%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .saki-loader-bounce,
+    .loader-dot {
+      animation: none !important;
+    }
+  }
+</style>

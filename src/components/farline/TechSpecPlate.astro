@@ -397,7 +397,7 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
                 alt={slide.caption}
                 width={1100}
                 height={680}
-                loading={idx === 0 ? "eager" : "lazy"}
+                loading="eager"
                 decoding="async"
                 class="mockup-slide-img"
               />
@@ -829,15 +829,16 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   }
 
   .detail-saki-laptop-slot {
-    width: 245px;
+    width: 205px;
     flex-shrink: 0;
-    margin-bottom: -24px;
+    margin-bottom: -16px;
     z-index: 20;
     align-self: center;
     pointer-events: none;
 
     @media (min-width: 640px) {
       width: 285px;
+      margin-bottom: -24px;
       align-self: flex-end;
       margin-right: 4px;
     }
@@ -845,27 +846,47 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
 
   .detail-top-right {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 6px;
+
+    @media (min-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+    }
   }
 
   .demo-btn-wrapper,
   .source-btn-wrapper {
     position: relative;
-    width: 100%;
+    flex: 1 1 150px;
     max-width: 235px;
+
+    @media (min-width: 1024px) {
+      width: 100%;
+      flex: none;
+    }
   }
 
   .demo-rays-svg {
     position: absolute;
-    top: -14px;
-    right: -16px;
-    width: 28px;
-    height: 28px;
+    top: -10px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
     pointer-events: none;
+
+    @media (min-width: 640px) {
+      top: -14px;
+      right: -16px;
+      width: 28px;
+      height: 28px;
+    }
   }
 
   .btn-detail-action {
@@ -923,15 +944,16 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
 
   .bento-mockup-container {
     position: relative;
-    border-radius: 26px;
+    border-radius: 20px;
     background-color: #E6E0DA;
-    padding: 24px 20px 16px;
+    padding: 14px 12px 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
 
     @media (min-width: 640px) {
+      border-radius: 26px;
       padding: 28px 42px 18px;
     }
   }
@@ -940,10 +962,10 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
     border-radius: 9999px;
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.94);
     border: 1px solid rgba(0, 0, 0, 0.08);
     color: #1E1B24;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -954,6 +976,11 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
     z-index: 25;
     transition: all 0.2s ease;
 
+    @media (min-width: 640px) {
+      width: 34px;
+      height: 34px;
+    }
+
     &:hover {
       background-color: #FDD365;
       transform: translateY(-50%) scale(1.08);
@@ -961,11 +988,19 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   }
 
   .mockup-prev {
-    left: 10px;
+    left: 4px;
+
+    @media (min-width: 640px) {
+      left: 10px;
+    }
   }
 
   .mockup-next {
-    right: 10px;
+    right: 4px;
+
+    @media (min-width: 640px) {
+      right: 10px;
+    }
   }
 
   .browser-window-frame {
@@ -1092,14 +1127,19 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
 
   /* KOLOM KANAN: PROJECT OVERVIEW CARD */
   .bento-overview-card {
-    border-radius: 26px;
+    border-radius: 20px;
     background-color: #FAF6F0;
     border: 1.5px solid #E6DEC8;
-    padding: 24px 26px;
+    padding: 18px 16px;
     box-shadow: 0 4px 16px rgba(30, 27, 36, 0.04);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (min-width: 640px) {
+      border-radius: 26px;
+      padding: 24px 26px;
+    }
   }
 
   .overview-card-top {
@@ -1157,9 +1197,10 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
 
   .meta-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px 10px;
   }
 
   .meta-label {
@@ -1195,8 +1236,12 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   .meta-tech-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 6px;
+
+    @media (min-width: 640px) {
+      justify-content: flex-end;
+    }
   }
 
   .tech-chip-pill {
@@ -1242,16 +1287,22 @@ const resolvedSubtitle = propSubtitle || meta.subtitle;
   .detail-tab-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
+    gap: 6px;
+    padding: 8px 14px;
     border-radius: 9999px;
     background: transparent;
     border: none;
     color: #1E1B24;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
+
+    @media (min-width: 640px) {
+      gap: 8px;
+      padding: 9px 18px;
+      font-size: 13px;
+    }
 
     &:hover {
       background-color: #F2EDE4;

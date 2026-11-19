@@ -278,10 +278,15 @@
 }
 
 /* Global variables */
-html,
+html {
+    min-height: 100%;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+}
+
 body {
-    height: 100%;
-    overflow-x: hidden;
+    min-height: 100%;
+    overflow-x: clip;
     background-color: var(--color-999);
     color: var(--color-100);
     font-family: var(--font-body) !important;

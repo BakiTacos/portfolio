@@ -1,6 +1,8 @@
 ---
 import MainHead from "../components/MainHead.astro";
 import SakiLogoIcon from "../components/saki/SakiLogoIcon.astro";
+import SakiLoader from "../components/saki/SakiLoader.astro";
+import Effect from "../effects/Effect.astro";
 
 interface Props {
   title?: string | undefined;
@@ -16,6 +18,8 @@ const { title, description, keywords } = Astro.props;
     <MainHead title={title} description={description} keywords={keywords} />
   </head>
   <body class="saki-detail-body">
+    <SakiLoader />
+    <Effect />
     <div class="saki-detail-root">
       <!-- Dekorasi Awan Kiri Atas + Awan Putih Kecil -->
       <div class="detail-cloud-left" aria-hidden="true">
@@ -67,7 +71,6 @@ const { title, description, keywords } = Astro.props;
 
           <nav class="detail-nav-menu" aria-label="Main Navigation">
             <a href="/#hero-section" class="detail-nav-item">Home</a>
-            <a href="/#about-section" class="detail-nav-item">About</a>
             <a href="/#projects-section" class="detail-nav-item is-active">Projects</a>
           </nav>
         </div>
@@ -264,7 +267,7 @@ const { title, description, keywords } = Astro.props;
         width: 100%;
         max-width: 1240px;
         margin: 0 auto;
-        padding: 76px 24px 56px;
+        padding: 76px 16px 48px;
 
         @media (min-width: 640px) {
           padding: 84px 48px 64px;
@@ -285,32 +288,50 @@ const { title, description, keywords } = Astro.props;
       }
 
       .saki-detail-root .lead-text {
-        font-size: 15.5px !important;
-        line-height: 1.72 !important;
+        font-size: 14.5px !important;
+        line-height: 1.68 !important;
         color: #3A3842 !important;
         background-color: #FAF6F0;
         border: 1.5px solid #E6DEC8;
-        border-radius: 22px;
-        padding: 20px 24px;
+        border-radius: 18px;
+        padding: 16px 18px;
         margin-bottom: 14px !important;
         box-shadow: 0 2px 10px rgba(30, 27, 36, 0.03);
+
+        @media (min-width: 640px) {
+          font-size: 15.5px !important;
+          line-height: 1.72 !important;
+          border-radius: 22px;
+          padding: 20px 24px;
+        }
       }
 
       /* Claymorphic Engineering Iteration Cards */
       .saki-detail-root .iteration-card {
         background-color: #FAF6F0;
         border: 1.5px solid #E6DEC8 !important;
-        border-radius: 26px;
-        padding: 26px 28px !important;
-        margin-bottom: 22px;
+        border-radius: 20px;
+        padding: 18px 16px !important;
+        margin-bottom: 18px;
         box-shadow: 0 6px 20px rgba(30, 27, 36, 0.04);
+
+        @media (min-width: 640px) {
+          border-radius: 26px;
+          padding: 26px 28px !important;
+          margin-bottom: 22px;
+        }
       }
 
       .saki-detail-root .iteration-header {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        gap: 14px;
-        margin-bottom: 16px !important;
+        gap: 10px 14px;
+        margin-bottom: 14px !important;
+
+        @media (min-width: 640px) {
+          margin-bottom: 16px !important;
+        }
       }
 
       .saki-detail-root .saki-prop-badge {
@@ -391,16 +412,23 @@ const { title, description, keywords } = Astro.props;
 
       /* What I Learned / Lessons Section */
       .saki-detail-root .lessons-section {
-        margin-top: 28px !important;
-        padding: 28px !important;
-        border-radius: 26px;
+        margin-top: 24px !important;
+        padding: 18px 16px !important;
+        border-radius: 20px;
         background-color: #FAF6F0;
         border: 1.5px solid #E6DEC8 !important;
         box-shadow: 0 6px 20px rgba(30, 27, 36, 0.04);
+
+        @media (min-width: 640px) {
+          margin-top: 28px !important;
+          padding: 28px !important;
+          border-radius: 26px;
+        }
       }
 
       .saki-detail-root .lessons-header {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 12px;
         margin-bottom: 12px;
@@ -408,9 +436,14 @@ const { title, description, keywords } = Astro.props;
 
       .saki-detail-root .lessons-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 14px;
         margin-top: 16px;
+
+        @media (min-width: 640px) {
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 16px;
+        }
       }
 
       .saki-detail-root .lesson-card {

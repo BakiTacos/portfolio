@@ -1,9 +1,10 @@
 ---
 // Component Imports
 import MainHead from '../components/MainHead.astro';
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import FloatingDock from '../components/farline/FloatingDock.astro';
+import SakiLoader from '../components/saki/SakiLoader.astro';
+import Effect from '../effects/Effect.astro';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -16,13 +17,11 @@ const {
 	title,
 	description,
 	keywords,
-	hideDefaultNav,
 	hideDefaultFooter,
 	hideDock,
 } = Astro.props;
 
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
-const shouldShowNav = hideDefaultNav !== undefined ? !hideDefaultNav : !isHome;
 const shouldShowFooter = hideDefaultFooter !== undefined ? !hideDefaultFooter : !isHome;
 const shouldShowDock = hideDock !== undefined ? !hideDock : !isHome;
 ---
@@ -31,8 +30,9 @@ const shouldShowDock = hideDock !== undefined ? !hideDock : !isHome;
 		<MainHead title={title} description={description}  keywords={keywords} />
 	</head>
 	<body class="_body">
+		<SakiLoader />
+		<Effect />
 		<div class="farline-app-container">
-			{shouldShowNav && <Nav transition:persist/>}
 			<slot />
 			{shouldShowFooter && <Footer />}
 			{shouldShowDock && <FloatingDock />}
